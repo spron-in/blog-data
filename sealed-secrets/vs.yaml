@@ -1,0 +1,7 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: my-secure-secret
+spec:
+  path: kvv2/mongod-secret
+  type: Opaque

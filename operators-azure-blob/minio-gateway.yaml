@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-gateway
+  labels:
+    app: minio-gw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-gw
+  template:
+    metadata:
+      labels:
+        app: minio-gw
+    spec:
+      containers:
+      - name: minio-gw
+        image: minio/minio
+        command: ["minio"]
+        args: ["gateway", "azure"]
+        env:
+        - name: MINIO_ROOT_USER
+          valueFrom:
+            secretKeyRef:
+              name: minio-secret
+              key: AZURE_ACCOUNT_NAME
+        - name: MINIO_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: minio-secret
+              key: AZURE_ACCOUNT_KEY
+        ports:
+        - containerPort: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-gateway-svc
+spec:
+  selector:
+    app: minio-gw
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000

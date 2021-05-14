@@ -1,0 +1,38 @@
+1. Provision GKE
+gcloud container clusters create --zone us-central1-a my-cluster --cluster-version 1.18 --machine-type n1-standard-4 --preemptible --num-nodes=3
+
+2. Provision PXC
+kubectl create namespace pxc
+git clone -b v1.8.0 https://github.com/percona/percona-xtradb-cluster-operator
+cd percona-xtradb-cluster-operator
+kubectl apply -f deploy/bundle.yaml -n pxc
+kubectl apply -f deploy/cr.yaml -n pxc
+cd ..
+
+3. Install crossplane.io
+kubectl create namespace crossplane
+helm repo add crossplane-alpha https://charts.crossplane.io/alpha
+helm install crossplane --namespace crossplane crossplane-alpha/crossplane
+
+4. Install provider-sql
+kubectl apply -f crossplane-provider-sql.yaml
+
+5. Create the secret for provider-sql to connect to PXC (get the secret from pxc cluster first):
+kubectl get secret -n pxc my-cluster-secrets -o yaml | awk '/root:/ {print $2}' | base64 --decode && echo
+kubectl apply -f crossplane-secret.yaml
+
+6. Create provider-sql ProviderConfig
+kubectl apply -f crossplane-mysql-config.yaml
+
+7. Create the DB on PXC
+kubectl apply -f crossplane-db.yaml
+
+8. Create user secret
+kubectl apply -f user-secret.yaml
+
+9. Create the user
+kubectl apply -f crossplane-user.yaml
+
+10. Create the grants
+kubectl apply -f crossplane-grants.yaml
+

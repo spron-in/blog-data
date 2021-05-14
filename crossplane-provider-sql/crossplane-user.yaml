@@ -1,0 +1,15 @@
+apiVersion: mysql.sql.crossplane.io/v1alpha1
+kind: User
+metadata:
+  name: my-user
+spec:
+  providerConfigRef:
+    name: cluster1-pxc
+  forProvider:
+    passwordSecretRef:
+      name: my-user-secret
+      namespace: default
+      key: password
+  writeConnectionSecretToRef:
+    name: connection-secret
+    namespace: default

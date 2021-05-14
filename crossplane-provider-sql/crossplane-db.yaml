@@ -1,0 +1,7 @@
+apiVersion: mysql.sql.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  name: my-db
+spec:
+  providerConfigRef:
+    name: cluster1-pxc

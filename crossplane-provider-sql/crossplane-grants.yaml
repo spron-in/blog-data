@@ -1,0 +1,16 @@
+apiVersion: mysql.sql.crossplane.io/v1alpha1
+kind: Grant
+metadata:
+  name: my-grant
+spec:
+  providerConfigRef:
+    name: cluster1-pxc
+  forProvider:
+    privileges:
+      - DROP
+      - CREATE ROUTINE
+      - EVENT
+    userRef:
+      name: my-user
+    databaseRef:
+      name: my-db

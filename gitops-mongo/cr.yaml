@@ -266,7 +266,7 @@ spec:
           cpu: "300m"
           memory: "0.5G"
       expose:
-        exposeType: ClusterIP
+        exposeType: LoadBalancer
 #        loadBalancerSourceRanges:
 #          - 10.0.0.0/8
 #        serviceAnnotations:

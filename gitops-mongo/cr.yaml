@@ -94,7 +94,7 @@ spec:
       maxUnavailable: 1
 #      minAvailable: 0
     expose:
-      enabled: true
+      enabled: false
       exposeType: LoadBalancer
 #      loadBalancerSourceRanges:
 #        - 10.0.0.0/8

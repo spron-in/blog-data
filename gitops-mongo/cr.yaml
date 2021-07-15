@@ -81,7 +81,7 @@ spec:
               storage: 3Gi
 
     mongos:
-      size: 3
+      size: 2
       affinity:
         antiAffinityTopologyKey: "kubernetes.io/hostname"
       podDisruptionBudget:

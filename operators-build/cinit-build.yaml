@@ -1,0 +1,31 @@
+runcmd:
+  - echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+  - sudo apt-get update
+  - sudo apt-get install -y google-cloud-sdk docker.io kubectl
+  - sudo chown -R ubuntu /home/ubuntu
+  - sudo snap install helm --classic
+  - sudo snap install yq --channel=v3/stable
+  - curl -s -L https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz | sudo tar -C /usr/bin --strip-components 1 --wildcards -zxvpf - '*/oc'
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - gnupg
+  - jq
+
+write_files:
+- content: |
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+  path: /home/ubuntu/.inputrc
+
+- content: |
+    {
+        "experimental": true
+    }
+  path: /etc/docker/daemon.json

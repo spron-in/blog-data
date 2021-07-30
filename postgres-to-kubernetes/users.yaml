@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster1-postgres-secret
+  namespace: pgo
+type: Opaque
+stringData:
+  username: postgres
+  password: <POSTGRES PASSWORD>
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster1-primaryuser-secret
+  namespace: pgo
+type: Opaque
+stringData:
+  username: primaryuser
+  password: <PRIMARYUSER PASSWORD>

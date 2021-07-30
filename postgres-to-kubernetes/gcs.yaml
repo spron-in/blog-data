@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster1-backrest-repo-config
+  namespace: pgo
+type: Opaque
+data:
+  gcs-key: <BASE64 ENCODED JSON>

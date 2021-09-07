@@ -1,7 +1,7 @@
 # Dynamic User Creation with MySQL on Kubernetes and Hashicorp Cloud Platform Vault
 Blog post about integrating Percona Distribution for MySQL and HashiCorp Cloud Platform Vault to provide dynamic user creation.
 
-Full blog post: TBD
+Full blog post: [here](https://www.percona.com/blog/dynamic-user-creation-with-mysql-on-kubernetes-and-hashicorp-cloud-platform-vault/)
 
 # Commands
 

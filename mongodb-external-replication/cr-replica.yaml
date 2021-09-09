@@ -36,19 +36,6 @@ spec:
 
   - name: rs0
     size: 3
-    #    externalNodes:
-    #    - host: 35.226.8.109
-    #      priority: 1
-    #      votes: 1
-    #      port: 27017
-    #    - host: 34.69.97.36
-    #      priority: 1
-    #      votes: 1
-    #      port: 27017
-    #    - host: 34.136.38.20
-    #      priority: 1
-    #      votes: 1
-    #      port: 27017
 #    # for more configuration fields refer to https://docs.mongodb.com/manual/reference/configuration-options/
 #    configuration: |
 #      operationProfiling:
@@ -223,19 +210,6 @@ spec:
 #          mode: slowOp
 #        systemLog:
 #           verbosity: 1
-#      externalNodes:
-#      - host: 34.72.198.190
-#        priority: 1
-#        votes: 1
-#        port: 27017
-#      - host: 34.123.67.170
-#        priority: 1
-#        votes: 1
-#        port: 27017
-#      - host: 35.202.59.119
-#        priority: 1
-#        votes: 1
-#       port: 27017
       affinity:
         antiAffinityTopologyKey: "kubernetes.io/hostname"
 #        advanced:

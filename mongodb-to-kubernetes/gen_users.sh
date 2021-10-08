@@ -47,6 +47,6 @@ kind: Secret
 metadata:
   name: my-new-cluster-secrets
   namespace: default
-type: kubernetes.io/tls
+type: Opaque
 EOF
 

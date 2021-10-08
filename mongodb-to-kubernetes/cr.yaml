@@ -1,0 +1,41 @@
+apiVersion: psmdb.percona.com/v1-10-0
+kind: PerconaServerMongoDB
+metadata:
+  name: my-new-cluster
+spec:
+  unmanaged: false
+  crVersion: 1.10.0
+  image: percona/percona-server-mongodb:4.4.8-9
+  imagePullPolicy: Always
+  allowUnsafeConfigurations: false
+  updateStrategy: Never
+  upgradeOptions:
+    versionServiceEndpoint: https://check.percona.com
+    apply: 4.4-recommended
+    schedule: "0 2 * * *"
+    setFCV: false
+  secrets:
+    users: my-new-cluster-secrets
+    ssl: my-custom-ssl
+    sslInternal: my-custom-ssl-internal
+  replsets:
+
+  - name: rs0
+    size: 3
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+    podDisruptionBudget:
+      maxUnavailable: 1
+    expose:
+      enabled: true
+      exposeType: LoadBalancer
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 1Gi
+
+  sharding:
+    enabled: false
+  backup:
+    enabled: false

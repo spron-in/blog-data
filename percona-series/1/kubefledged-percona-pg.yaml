@@ -1,0 +1,21 @@
+---
+apiVersion: kubefledged.io/v1alpha2
+kind: ImageCache
+metadata:
+  # Name of the image cache. A cluster can have multiple image cache objects
+  name: pgcache
+  # The kubernetes namespace to be used for this image cache. You can choose a different namepace as per your preference
+  labels:
+    app: kubefledged
+    component: imagecache
+  namespace: kube-fledged
+spec:
+  # The "cacheSpec" field allows a user to define a list of images and onto which worker nodes those images should be cached (i.e. pre-pulled).
+  cacheSpec:
+  - images:
+    - percona/percona-postgresql-operator:1.0.0-ppg13-postgres-ha
+    - percona/pmm-client:2.15.1
+    - percona/percona-postgresql-operator:1.0.0-ppg13-pgbouncer
+    - percona/percona-postgresql-operator:1.0.0-ppg13-pgbadger
+    - percona/percona-postgresql-operator:1.0.0-ppg13-pgbackrest
+    - percona/percona-postgresql-operator:1.0.0-ppg13-pgbackrest-repo

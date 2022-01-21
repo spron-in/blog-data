@@ -35,5 +35,4 @@ spec:
     mongos:
       size: 1
       expose:
-        enabled: true
-        serviceType: NodePort
+        exposeType: NodePort

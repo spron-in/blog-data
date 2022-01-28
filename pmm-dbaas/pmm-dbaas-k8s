@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cat <<EOF | kubectl apply -f -
 ---
 apiVersion: v1
@@ -58,7 +60,9 @@ token=`kubectl get secret $name -o json | jq -r  '.data.token' | base64 -d`
 server=`kubectl cluster-info | grep 'Kubernetes control plane' | cut -d ' ' -f 7`
 
 echo "
-Copy kubeconfig below and paste it into corresponding section
+=====================================================================
+Copy kubeconfig below and paste it into corresponding section in PMM:
+=====================================================================
 "
 
 echo "#####BEGIN KUBECONFIG#####"

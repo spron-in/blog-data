@@ -1,0 +1,82 @@
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: percona-dbaas-cluster-operator
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: service-account-percona-server-dbaas-xtradb-operator
+subjects:
+- kind: ServiceAccount
+  name: percona-dbaas-cluster-operator
+roleRef:
+  kind: Role
+  name: percona-xtradb-cluster-operator
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: service-account-percona-server-dbaas-psmdb-operator
+subjects:
+- kind: ServiceAccount
+  name: percona-dbaas-cluster-operator
+roleRef:
+  kind: Role
+  name: percona-server-mongodb-operator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: service-account-percona-server-dbaas-admin
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: service-account-percona-server-dbaas-operator-admin
+subjects:
+- kind: ServiceAccount
+  name: percona-dbaas-cluster-operator
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: service-account-percona-server-dbaas-admin
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+name=`kubectl get serviceAccounts percona-dbaas-cluster-operator -o json | jq  -r '.secrets[].name'`
+certificate=`kubectl get secret $name -o json | jq -r  '.data."ca.crt"'`
+token=`kubectl get secret $name -o json | jq -r  '.data.token' | base64 -d`
+server=`kubectl cluster-info | grep 'Kubernetes control plane' | cut -d ' ' -f 7`
+
+echo "
+Copy kubeconfig below and paste it into corresponding section
+"
+
+echo "#####BEGIN KUBECONFIG#####"
+echo "apiVersion: v1
+kind: Config
+users:
+- name: percona-dbaas-cluster-operator
+  user:
+    token: $token
+clusters:
+- cluster:
+    certificate-authority-data: $certificate
+    server: $server
+  name: self-hosted-cluster
+contexts:
+- context:
+    cluster: self-hosted-cluster
+    user: percona-dbaas-cluster-operator
+  name: svcs-acct-context
+current-context: svcs-acct-context"
+echo "#####END KUBECONFIG#####"

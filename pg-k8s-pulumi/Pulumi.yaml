@@ -1,0 +1,6 @@
+name: percona-pg-k8s
+description: Percona PG cluster on Kubernetes (GKE)
+runtime:
+  name: python
+  options:
+    virtualenv: venv

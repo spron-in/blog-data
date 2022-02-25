@@ -553,7 +553,7 @@ perconapg = kubernetes.apiextensions.CustomResource(
         }
       }
     }
-    },opts=ResourceOptions(provider=k8s_provider,depends_on=[pgo_pgo_deploy_job])
+    },opts=ResourceOptions(provider=k8s_provider,depends_on=[pgo_pgo_deploy_job,percona_pg_cluster1_pguser_secret_secret])
 )
 
 # show kubeconfig 

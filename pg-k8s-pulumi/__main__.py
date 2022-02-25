@@ -23,8 +23,6 @@ MASTER_VERSION = config.get('master_version')
 # PostgreSQL config block #
 # namespace for Percona Operator
 NAMESPACE = config.get('namespace') or 'default'
-# PostgreSQL cluster name
-CLUSTER_NAME = config.get('cluster_name') or 'my-test'
 # PostgreSQL pguser password
 PGUSER_PASSWORD = config.get('pguser_password') or RandomPassword("pguser_password", length=20, special=True).result
 # PostgreSQL cluster name
@@ -81,12 +79,14 @@ users:
 # Make a Kubernetes provider instance that uses our cluster from above.
 k8s_provider = kubernetes.Provider('gke_k8s', kubeconfig=k8s_config)
 
-# Create a K8s namespace.
-pg_namespace = kubernetes.core.v1.Namespace(
-    "pgNamespace",
-    metadata={
-        "name": NAMESPACE,
-    },opts=ResourceOptions(provider=k8s_provider))
+# Create a K8s namespace
+if pg_namespace != 'default':
+    pg_namespace = kubernetes.core.v1.Namespace(
+        "pgNamespace",
+        metadata={
+            "name": NAMESPACE,
+        },opts=ResourceOptions(provider=k8s_provider))
+
 
 # Deploy Percona PG Operator
 

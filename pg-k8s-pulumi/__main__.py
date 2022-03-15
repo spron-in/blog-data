@@ -80,7 +80,7 @@ users:
 k8s_provider = kubernetes.Provider('gke_k8s', kubeconfig=k8s_config)
 
 # Create a K8s namespace
-if pg_namespace != 'default':
+if NAMESPACE != 'default':
     pg_namespace = kubernetes.core.v1.Namespace(
         "pgNamespace",
         metadata={

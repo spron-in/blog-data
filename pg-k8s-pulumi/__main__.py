@@ -6,7 +6,7 @@ from pulumi_random import RandomPassword
 import pulumi_kubernetes as kubernetes
 
 # Read in some configurable settings for our cluster:
-config = Config(None)
+config = Config()
 
 # nodeCount is the number of cluster nodes to provision. Defaults to 3 if unspecified.
 NODE_COUNT = config.get_int('node_count') or 3
@@ -24,7 +24,7 @@ MASTER_VERSION = config.get('master_version')
 # namespace for Percona Operator
 NAMESPACE = config.get('namespace') or 'default'
 # PostgreSQL pguser password
-PGUSER_PASSWORD = config.get('pguser_password') or RandomPassword("pguser_password", length=20, special=True).result
+PGUSER_PASSWORD = config.require_secret('pg_user_password') or RandomPassword("pg_user_password", length=20, special=True).result
 # PostgreSQL cluster name
 PG_CLUSTER_NAME = config.get('pg_cluster_name') or 'cluster1'
 # Service type used for pgBouncer

@@ -1,0 +1,23 @@
+mongodb:
+  enabled: false
+  mongodbUsername: rocketChat
+  mongodbPassword: ROCKETCHAT_DB_PASSWORD
+  mongodbDatabase: rocketchat
+
+externalMongodbUrl: "mongodb://rocketChat:ROCKETCHAT_DB_PASSWORD@my-db-psmdb-db-rs0-0.percona,my-db-psmdb-db-rs0-1.percona,my-db-psmdb-db-rs0-2.percona/rocketchat?replicaSet=rs0"
+externalMongodbOplogUrl: "mongodb://oplogger:OPLOG_PASSWORD@my-db-psmdb-db-rs0-0.percona,my-db-psmdb-db-rs0-1.percona,my-db-psmdb-db-rs0-2.percona/local?replicaSet=rs0&authSource=admin"
+
+service:
+  type: LoadBalancer
+
+replicaCount: 3
+minAvailable: 3
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app.kubernetes.io/instance: my-rocketchat
+          app.kubernetes.io/name: rocketchat
+      topologyKey: kubernetes.io/hostname

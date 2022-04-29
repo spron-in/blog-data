@@ -1,0 +1,280 @@
+# Default values for psmdb-cluster.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Platform type: kubernetes, openshift
+# platform: kubernetes
+
+# Cluster DNS Suffix
+# DNSsuffix: svc.cluster.local
+
+finalizers:
+## Set this if you want to delete database persistent volumes on cluster deletion
+  - delete-psmdb-pvc
+
+pause: false
+unmanaged: false
+allowUnsafeConfigurations: false
+updateStrategy: SmartUpdate
+upgradeOptions:
+  versionServiceEndpoint: https://check.percona.com
+  apply: 4.4-recommended
+  schedule: "0 2 * * *"
+  setFCV: false
+
+image:
+  repository: percona/percona-server-mongodb
+  tag: 4.4.10-11
+
+imagePullPolicy: Always
+secrets: {}
+  # If you set users secret here, it will not be constructed from the values at the
+  # bottom of this file, but the operator will use existing one or generate random values
+  # users: my-cluster-name-secrets
+
+replsets:
+  - name: rs0
+    size: 3
+    # externalNodes:
+    # - host: 34.124.76.90
+    # - host: 34.124.76.91
+    #   port: 27017
+    #   votes: 0
+    #   priority: 0
+    # - host: 34.124.76.92
+    # configuration: |
+    #   operationProfiling:
+    #     mode: slowOp
+    #   systemLog:
+    #     verbosity: 1
+    antiAffinityTopologyKey: "topology.kubernetes.io/zone"
+    # tolerations: []
+    # priorityClass: ""
+    # annotations: {}
+    # labels: {}
+    # nodeSelector: {}
+    # livenessProbe:
+    #   failureThreshold: 4
+    #   initialDelaySeconds: 60
+    #   periodSeconds: 30
+    #   timeoutSeconds: 10
+    #   startupDelaySeconds: 7200
+    # readinessProbe:
+    #   failureThreshold: 8
+    #   initialDelaySeconds: 10
+    #   periodSeconds: 3
+    #   successThreshold: 1
+    #   timeoutSeconds: 2
+    # runtimeClassName: image-rc
+    # sidecars:
+    # - image: busybox
+    #   command: ["/bin/sh"]
+    #   args: ["-c", "while true; do echo echo $(date -u) 'test' >> /dev/null; sleep 5;done"]
+    #   name: rs-sidecar-1
+    #   volumeMounts:
+    #     - mountPath: /volume1
+    #       name: sidecar-volume-claim
+    #     - mountPath: /secret
+    #       name: sidecar-secret
+    #     - mountPath: /configmap
+    #       name: sidecar-config
+    # sidecarVolumes:
+    # - name: sidecar-secret
+    #   secret:
+    #     secretName: mysecret
+    # - name: sidecar-config
+    #   configMap:
+    #     name: myconfigmap
+    # sidecarPVCs:
+    # - apiVersion: v1
+    #   kind: PersistentVolumeClaim
+    #   metadata:
+    #     name: sidecar-volume-claim
+    #   spec:
+    #     resources:
+    #       requests:
+    #         storage: 1Gi
+    #     volumeMode: Filesystem
+    #     accessModes:
+    #       - ReadWriteOnce
+    podDisruptionBudget:
+      maxUnavailable: 1
+    expose:
+      enabled: false
+      exposeType: ClusterIP
+    nonvoting:
+      enabled: false
+      size: 3
+      # configuration: |
+      #   operationProfiling:
+      #     mode: slowOp
+      #   systemLog:
+      #     verbosity: 1
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+      # tolerations: []
+      # priorityClass: ""
+      # annotations: {}
+      # labels: {}
+      # nodeSelector: {}
+      podDisruptionBudget:
+        maxUnavailable: 1
+      resources:
+        limits:
+          cpu: "300m"
+          memory: "0.5G"
+        requests:
+          cpu: "300m"
+          memory: "0.5G"
+      volumeSpec:
+        # emptyDir: {}
+        # hostPath:
+        #   path: /data
+        pvc:
+          # storageClassName: standard
+          # accessModes: [ "ReadWriteOnce" ]
+          resources:
+            requests:
+              storage: 3Gi
+    arbiter:
+      enabled: false
+      size: 1
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+      # tolerations: []
+      # priorityClass: ""
+      # annotations: {}
+      # labels: {}
+      # nodeSelector: {}
+    # schedulerName: ""
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "0.5G"
+      requests:
+        cpu: "300m"
+        memory: "0.5G"
+    volumeSpec:
+      # emptyDir: {}
+      # hostPath:
+      #   path: /data
+      pvc:
+        # storageClassName: standard
+        # accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 3Gi
+
+sharding:
+  enabled: true
+
+  configrs:
+    size: 3
+    # externalNodes:
+    # - host: 34.124.76.90
+    # - host: 34.124.76.91
+    #   port: 27017
+    #   votes: 0
+    #   priority: 0
+    # - host: 34.124.76.92
+    # configuration: |
+    #   operationProfiling:
+    #     mode: slowOp
+    #   systemLog:
+    #     verbosity: 1
+    antiAffinityTopologyKey: "topology.kubernetes.io/zone"
+    # tolerations: []
+    # priorityClass: ""
+    # annotations: {}
+    # labels: {}
+    # nodeSelector: {}
+    # livenessProbe: {}
+    # readinessProbe: {}
+    # runtimeClassName: image-rc
+    # sidecars:
+    # - image: busybox
+    #   command: ["/bin/sh"]
+    #   args: ["-c", "while true; do echo echo $(date -u) 'test' >> /dev/null; sleep 5;done"]
+    #   name: rs-sidecar-1
+    #   volumeMounts:
+    #     - mountPath: /volume1
+    #       name: sidecar-volume-claim
+    # sidecarPVCs: []
+    # sidecarVolumes: []
+    podDisruptionBudget:
+      maxUnavailable: 1
+    expose:
+      enabled: false
+      exposeType: ClusterIP
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "0.5G"
+      requests:
+        cpu: "300m"
+        memory: "0.5G"
+    volumeSpec:
+      # emptyDir: {}
+      # hostPath:
+      #   path: /data
+      #   type: Directory
+      pvc:
+        # storageClassName: standard
+        # accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 3Gi
+
+  mongos:
+    size: 3
+    # configuration: |
+    #   systemLog:
+    #     verbosity: 1
+    antiAffinityTopologyKey: "topology.kubernetes.io/zone"
+    # tolerations: []
+    # priorityClass: ""
+    # annotations: {}
+    # labels: {}
+    # nodeSelector: {}
+    # livenessProbe: {}
+    # readinessProbe: {}
+    # runtimeClassName: image-rc
+    # sidecars:
+    # - image: busybox
+    #   command: ["/bin/sh"]
+    #   args: ["-c", "while true; do echo echo $(date -u) 'test' >> /dev/null; sleep 5;done"]
+    #   name: rs-sidecar-1
+    #   volumeMounts:
+    #     - mountPath: /volume1
+    #       name: sidecar-volume-claim
+    # sidecarPVCs: []
+    # sidecarVolumes: []
+    podDisruptionBudget:
+      maxUnavailable: 1
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "0.5G"
+      requests:
+        cpu: "300m"
+        memory: "0.5G"
+    expose:
+      exposeType: ClusterIP
+      # loadBalancerSourceRanges:
+      #   - 10.0.0.0/8
+      # serviceAnnotations:
+      #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    # auditLog:
+    #   destination: file
+    #   format: BSON
+    #   filter: '{}'
+
+users:
+  MONGODB_BACKUP_USER: backup
+  MONGODB_BACKUP_PASSWORD: backup123456
+  MONGODB_CLUSTER_ADMIN_USER: clusterAdmin
+  MONGODB_CLUSTER_ADMIN_PASSWORD: clusterAdmin123456
+  MONGODB_CLUSTER_MONITOR_USER: clusterMonitor
+  MONGODB_CLUSTER_MONITOR_PASSWORD: clusterMonitor123456
+  MONGODB_USER_ADMIN_USER: userAdmin
+  MONGODB_USER_ADMIN_PASSWORD: userAdmin123456
+  PMM_SERVER_USER: admin
+  PMM_SERVER_PASSWORD: admin

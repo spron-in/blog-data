@@ -1,0 +1,22 @@
+use rocketchat
+db.createUser({
+
+  user: "rocketChat",
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "readWrite", db: "rocketchat" }
+  ]
+
+})
+
+use admin
+db.createUser({
+
+  user: "oplogger",
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "read", db: "local" }
+  ]
+
+})
+

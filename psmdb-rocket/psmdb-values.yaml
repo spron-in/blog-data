@@ -100,7 +100,7 @@ replsets:
     podDisruptionBudget:
       maxUnavailable: 1
     expose:
-      enabled: false
+      enabled: true
       exposeType: ClusterIP
     nonvoting:
       enabled: false
@@ -164,7 +164,7 @@ replsets:
             storage: 3Gi
 
 sharding:
-  enabled: true
+  enabled: false
 
   configrs:
     size: 3

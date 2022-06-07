@@ -1,0 +1,21 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: psmdb-cluster-mcs-setup-test-2
+  region: eu-central-1
+  version: "1.21"
+vpc:
+  cidr: 10.12.0.0/16
+nodeGroups:
+  - name: ng-1
+    minSize: 3
+    maxSize: 5
+    instancesDistribution:
+      maxPrice: 0.15
+      instanceTypes: ["m5.xlarge", "m5.2xlarge"] # At least two instance
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 50
+      spotInstancePools: 2
+    tags:
+      'iit-billing-tag': 'jenkins-eks'

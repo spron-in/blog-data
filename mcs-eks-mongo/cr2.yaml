@@ -1,0 +1,134 @@
+apiVersion: psmdb.percona.com/v1-12-0
+kind: PerconaServerMongoDB
+metadata:
+  name: dr-cluster
+  finalizers:
+    - delete-psmdb-pods-in-order
+    - delete-psmdb-pvc
+spec:
+
+  # IMPORTANT
+  unmanaged: true
+
+  crVersion: 1.12.0
+  image: percona/percona-server-mongodb:5.0.7-6
+  imagePullPolicy: Always
+  allowUnsafeConfigurations: false
+
+  # IMPORTANT
+  updateStrategy: OnDelete
+
+  multiCluster:
+    enabled: true
+#    DNSSuffix: svc.clusterset.local
+  upgradeOptions:
+    versionServiceEndpoint: https://check.percona.com
+    apply: 5.0-recommended
+    schedule: "0 2 * * *"
+    setFCV: false
+  secrets:
+    users: my-cluster-name-secrets
+    encryptionKey: my-cluster-name-mongodb-encryption-key
+    ssl: cluster-main-ssl
+    sslInternal: cluster-main-ssl-internal
+  replsets:
+
+  - name: rs0
+    size: 3
+    affinity:
+      antiAffinityTopologyKey: "kubernetes.io/hostname"
+    podDisruptionBudget:
+      maxUnavailable: 1
+    expose:
+      enabled: true
+      exposeType: ClusterIP
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "0.5G"
+      requests:
+        cpu: "300m"
+        memory: "0.5G"
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 3Gi
+
+    nonvoting:
+      enabled: false
+      size: 3
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+      podDisruptionBudget:
+        maxUnavailable: 1
+      resources:
+        limits:
+          cpu: "300m"
+          memory: "0.5G"
+        requests:
+          cpu: "300m"
+          memory: "0.5G"
+      volumeSpec:
+        persistentVolumeClaim:
+          resources:
+            requests:
+              storage: 3Gi
+    arbiter:
+      enabled: false
+      size: 1
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+
+  sharding:
+    enabled: false
+
+    configsvrReplSet:
+      size: 3
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+      podDisruptionBudget:
+        maxUnavailable: 1
+      expose:
+        enabled: false
+        exposeType: ClusterIP
+      resources:
+        limits:
+          cpu: "300m"
+          memory: "0.5G"
+        requests:
+          cpu: "300m"
+          memory: "0.5G"
+      volumeSpec:
+        persistentVolumeClaim:
+          resources:
+            requests:
+              storage: 3Gi
+
+    mongos:
+      size: 3
+      affinity:
+        antiAffinityTopologyKey: "kubernetes.io/hostname"
+      podDisruptionBudget:
+        maxUnavailable: 1
+      resources:
+        limits:
+          cpu: "300m"
+          memory: "0.5G"
+        requests:
+          cpu: "300m"
+          memory: "0.5G"
+      expose:
+        exposeType: ClusterIP
+
+  backup:
+
+    # IMPORTANT
+    enabled: false
+    image: percona/percona-backup-mongodb:1.7.0
+    serviceAccountName: percona-server-mongodb-operator
+    pitr:
+      enabled: false
+#      oplogSpanMin: 10
+      compressionType: gzip
+      compressionLevel: 6

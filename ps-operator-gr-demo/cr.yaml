@@ -1,0 +1,61 @@
+apiVersion: ps.percona.com/v1alpha1
+kind: PerconaServerMySQL
+metadata:
+  name: my-cluster
+spec:
+  allowUnsafeConfigurations: false
+  secretsName: my-cluster-secrets
+  sslSecretName: my-cluster-ssl
+  mysql:
+    clusterType: group-replication
+    image: percona/percona-server:8.0.28
+    imagePullPolicy: Always
+
+    size: 3
+    sizeSemiSync: 0
+    resources:
+      requests:
+        memory: 500Mi
+      limits:
+        memory: 1G
+
+    affinity:
+      antiAffinityTopologyKey: "none"
+
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 2G
+
+  router:
+    image: percona/percona-server-mysql-operator:0.2.0-router
+    imagePullPolicy: Always
+
+    size: 3
+
+    resources:
+      requests:
+        memory: 256M
+      limits:
+        memory: 256M
+
+    affinity:
+      antiAffinityTopologyKey: "none"
+
+    expose:
+      type: LoadBalancer
+
+  pmm:
+    enabled: true
+
+    image: percona/pmm-client:2.28.0
+    imagePullPolicy: Always
+
+    serverHost: monitoring-service
+    serverUser: admin
+
+  backup:
+    enabled: false
+    image: percona/percona-server-mysql-operator:0.2.0-backup
+    imagePullPolicy: Always

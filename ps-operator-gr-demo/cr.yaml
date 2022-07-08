@@ -47,7 +47,7 @@ spec:
       type: LoadBalancer
 
   pmm:
-    enabled: true
+    enabled: false
 
     image: percona/pmm-client:2.28.0
     imagePullPolicy: Always

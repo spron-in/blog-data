@@ -1,0 +1,8 @@
+typer==0.6.1
+click==8.0.4
+rich==12.5.1
+colorama==0.4.3
+shellingham==1.5.0
+typing-extensions==4.3.0
+commonmark==0.9.1
+pygments==2.13.0

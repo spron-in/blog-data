@@ -7,7 +7,7 @@ Supporting scripts for the blog post utilizing Percona Monitoring and Management
 
 See the demo of *the experimental* command line tool which interracts with PMM API:
 
-[![asciicast](https://asciinema.org/a/qkWV2NY0y5vaSnFP4K6jQHHLJ)](https://asciinema.org/a/qkWV2NY0y5vaSnFP4K6jQHHLJ)
+[![asciicast](https://asciinema.org/a/qkWV2NY0y5vaSnFP4K6jQHHLJ.png)](https://asciinema.org/a/qkWV2NY0y5vaSnFP4K6jQHHLJ)
 
 # CLI
 

@@ -2,19 +2,16 @@
 
 import json
 import sys
-
-from pathlib import Path
-
+import time
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
-from tabulate import tabulate
 import typer
-from rich import print
-
 import configparser
 
+from pathlib import Path
+from tabulate import tabulate
+from rich import print
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # configparser for storing PMM creds and modifying them
 config = configparser.ConfigParser()
@@ -30,11 +27,12 @@ cli.add_typer(pmm_app, name="pmm")
 dbaas_app = typer.Typer()
 cli.add_typer(dbaas_app, name="dbaas")
 
+engine_mapping = {'mongodb': 'psmdb_clusters', 'mysql': 'pxc_clusters'}
 class PMMApi:
 
     def __init__(self, PMM_ADDRESS = None, PMM_KEY = None, PMM_VERIFY_SSL = True):
 
-        self.PMM_ADDRESS = PMM_ADDRESS
+        self.PMM_ADDRESS = PMM_ADDRESS.strip("/")
         self.PMM_KEY = PMM_KEY
         self.PMM_VERIFY_SSL = False
         if PMM_VERIFY_SSL == 1:
@@ -57,7 +55,14 @@ class PMMApi:
 
         headers = self.AUTH_HEADER
 
-        r = requests.post(self.PMM_ADDRESS + url, json = data , headers = self.AUTH_HEADER, verify = self.PMM_VERIFY_SSL)
+        # dumb retry loop for connection closing 
+        for i in range(0, 5):
+            try:
+                r = requests.post(self.PMM_ADDRESS + url, json = data , headers = self.AUTH_HEADER, verify = self.PMM_VERIFY_SSL)
+                break
+            except:
+                continue
+            break
 
         if r.status_code != 200:
             print("Something went terribly wrong: %s" % r.json())
@@ -76,12 +81,14 @@ class PMMApi:
         return(self.post_request('/v1/Settings/Change', data))
 
     def dbaas_k8s_register(self, kubeconfig, cluster_name = None):
-        try:
-            myfile = open(kubeconfig)
-            kubeconfig_contents = myfile.read()
-            myfile.close()
-        except Exception as e:
-            return("Can't open your kubeconfig %s" % repr(e))
+
+        path = Path(kubeconfig)
+        if not path.is_file():
+            raise RuntimeError("Cannot read kubeconfig")
+
+        myfile = open(kubeconfig)
+        kubeconfig_contents = myfile.read()
+        myfile.close()
 
         data = {"kube_auth": {"kubeconfig": str(kubeconfig_contents)}}
 
@@ -90,17 +97,28 @@ class PMMApi:
 
         return(self.post_request('/v1/management/DBaaS/Kubernetes/Register', data))
 
-    def dbaas_kubernetes_unregister(self, cluster_name = None):
+    def dbaas_k8s_unregister(self, cluster_name = None):
 
         self.post_request('/v1/management/DBaaS/Kubernetes/Unregister', {'kubernetes_cluster_name': cluster_name})
 
         return
 
-    def dbaas_kubernetes_list(self, data = {}):
+    def dbaas_k8s_list(self):
 
-        clusters = self.post_request('/v1/management/DBaaS/Kubernetes/List', data)
-
+        clusters = self.post_request('/v1/management/DBaaS/Kubernetes/List', {})
         return(clusters)
+    
+    def dbaas_k8s_get(self, k8s_cluster_name):
+
+        clusters = self.dbaas_k8s_list()
+
+        if clusters == {}:
+            return {}
+        for cluster in clusters['kubernetes_clusters']:
+            if cluster['kubernetes_cluster_name'] == k8s_cluster_name:
+                return cluster
+
+        return {}
 
     def dbaas_db_create(self, engine, cluster_size = 3, expose = False, name = None, k8s_cluster_name = None):
 
@@ -138,61 +156,44 @@ class PMMApi:
     
     def dbaas_db_list(self, k8s_clusters):
         
-        i = 1
-        data_list = []
-
+        databases = {}
         for k8s in k8s_clusters['kubernetes_clusters']:
             k8s_cluster_name = k8s['kubernetes_cluster_name'] 
 
             data = {"kubernetes_cluster_name": k8s_cluster_name}
 
-            databases = self.post_request('/v1/management/DBaaS/DBClusters/List', data)
-            if databases == {}:
-                return("No databases found")
+            databases[k8s_cluster_name] = self.post_request('/v1/management/DBaaS/DBClusters/List', data)
 
-            available_engines = {'psmdb_clusters': 'mongodb', 'pxc_clusters': 'mysql'}
+        return(databases)
+    def dbaas_db_get(self, engine, name, k8s_cluster_name):
 
-            for engine, engine_normalized in available_engines.items():
-               
-                if engine not in databases.keys():
-                    continue
+        db = {}
+        databases = self.dbaas_db_list(pmm.dbaas_k8s_list())
 
-                for db in databases[engine]:\
 
-                    if 'cluster_size' in db['params']:
-                        cluster_size = db['params']['cluster_size']
-                    else:
-                        cluster_size = 'N/A'
+        if not k8s_cluster_name in databases:
+            return {}
+        if not engine in databases[k8s_cluster_name]:
+            return {}
 
-                    if 'installed_image' in db:
-                        installed_image = db['installed_image']
-                    else:
-                        installed_image = 'N/A'
-                    
-                    if 'exposed' in db:
-                        exposed = db['exposed']
-                    else:
-                        exposed = 'N/A'
+        for db in databases[k8s_cluster_name][engine]:
+            if db['name'] == name:
+                return db       
 
-                    data_list.append([i, db['name'], engine_normalized, db['state'], cluster_size, exposed, installed_image, k8s_cluster_name])
-                    i+=1
-                
-
-        return(tabulate(data_list, headers=['#', "Name", "Engine", "Status", "Size", "Exposed", "Image", "K8S"]))
+        return {}
 
     def dbaas_get_db_creds(self, k8s_cluster_name = None, name = None, engine = None):
 
         data = {"kubernetes_cluster_name": k8s_cluster_name, "name": name}
        
         if engine == 'mysql':
-            res = self.post_request('/v1/management/DBaaS/PXCClusters/GetCredentials', data)
+            return(self.post_request('/v1/management/DBaaS/PXCClusters/GetCredentials', data))
         elif engine == 'mongodb':
-            res = self.post_request('/v1/management/DBaaS/PSMDBClusters/GetCredentials', data)
+            return(self.post_request('/v1/management/DBaaS/PSMDBClusters/GetCredentials', data))
         else:
             raise RuntimeError("Wrong engine - must be mongodb or mysql")
-    
 
-        return(json.dumps(res, indent=4, sort_keys=True))
+        return
 
 
 # 
@@ -244,31 +245,56 @@ def dbaas_db_create(engine: str = typer.Option(..., help="Database engine - can 
         cluster_size: int = typer.Option(3, help="The number of nodes in the database cluster"),
         expose: bool = typer.Option(False, help="Expose the cluster through public LoadBalancer or not. Depends on your K8S capability."),
         k8s_cluster_name: str = typer.Option(..., help="The name of the registered Kubernetes cluster"), 
-        name: str = typer.Option(None, help="Database name")):
+        name: str = typer.Option(..., help="Database name"),
+        wait: bool = typer.Option(True, help="CLI waits for the database to be ready")):
     """
     Create and start a new database
     """
     print("Starting a %s database" % engine)
     print('...')
     pmm.dbaas_db_create(engine, cluster_size, expose, name, k8s_cluster_name)
+
+    if wait:
+        print("Waiting for the database to be ready. It may take a few minutes.")
+        READY_STATUS = 'DB_CLUSTER_STATE_READY'
+        while True:
+            time.sleep(3)
+            db = pmm.dbaas_db_get(engine_mapping[engine], name, k8s_cluster_name)
+            if db == {}:
+                print("Can't get the db")
+                return
+            if db['state'] == READY_STATUS:
+                break
+            
     print("Started database.") 
     print("* Get the list of all databases: 'percona-dbaas-cli dbaas databases-list'")
     print("* Get credentials for the database 'percona-dbaas-cli dbaas get-credentials --name DBNAME --k8s-cluster-name K8SNAME'")
 
 @dbaas_app.command("databases-delete")
-def dbaas_db_delete(name: str = typer.Option(None, help="Database name"),
+def dbaas_db_delete(name: str = typer.Option(..., help="Database name"),
         engine: str = typer.Option(..., help="Database engine - can be mysql or mongodb"),
-        k8s_cluster_name: str = typer.Option(..., help="The name of the registered Kubernetes cluster")):
+        k8s_cluster_name: str = typer.Option(..., help="The name of the registered Kubernetes cluster"),
+        wait: bool = typer.Option(True, help="CLI waits for the database to be deleted")):
     """
     Delete an existing database
     """
     print("Deleting a database")
     print('...')
     pmm.dbaas_db_delete(name, engine, k8s_cluster_name)
+
+    if wait:
+        print("Waiting for the database to be deleted. It may take a few moments.")
+        while True:
+            time.sleep(3)
+            db = pmm.dbaas_db_get(engine_mapping[engine], name, k8s_cluster_name)
+            if db == {}:
+                print("Database successfully deleted")
+                return
+
     print("Database deletion process started. See 'percona-dbaas-cli dbaas databases-list' for more details.")
 
 @dbaas_app.command("databases-list")
-def dbaas_databases_list():
+def dbaas_db_list():
     """
     List databases in DBaaS in all Kubernetes clusters
     """
@@ -276,33 +302,80 @@ def dbaas_databases_list():
     print('...')
 
     # get k8s clusters first
-    k8s_clusters = pmm.dbaas_kubernetes_list()
+    k8s_clusters = pmm.dbaas_k8s_list()
 
     if not bool(k8s_clusters):
         print ("No Kubernetes clusters registered yet. Register k8s first with 'percona-dbaas-cli dbaas kubernetes-register'.")
         return
 
     # get databases in all clusters
-    print(pmm.dbaas_db_list(k8s_clusters))
+    databases = pmm.dbaas_db_list(k8s_clusters)
+
+    i = 1
+    data_list = []
+    for k8s_cluster_name, db_dict_k8s in databases.items():
+        for engine_normalized, engine in engine_mapping.items():
+          
+            if engine not in db_dict_k8s.keys():
+                continue
+
+            for db in db_dict_k8s[engine]:
+
+                if 'cluster_size' in db['params']:
+                    cluster_size = db['params']['cluster_size']
+                else:
+                    cluster_size = 'N/A'
+
+                if 'installed_image' in db:
+                    installed_image = db['installed_image']
+                else:
+                    installed_image = 'N/A'
+                
+                if 'exposed' in db:
+                    exposed = db['exposed']
+                else:
+                    exposed = 'N/A'
+
+                data_list.append([i, db['name'], engine_normalized, db['state'], cluster_size, exposed, installed_image, k8s_cluster_name])
+                i+=1
+
+    if data_list == []:
+        print("No databases were created yet. Run 'precona-dbaas-cli dbaas databases-create' to create one")
+    else:
+        print(tabulate(data_list, headers=['#', "Name", "Engine", "Status", "Size", "Exposed", "Image", "K8S"]))
 
 @dbaas_app.command("kubernetes-register")
-def dbaas_k8s_register(kubeconfig: str = typer.Option(..., help="Your kubeconfig file"), cluster_name: str = typer.Option(..., help="The name of your Kubernetes cluster")):
+def dbaas_k8s_register(kubeconfig: str = typer.Option(..., help="Your kubeconfig file"), 
+        cluster_name: str = typer.Option(..., help="The name of your Kubernetes cluster"),
+        wait: bool = typer.Option(True, help="CLI waits for the Kubernetes cluster to be ready")):
     """
     Register Kubernetes cluster in DBaaS
     """
     print("Registering your Kubernetes cluster in DBaaS")
     print('...')
     pmm.dbaas_k8s_register(kubeconfig, cluster_name)
+
+    if wait:
+        print("Waiting for the cluster to be registered. It may take a few moments.")
+        READY_STATUS = 'KUBERNETES_CLUSTER_STATUS_OK'
+        while True:
+            time.sleep(3)
+            k8s = pmm.dbaas_k8s_get(cluster_name)
+            if k8s == {}:
+                print("Cannot get Kubernetes cluster status. Run 'percona-dbaas-cli dbaas kubernetes-list' to see details.")
+                return
+            if k8s['status'] == READY_STATUS:
+                break
     print("Registration complete. Run 'percona-dbaas-cli dbaas kubernetes-list' to see the cluster.")
     
 @dbaas_app.command("kubernetes-list")
-def dbaas_kubernetes_list():
+def dbaas_k8s_list():
     """
     List Kubernetes clusters in DBaaS
     """
     print("Getting k8s clusters")
     print('...')
-    k8s_clusters = pmm.dbaas_kubernetes_list()
+    k8s_clusters = pmm.dbaas_k8s_list()
 
     if not bool(k8s_clusters):
         print ("No Kubernetes clusters registered yet")
@@ -324,13 +397,21 @@ def dbaas_kubernetes_list():
     print(tabulate(data_list, headers=['#', 'Name', 'Status', 'PXC status', 'PXC version', 'PSMDB Status', 'PSMDB version']))
 
 @dbaas_app.command("kubernetes-unregister")
-def dbaas_kubernetes_unregister(k8s_cluster_name: str = typer.Option(..., help="The name of the registered Kubernetes cluster")):
+def dbaas_k8s_unregister(k8s_cluster_name: str = typer.Option(..., help="The name of the registered Kubernetes cluster"),
+        wait: bool = typer.Option(True, help="CLI waits for the Kubernetes cluster to be unregistered")):
     """
     Unregister Kubernetes clusters in DBaaS
     """
     print("Attempting to unregister the cluster")
     print('...')
-    pmm.dbaas_kubernetes_unregister(k8s_cluster_name)
+    pmm.dbaas_k8s_unregister(k8s_cluster_name)
+    if wait:
+        print("Waiting for the cluster to be unregistered. It may take a few moments.")
+        while True:
+            time.sleep(3)
+            k8s = pmm.dbaas_k8s_get(k8s_cluster_name)
+            if k8s == {}:
+                break
     print("Cluster unregistered")
 
 
@@ -343,8 +424,8 @@ def dbaas_get_db_creds(k8s_cluster_name: str = typer.Option(..., help="The name 
     """
     print("Getting database credentials")
     print('...')
-    print(pmm.dbaas_get_db_creds(k8s_cluster_name, name, engine))
-
+    creds = pmm.dbaas_get_db_creds(k8s_cluster_name, name, engine)
+    print(json.dumps(creds, indent=4, sort_keys=True))
 
 if __name__ == "__main__":
     try:

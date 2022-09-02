@@ -252,6 +252,8 @@ def dbaas_db_create(engine: str = typer.Option(..., help="Database engine - can 
     """
     print("Starting a %s database" % engine)
     print('...')
+    if cluster_size == 1:
+        print("WARNING: cluster_size is 1. It is not safe to run a cluster with 1 database node only")
     pmm.dbaas_db_create(engine, cluster_size, expose, name, k8s_cluster_name)
 
     if wait:
@@ -268,7 +270,7 @@ def dbaas_db_create(engine: str = typer.Option(..., help="Database engine - can 
             
     print("Started database.") 
     print("* Get the list of all databases: 'percona-dbaas-cli dbaas databases-list'")
-    print("* Get credentials for the database 'percona-dbaas-cli dbaas get-credentials --name DBNAME --k8s-cluster-name K8SNAME'")
+    print("* Get credentials for the database 'percona-dbaas-cli dbaas get-credentials --name {0} --k8s-cluster-name {1} --engine {2}'".format(name, k8s_cluster_name, engine))
 
 @dbaas_app.command("databases-delete")
 def dbaas_db_delete(name: str = typer.Option(..., help="Database name"),
@@ -340,7 +342,7 @@ def dbaas_db_list():
                 i+=1
 
     if data_list == []:
-        print("No databases were created yet. Run 'precona-dbaas-cli dbaas databases-create' to create one")
+        print("No databases were created yet. Run 'percona-dbaas-cli dbaas databases-create' to create one")
     else:
         print(tabulate(data_list, headers=['#', "Name", "Engine", "Status", "Size", "Exposed", "Image", "K8S"]))
 
@@ -393,6 +395,7 @@ def dbaas_k8s_list():
                         k8s['operators']['psmdb']['status'],
                         k8s['operators']['psmdb']['version']
                         ])
+        i+=1
 
     print(tabulate(data_list, headers=['#', 'Name', 'Status', 'PXC status', 'PXC version', 'PSMDB Status', 'PSMDB version']))
 

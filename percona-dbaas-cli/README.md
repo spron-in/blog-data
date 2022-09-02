@@ -13,13 +13,27 @@ See the demo of *the experimental* command line tool which interracts with PMM A
 
 ## Prerequisites
 
-* Tool is in python3. See requirements.txt file for required packages.
+* Tool is written in python3. See requirements.txt file for required python packages.
 * You will need a working PMM server 
 
-## Usage
+## Quick start
 
-* Download the tool
-* Run ./percona-dbaas-cli --help
+Download requirements and dbaas tool:
+```
+wget -c https://raw.githubusercontent.com/spron-in/blog-data/master/percona-dbaas-cli/percona-dbaas-cli
+chmod +x percona-dbaas-cli
+wget -c https://raw.githubusercontent.com/spron-in/blog-data/master/percona-dbaas-cli/requirements.txt
+```
+
+Install required Python packages:
+```
+pip3 install -r requirements.txt
+```
+
+Use the tool
+```
+./percona-dbaas-cli 
+```
 
 On the first run it will ask for PMM server address and token key. Once you provide it, they are going to be saved in your HOME dir.
 

@@ -132,7 +132,8 @@ spec:
 
 
     - statefulsetStatus:
-        name: Best practices - minimal-cluster-pxc
+        checkName: Best practices - Weak Password
+        name: minimal-cluster-pxc
         namespace: default
         outcomes:
           - fail:

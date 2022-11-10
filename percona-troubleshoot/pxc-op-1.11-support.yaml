@@ -1,0 +1,177 @@
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: supportbundle-tutorial
+spec:
+  collectors:
+    - logs:
+        selector:
+          - app.kubernetes.io/instance=minimal-cluster
+          - app.kubernetes.io/component=pxc
+        namespace: default
+        name: pxc/container/logs
+        limits:
+          maxAge: 24h
+    - logs:
+        selector:
+          - app.kubernetes.io/instance=percona-xtradb-cluster-operator
+          - app.kubernetes.io/component=operator
+        namespace: default
+        name: pxc-operator/container/logs
+        limits:
+          maxAge: 24h
+    - secret:
+        namespace: default
+        name: internal-minimal-cluster
+        includeValue: true
+        key: root
+
+  analyzers:
+    - customResourceDefinition:
+        customResourceDefinitionName: perconaxtradbclusters.pxc.percona.com
+        outcomes:
+          - fail:
+              message: Percona Operator for MySQL CRD is not found. Please install the Operator first.
+          - pass:
+              message: Percona Operator for MySQL CRD is installed
+
+    - yamlCompare:
+        checkName: Percona Operator for MySQL presence
+        fileName: cluster-resources/custom-resources/perconaxtradbclusters.pxc.percona.com/default.yaml
+        path: "[0].metadata.name"
+        value: minimal-cluster
+        outcomes:
+          - fail:
+              when: "false"
+              message: minimal-cluster was not found
+          - pass:
+              when: "true"
+              message: Found the custom resource / cluster
+
+    - yamlCompare:
+        checkName: Percona Operator for MySQL - PXC
+        fileName: cluster-resources/custom-resources/perconaxtradbclusters.pxc.percona.com/default.yaml
+        path: "[0].status.pxc.status"
+        value: ready
+        outcomes:
+          - fail:
+              when: "false"
+              message: PXC is not ready
+          - pass:
+              when: "true"
+              message: PXC is ready
+
+    - yamlCompare:
+        checkName: Percona Operator for MySQL - Status
+        fileName: cluster-resources/custom-resources/perconaxtradbclusters.pxc.percona.com/default.yaml
+        path: "[0].status.state"
+        value: ready
+        outcomes:
+          - fail:
+              when: "false"
+              message: Cluster is not ready
+          - pass:
+              when: "true"
+              message: Cluster is ready
+
+    - yamlCompare:
+        checkName: Percona Operator for MySQL - HAProxy
+        fileName: cluster-resources/custom-resources/perconaxtradbclusters.pxc.percona.com/default.yaml
+        path: "[0].status.haproxy.status"
+        value: ready
+        outcomes:
+          - fail:
+              when: "false"
+              message: HAProxy is not ready. Ignore if HAProxy is not used.
+          - pass:
+              when: "true"
+              message: HAProxy is ready
+
+    - yamlCompare:
+        checkName: Percona Operator for MySQL - ProxySQL
+        fileName: cluster-resources/custom-resources/perconaxtradbclusters.pxc.percona.com/default.yaml
+        path: "[0].status.proxysql.status"
+        value: ready
+        outcomes:
+          - fail:
+              when: "false"
+              message: ProxySQL is not ready. Ignore if ProxySQL is not used.
+          - pass:
+              when: "true"
+              message: ProxySQL is ready
+
+    - clusterPodStatuses:
+        name: unhealthy
+        namespaces:
+          - default
+        outcomes:
+          - fail:
+              when: "== CrashLoopBackOff"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in a CrashLoopBackOff state.
+          - fail:
+              when: "== ImagePullBackOff"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in a ImagePullBackOff state.
+          - fail:
+              when: "== Pending"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in a Pending state with status of {{ .Status.Reason }}.
+          - fail:
+              when: "== Evicted"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in a Evicted state.
+          - fail:
+              when: "== Terminating"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in a Terminating state.
+          - fail:
+              when: "== Init:Error"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in an Init:Error state.
+          - fail:
+              when: "== Init:CrashLoopBackOff"
+              message: Pod {{ .Namespace }}/{{ .Name }} is in an Init:CrashLoopBackOff state.
+          - fail:
+              when: "!= Healthy" # Catch all unhealthy pods. A pod is considered healthy if it has a status of Completed, or Running and all of its containers are ready.
+              message: Pod {{ .Namespace }}/{{ .Name }} is unhealthy with a status of {{ .Status.Reason }}.
+
+
+    - statefulsetStatus:
+        name: Best practices - minimal-cluster-pxc
+        namespace: default
+        outcomes:
+          - fail:
+              when: "absent" # note that the "absent" failure state must be listed first if used.
+              message: The PXC statefulset is not present.
+          - fail:
+              when: "< 1"
+              message: The PXC statefulset does not have any ready replicas.
+          - warn:
+              when: "= 1"
+              message: The PXC statefulset has only a single ready replica. You should have at least 3 nodes for high availability.
+          - pass:
+              message: There are multiple replicas of the PXC statefulset ready.
+
+
+    - jsonCompare:
+        checkName: Best practices - Weak Password
+        fileName: secrets/default/internal-minimal-cluster/root.json
+        path: "value"
+        value: |
+          "password"
+        outcomes:
+          - fail:
+              when: "true"
+              message: You are using a weak password for your database
+          - pass:
+              when: "false"
+              message: No weak passwords detected
+
+    - textAnalyze:
+        checkName: Log check - Failed to update the password
+        fileName: pxc-operator/container/logs/percona-xtradb-cluster-operator-*.log
+        ignoreIfNoFiles: true
+        regex: 'Error 1396: Operation ALTER USER failed for'
+        outcomes:
+          - pass:
+              when: "false"
+              message: "No failures on password change"
+          - fail:
+              when: "true"
+              message: "There was a failure to change the system user password. For more details: https://docs.percona.com/percona-operator-for-mysql/pxc/users.html"
+

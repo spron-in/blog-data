@@ -1,0 +1,74 @@
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: percona-mysql-operator-pxc-1.11.0
+spec:
+  collectors:
+    - clusterResources: {}
+
+  analyzers:
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.20.0"
+              message: This version of the operator requires at least Kubernetes 1.20.0, and recommends 1.23.0.
+              uri: https://docs.percona.com/percona-operator-for-mysql/pxc/
+          - pass:
+              when: "< 1.24.0"
+              message: Your cluster meets the version requirements
+          - warn:
+              when: "> 1.24.0"
+              message: The Operator was not tested on versions newer than 1.23.0
+              uri: https://docs.percona.com/percona-operator-for-mysql/pxc/
+
+    - distribution:
+        outcomes:
+          - fail:
+              when: "== docker-desktop"
+              message: The Operator does not support Docker Desktop Clusters
+          - warn:
+              when: "== microk8s"
+              message: The Operator was not fully tested on microk8s
+          - pass:
+              when: "== minikube"
+              message: Minikube is a supported distribution
+          - pass:
+              when: "== eks"
+              message: EKS is a supported distribution
+          - pass:
+              when: "== gke"
+              message: GKE is a supported distribution
+          - pass:
+              when: "== aks"
+              message: AKS is a supported distribution
+          - warn:
+              when: "== kurl"
+              message: The Operator was not fully tested on kurl
+          - warn:
+              when: "== digitalocean"
+              message: The Operator was not fully tested on DigitalOcean
+          - warn:
+              when: "== rke2"
+              message: The Operator was not fully tested on RKE
+          - warn:
+              when: "== k3s"
+              message: The Operator was not fully tested on k3s
+          - warn:
+              message: Unable to determine the distribution of Kubernetes
+
+    - storageClass:
+        checkName: Check for default storage class
+        outcomes:
+          - warn:
+              message: No default storage class found. Please create one as by default Operator uses PVCs.
+          - pass:
+              message: Default storage class found
+
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 1Gi of memory
+        outcomes:
+          - fail:
+              when: "min(memoryCapacity) <= 1Gi"
+              message: All nodes must have at least 1 GB of memory
+          - pass:
+              message: All nodes have at least 1 GB of memory

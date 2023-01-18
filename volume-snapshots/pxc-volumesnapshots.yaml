@@ -1,0 +1,28 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: datadir-tst-pxc-pxc-0-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: datadir-tst-pxc-pxc-0
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: datadir-tst-pxc-pxc-1-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: datadir-tst-pxc-pxc-1
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: datadir-tst-pxc-pxc-2-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: datadir-tst-pxc-pxc-2

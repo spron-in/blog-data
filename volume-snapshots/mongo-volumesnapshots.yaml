@@ -1,0 +1,58 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-cfg-0-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-cfg-0
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-cfg-1-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-cfg-1
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-cfg-2-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-cfg-2
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-rs0-0-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-rs0-0
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-rs0-1-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-rs0-1
+---
+
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: mongod-data-my-cluster-name-rs0-2-snap
+spec:
+  volumeSnapshotClassName: gke-snapshotclass
+  source:
+    persistentVolumeClaimName: mongod-data-my-cluster-name-rs0-2

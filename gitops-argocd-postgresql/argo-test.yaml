@@ -3,7 +3,7 @@ kind: PerconaPGCluster
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5"
-  name: argocd-test
+  name: argo-test
   finalizers:
   - percona.com/delete-pvc
   - percona.com/delete-ssl

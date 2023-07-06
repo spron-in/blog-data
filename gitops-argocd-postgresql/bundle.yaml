@@ -3,6 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
+    argocd.argoproj.io/hook: PreSync
   creationTimestamp: null
   name: perconapgbackups.pgv2.percona.com
 spec:
@@ -78,6 +79,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
     argocd.argoproj.io/sync-options: ServerSideApply=true
+    argocd.argoproj.io/hook: PreSync  
   creationTimestamp: null
   name: perconapgclusters.pgv2.percona.com
 spec:
@@ -13658,6 +13660,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
+    argocd.argoproj.io/hook: PreSync  
   creationTimestamp: null
   name: perconapgrestores.pgv2.percona.com
 spec:
@@ -13735,6 +13738,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
     argocd.argoproj.io/sync-options: ServerSideApply=true
+    argocd.argoproj.io/hook: PreSync
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: pgo
@@ -30104,11 +30108,15 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: percona-postgresql-operator
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: percona-postgresql-operator
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 rules:
 - apiGroups:
   - ""
@@ -30284,6 +30292,8 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
   name: service-account-percona-postgresql-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -30296,6 +30306,8 @@ subjects:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
   labels:
     app.kubernetes.io/component: operator
     app.kubernetes.io/instance: percona-postgresql-operator

@@ -1,6 +1,8 @@
 apiVersion: pgv2.percona.com/v2
 kind: PerconaPGCluster
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PostSync
   name: argocd-test
   finalizers:
   - percona.com/delete-pvc
@@ -62,8 +64,8 @@ spec:
             resources:
               requests:
                 storage: 1Gi
-  pmm:
-    enabled: false
-    image: percona/pmm-client:2.37.0
-    secret: cluster1-pmm-secret
-    serverHost: monitoring-service
+                  #  pmm:
+                  #    enabled: false
+                  #    image: percona/pmm-client:2.37.0
+                  #    secret: cluster1-pmm-secret
+                  #    serverHost: monitoring-service

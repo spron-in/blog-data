@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
   creationTimestamp: null
   name: perconapgbackups.pgv2.percona.com
 spec:
@@ -79,7 +79,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
     argocd.argoproj.io/sync-options: ServerSideApply=true
-    argocd.argoproj.io/hook: PreSync  
+    argocd.argoproj.io/sync-wave: "1"  
   creationTimestamp: null
   name: perconapgclusters.pgv2.percona.com
 spec:
@@ -13660,7 +13660,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
-    argocd.argoproj.io/hook: PreSync  
+    argocd.argoproj.io/sync-wave: "1"  
   creationTimestamp: null
   name: perconapgrestores.pgv2.percona.com
 spec:
@@ -13738,7 +13738,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.10.0
     argocd.argoproj.io/sync-options: ServerSideApply=true
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: pgo
@@ -30109,14 +30109,14 @@ kind: ServiceAccount
 metadata:
   name: percona-postgresql-operator
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: percona-postgresql-operator
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
 rules:
 - apiGroups:
   - ""
@@ -30293,7 +30293,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
   name: service-account-percona-postgresql-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -30307,7 +30307,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app.kubernetes.io/component: operator
     app.kubernetes.io/instance: percona-postgresql-operator

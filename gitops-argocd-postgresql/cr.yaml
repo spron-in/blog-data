@@ -2,7 +2,7 @@ apiVersion: pgv2.percona.com/v2
 kind: PerconaPGCluster
 metadata:
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/sync-wave: "5"
   name: argocd-test
   finalizers:
   - percona.com/delete-pvc

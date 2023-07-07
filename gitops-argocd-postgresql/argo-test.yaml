@@ -38,7 +38,7 @@ spec:
       image: percona/percona-postgresql-operator:2.2.0-ppg15-pgbouncer
       resources:
         limits:
-          cpu: 1.0
+          cpu: 0.5
           memory: 1Gi
         requests:
           cpu: 200m

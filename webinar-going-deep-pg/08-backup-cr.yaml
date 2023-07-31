@@ -1,0 +1,103 @@
+apiVersion: pgv2.percona.com/v2
+kind: PerconaPGCluster
+metadata:
+  name: demo-cluster
+  finalizers:
+  - percona.com/delete-pvc
+  - percona.com/delete-ssl
+spec:
+  crVersion: 2.2.0
+
+  image: percona/percona-postgresql-operator:2.2.0-ppg15-postgres
+  imagePullPolicy: Always
+  postgresVersion: 15
+
+  users:
+    - name: mytest
+      databases:
+        - test
+
+  instances:
+  - name: instance1
+    replicas: 3
+    resources:
+      requests: 
+        cpu: 2.0
+        memory: 4Gi
+      limits: 
+        cpu: 2.0
+        memory: 4Gi
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+
+  - name: instance2
+    replicas: 1
+    resources:
+      limits: 
+        cpu: 1.0
+        memory: 2Gi
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+
+  proxy:
+    pgBouncer:
+      replicas: 3
+      image: percona/percona-postgresql-operator:2.2.0-ppg15-pgbouncer
+      expose:
+        type: LoadBalancer
+
+  backups:
+    pgbackrest:
+      configuration:
+        - secret:
+            name: my-test-bucket-secret
+      image: percona/percona-postgresql-operator:2.2.0-ppg15-pgbackrest
+      manual:
+        repoName: repo2
+        options:
+         - --type=full
+      repos:
+      - name: repo1
+        schedules:
+          full: "0 0 * * 6"
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+      - name: repo2
+        schedules:
+          full: "0 2 * * *"
+        s3:
+          bucket: my-test-bucket
+          endpoint: https://storage.googleapis.com
+          region: us-central1
+
+  pmm:
+    enabled: false
+    image: percona/pmm-client:2.37.0
+    secret: cluster1-pmm-secret
+    serverHost: monitoring-service
+
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        parameters:
+          max_parallel_workers: 2
+          max_worker_processes: 2
+        pg_hba:
+        - local   all all trust
+        - host    all all 0.0.0.0/0 md5
+        - host    all all ::1/128   md5
+        - host    all mytest 123.123.123.123/32 reject
+      

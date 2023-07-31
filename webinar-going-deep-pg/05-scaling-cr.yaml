@@ -1,0 +1,77 @@
+apiVersion: pgv2.percona.com/v2
+kind: PerconaPGCluster
+metadata:
+  name: demo-cluster
+  finalizers:
+  - percona.com/delete-pvc
+  - percona.com/delete-ssl
+spec:
+  crVersion: 2.2.0
+
+  image: percona/percona-postgresql-operator:2.2.0-ppg15-postgres
+  imagePullPolicy: Always
+  postgresVersion: 15
+
+  instances:
+  - name: instance1
+    replicas: 3
+    resources:
+      requests: 
+        cpu: 2.0
+        memory: 4Gi
+      limits: 
+        cpu: 2.0
+        memory: 4Gi
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+
+  - name: instance2
+    replicas: 1
+    resources:
+      limits: 
+        cpu: 1.0
+        memory: 2Gi
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+
+  proxy:
+    pgBouncer:
+      replicas: 3
+      image: percona/percona-postgresql-operator:2.2.0-ppg15-pgbouncer
+      expose:
+        type: LoadBalancer
+
+  backups:
+    pgbackrest:
+      image: percona/percona-postgresql-operator:2.2.0-ppg15-pgbackrest
+      manual:
+        repoName: repo1
+        options:
+         - --type=full
+      repos:
+      - name: repo1
+        schedules:
+          full: "0 0 * * 6"
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+
+  pmm:
+    enabled: false
+    image: percona/pmm-client:2.37.0
+    secret: cluster1-pmm-secret
+    serverHost: monitoring-service
+
+      

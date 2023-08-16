@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-cluster-init
+data:
+  init.sql: |
+
+    \connect demo-db;
+
+    CREATE SCHEMA media AUTHORIZATION myuser;
+
+    CREATE TABLE media.BLOG(
+       ID INT PRIMARY KEY     NOT NULL,
+       NAME           TEXT    NOT NULL,
+       AUTHOR_ID      INT     NOT NULL,
+       BLOG           TEXT    NOT NULL
+    );
+
+    CREATE TABLE media.AUTHORS(
+       ID INT PRIMARY KEY      NOT NULL,
+       FIRSTNAME      CHAR(50) NOT NULL,
+       LASTNAME       CHAR(50) NOT NULL,
+       BIO            TEXT     NOT NULL
+    );

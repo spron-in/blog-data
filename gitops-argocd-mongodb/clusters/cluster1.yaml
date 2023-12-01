@@ -1,0 +1,8 @@
+finalizers:
+  - delete-psmdb-pods-in-order
+  - delete-psmdb-pvc
+
+nameOverride: ""
+fullnameOverride: "cluster1"
+
+crVersion: 1.15.0

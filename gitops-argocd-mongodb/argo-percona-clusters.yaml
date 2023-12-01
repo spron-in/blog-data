@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: percona-clusters
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://percona.github.io/percona-helm-charts/
+    targetRevision: 1.15.0
+    chart: psmdb-db
+    helm:
+      valueFiles:
+      - $values/gitops-argocd-mongodb/clusters/cluster1.yaml
+  - repoURL: 'https://github.com/spron-in/blog-data'
+    targetRevision: HEAD
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: percona-mongo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

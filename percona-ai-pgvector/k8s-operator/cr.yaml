@@ -1,0 +1,107 @@
+apiVersion: pgv2.percona.com/v2
+kind: PerconaPGCluster
+metadata:
+  name: vector
+  finalizers:
+  - percona.com/delete-pvc
+  - percona.com/delete-ssl
+spec:
+  crVersion: 2.3.0
+
+  users:
+    - name: vector
+      databases:
+        - vector-db
+
+  databaseInitSQL:
+    key: init.sql
+    name: pgvector-init
+  
+  image: percona/percona-postgresql-operator:2.3.0-ppg15-postgres
+  imagePullPolicy: Always
+  postgresVersion: 15
+
+  instances:
+  - name: instance1
+    replicas: 3
+
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                postgres-operator.crunchydata.com/data: postgres
+            topologyKey: kubernetes.io/hostname
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 20Gi
+
+  proxy:
+    pgBouncer:
+      replicas: 3
+      image: percona/percona-postgresql-operator:2.3.0-ppg15-pgbouncer
+      expose:
+        type: LoadBalancer
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/role: pgbouncer
+              topologyKey: kubernetes.io/hostname
+
+  backups:
+    pgbackrest:
+      image: percona/percona-postgresql-operator:2.3.0-ppg15-pgbackrest
+      repoHost:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+             - weight: 1
+               podAffinityTerm:
+                 labelSelector:
+                   matchLabels:
+                     postgres-operator.crunchydata.com/data: pgbackrest
+                 topologyKey: kubernetes.io/hostname
+      manual:
+        repoName: repo1
+        options:
+         - --type=full
+      repos:
+      - name: repo1
+        schedules:
+          full: "0 0 * * 6"
+#          differential: "0 1 * * 1-6"
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+
+  pmm:
+    enabled: false
+    image: percona/pmm-client:2.41.0
+    secret: cluster1-pmm-secret
+    serverHost: monitoring-service
+
+  extensions:
+    image: percona/percona-postgresql-operator:2.3.0
+    imagePullPolicy: Always
+    storage:
+      type: s3
+      bucket: sp-test-1
+      region: us-west-2
+      secret:
+        name: ext-secret
+    custom:
+    - name: pgvector
+      version: 0.5.1

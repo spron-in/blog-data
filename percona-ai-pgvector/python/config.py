@@ -1,0 +1,5 @@
+PGHOST=''
+PGPASSWORD=''
+PGUSER='vector'
+PGDATABASE='vector-db'
+PGPORT=5432

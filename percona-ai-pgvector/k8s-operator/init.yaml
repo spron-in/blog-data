@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgvector-init
+data:
+  init.sql: |
+
+    \connect vector-db;
+    CREATE SCHEMA test AUTHORIZATION vector;
+    set search_path to test;
+    CREATE EXTENSION vector;
+

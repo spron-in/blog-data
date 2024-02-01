@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-production
+  namespace: percona-everest
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: <YOUR_EMAIL>
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+    - http01:
+        ingress:
+          ingressClassName: nginx

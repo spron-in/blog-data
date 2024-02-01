@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: everest-ingress
+  namespace: percona-everest
+  annotations:
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: everest.percona.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: everest
+            port:
+              number: 8080

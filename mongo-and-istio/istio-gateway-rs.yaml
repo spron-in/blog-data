@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: rs-mongo
+spec:
+  selector:
+    app: istio-ingressgateway
+  servers:
+  - port:
+      number: 27018
+      name: rs-0
+      protocol: MONGO
+    hosts:
+     - "*"
+  - port:
+      number: 27019
+      name: rs-1
+      protocol: MONGO
+    hosts:
+     - "*"
+  - port:
+      number: 27020
+      name: rs-2
+      protocol: MONGO
+    hosts:
+     - "*"

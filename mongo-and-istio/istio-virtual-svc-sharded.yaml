@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: sharded-mongo
+spec:
+  hosts:
+  - "*" # name of internal Mongo service
+  gateways:
+  - sharded-mongo  # can omit the namespace if gateway is in same
+  tcp:
+  - match:
+    - port: 27017
+    route:
+    - destination:
+        host: sharded-psmdb-db-mongos.default.svc.cluster.local
+        port:
+          number: 27017

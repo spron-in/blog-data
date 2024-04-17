@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: psmdb-db
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    chart: psmdb-db
+    path: charts/psmdb-db/
+    repoURL: https://percona.github.io/percona-helm-charts/
+    targetRevision: 1.15.3
+    helm:
+      releaseName: psmdb-db
+      valuesObject:
+        replsets:
+          - name: rs0
+            size: 3
+            expose:
+              enabled: true
+            resources:
+              requests:
+                cpu: "300m"
+                memory: "0.5G"
+              limits:
+                cpu: "300m"
+                memory: "0.5G"
+            volumeSpec:
+              pvc:
+                resources:
+                  requests:
+                    storage: 3Gi
+        sharding:
+          enabled: false
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default

@@ -1,0 +1,87 @@
+apiVersion: pgv2.percona.com/v2
+kind: PerconaPGCluster
+metadata:
+  name: main
+  finalizers:
+  - percona.com/delete-pvc
+  - percona.com/delete-ssl
+spec:
+  crVersion: 2.3.1
+
+  image: percona/percona-postgresql-operator:2.3.1-ppg16-postgres
+  imagePullPolicy: Always
+  postgresVersion: 16
+
+  expose:
+    type: ClusterIP
+
+  instances:
+  - name: instance1
+    replicas: 3
+
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                postgres-operator.crunchydata.com/data: postgres
+            topologyKey: kubernetes.io/hostname
+    dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+
+  proxy:
+    pgBouncer:
+      replicas: 3
+      image: percona/percona-postgresql-operator:2.3.1-ppg16-pgbouncer
+      exposeSuperusers: true
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/role: pgbouncer
+              topologyKey: kubernetes.io/hostname
+
+  backups:
+    pgbackrest:
+      image: percona/percona-postgresql-operator:2.3.1-ppg16-pgbackrest
+      repoHost:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+             - weight: 1
+               podAffinityTerm:
+                 labelSelector:
+                   matchLabels:
+                     postgres-operator.crunchydata.com/data: pgbackrest
+                 topologyKey: kubernetes.io/hostname
+      manual:
+        repoName: repo1
+        options:
+         - --type=full
+      repos:
+      - name: repo1
+        schedules:
+          full: "0 2 * * 0,3,5"
+          differential: "30 1 * * 1,2,4,6"
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 25Gi
+
+  pmm:
+    enabled: false
+    image: percona/pmm-client:2.41.0
+    secret: cluster1-pmm-secret
+    serverHost: monitoring-service

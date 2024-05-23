@@ -1,7 +1,7 @@
-CLUSTER_NAME=rs-psmdb-db
+CLUSTER_NAME=rs-expose-demo
 NAMESPACE=default
-SECRET_NAME=rs-psmdb-db-tls
-MYDOMAIN=.percona.spron.in
+SECRET_NAME=${CLUSTER_NAME}-ssl
+MYDOMAIN=spron.in
 
 cat <<EOF | cfssl gencert -initca - | cfssljson -bare ca
   {
@@ -56,6 +56,9 @@ EOF
 
 cfssl bundle -ca-bundle=ca.pem -cert=server.pem | cfssljson -bare server
 
+###FIXME 
+# Careful with deleting secrets
+kubectl delete secret ${SECRET_NAME}-internal
 kubectl create secret generic ${SECRET_NAME}-internal --from-file=tls.crt=server.pem --from-file=tls.key=server-key.pem --from-file=ca.crt=ca.pem --type=kubernetes.io/tls
 
 cat <<EOF | cfssl gencert -ca=ca.pem  -ca-key=ca-key.pem -config=./ca-config.json - | cfssljson -bare client
@@ -82,4 +85,10 @@ cat <<EOF | cfssl gencert -ca=ca.pem  -ca-key=ca-key.pem -config=./ca-config.jso
   }
 EOF
 
+###FIXME
+# Careful with deleting secrets
+kubectl delete secret ${SECRET_NAME}
 kubectl create secret generic ${SECRET_NAME} --from-file=tls.crt=client.pem --from-file=tls.key=client-key.pem --from-file=ca.crt=ca.pem --type=kubernetes.io/tls
+
+# Combine server.pem and server-key.pem
+cat server.pem server-key.pem > server-cert.pem

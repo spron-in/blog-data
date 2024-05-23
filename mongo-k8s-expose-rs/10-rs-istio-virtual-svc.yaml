@@ -12,20 +12,20 @@ spec:
     - port: 27018
     route:
     - destination:
-        host: rs-psmdb-db-rs0-0.default.svc.cluster.local
+        host: rs-expose-demo-rs0-0.default.svc.cluster.local
         port:
           number: 27017
   - match:
     - port: 27019
     route:
     - destination:
-        host: rs-psmdb-db-rs0-1.default.svc.cluster.local
+        host: rs-expose-demo-rs0-1.default.svc.cluster.local
         port:
           number: 27017
   - match:
     - port: 27020
     route:
     - destination:
-        host: rs-psmdb-db-rs0-2.default.svc.cluster.local
+        host: rs-expose-demo-rs0-2.default.svc.cluster.local
         port:
           number: 27017

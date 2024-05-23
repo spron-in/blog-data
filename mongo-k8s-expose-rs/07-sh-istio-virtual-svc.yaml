@@ -12,6 +12,6 @@ spec:
     - port: 27017
     route:
     - destination:
-        host: sharded-psmdb-db-mongos.default.svc.cluster.local
+        host: sh-expose-demo-mongos.default.svc.cluster.local
         port:
           number: 27017

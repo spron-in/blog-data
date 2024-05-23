@@ -1,7 +1,7 @@
 apiVersion: psmdb.percona.com/v1
 kind: PerconaServerMongoDB
 metadata:
-  name: rs-expose-demo
+  name: sh-expose-demo
   finalizers:
     - delete-psmdb-pods-in-order
 spec:
@@ -16,8 +16,8 @@ spec:
     schedule: "0 2 * * *"
     setFCV: false
   secrets:
-    users: rs-expose-demo
-    encryptionKey: rs-expose-demo-encryption-key
+    users: sh-expose-demo
+    encryptionKey: sh-expose-demo-encryption-key
   pmm:
     enabled: false
     image: percona/pmm-client:2.39.0
@@ -30,7 +30,7 @@ spec:
     podDisruptionBudget:
       maxUnavailable: 1
     expose:
-      enabled: true
+      enabled: false
       exposeType: ClusterIP
     resources:
       limits:
@@ -53,7 +53,7 @@ spec:
       size: 1
 
   sharding:
-    enabled: false
+    enabled: true
 
     configsvrReplSet:
       size: 3
@@ -91,7 +91,7 @@ spec:
           cpu: "300m"
           memory: "0.5G"
       expose:
-        exposeType: LoadBalancer
+        exposeType: ClusterIP
 
   backup:
     enabled: false

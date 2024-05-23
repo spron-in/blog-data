@@ -25,13 +25,20 @@ spec:
   replsets:
   - name: rs0
     size: 3
+    splitHorizons:
+      rs-expose-demo-rs0-0:
+        external: rs0-0.spron.in
+      rs-expose-demo-rs0-1:
+        external: rs0-1.spron.in
+      rs-expose-demo-rs0-2:
+        external: rs0-2.spron.in
     affinity:
       antiAffinityTopologyKey: "kubernetes.io/hostname"
     podDisruptionBudget:
       maxUnavailable: 1
     expose:
       enabled: true
-      exposeType: ClusterIP
+      exposeType: LoadBalancer
     resources:
       limits:
         cpu: "300m"

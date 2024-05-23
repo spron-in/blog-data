@@ -4,7 +4,7 @@ metadata:
   name: rs-mongo
 spec:
   selector:
-    app: istio-ingressgateway
+    app: istio-ingress
   servers:
   - port:
       number: 27018

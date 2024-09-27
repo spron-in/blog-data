@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongod-data-demo-cluster1-rs0-0 
+spec:
+  storageClassName: standard-rwo 
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: 3Gi 
+  dataSource:
+    kind: VolumeSnapshot
+    name: snapshot-demo-cluster1-rs0-0 
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongod-data-demo-cluster1-rs0-1
+spec:
+  storageClassName: standard-rwo
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  dataSource:
+    kind: VolumeSnapshot
+    name: snapshot-demo-cluster1-rs0-1 
+    apiGroup: snapshot.storage.k8s.io
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongod-data-demo-cluster1-rs0-2
+spec:
+  storageClassName: standard-rwo
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  dataSource:
+    kind: VolumeSnapshot
+    name: snapshot-demo-cluster1-rs0-2 
+    apiGroup: snapshot.storage.k8s.io

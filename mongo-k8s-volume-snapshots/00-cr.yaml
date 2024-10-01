@@ -130,6 +130,6 @@ spec:
       sp-test:
         type: s3
         s3:
-          bucket: BUCKET
-          credentialsSecret: SECRET_WITH_KEYS
-          endpointUrl: OBJECT_STORAGE_URL
+          bucket: YOUR_BUCKET
+          credentialsSecret: YOUR_BUCKET_CREDS 
+          endpointUrl: YOUR_OBJECT_STORE_URL

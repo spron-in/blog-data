@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: snapshot-demo-cluster1-rs0-0
+spec:
+  volumeSnapshotClassName: gke-snapshot-class
+  source:
+    persistentVolumeClaimName: mongod-data-demo-cluster1-rs0-1

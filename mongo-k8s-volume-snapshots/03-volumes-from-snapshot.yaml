@@ -11,7 +11,7 @@ spec:
       storage: 3Gi 
   dataSource:
     kind: VolumeSnapshot
-    name: snapshot-demo-cluster1-rs0-0 
+    name: snapshot-demo-cluster1-rs0-1 
     apiGroup: snapshot.storage.k8s.io
 ---
 apiVersion: v1
@@ -43,5 +43,5 @@ spec:
       storage: 3Gi
   dataSource:
     kind: VolumeSnapshot
-    name: snapshot-demo-cluster1-rs0-2 
+    name: snapshot-demo-cluster1-rs0-1 
     apiGroup: snapshot.storage.k8s.io

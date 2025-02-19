@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pmm-server
+spec:
+  serviceName: "pmm-server"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pmm-server
+  template:
+    metadata:
+      labels:
+        app: pmm-server
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+      - name: pmm-server
+        image: percona/pmm-server:3.0.0
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        volumeMounts:
+        - name: pmm-server-data
+          mountPath: /srv
+  volumeClaimTemplates:
+  - metadata:
+      name: pmm-server-data
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pmm-server
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+    name: http # Added name for port 80
+  - port: 443
+    targetPort: 8443
+    name: https # Added name for port 443
+  selector:
+    app: pmm-server

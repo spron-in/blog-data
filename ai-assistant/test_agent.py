@@ -28,8 +28,12 @@ def call_ai_agent(agent_access_id, message, token=None):
         response = requests.post(url, headers=headers, data=json.dumps(data))
         response.raise_for_status()  # This will raise an HTTPError for bad responses (4xx or 5xx)
         
+        # Parse the JSON response
+        response_data = response.json()
+        
         print("Response from AI Agent:")
-        print(json.dumps(response.json(), indent=2))
+        # Use ensure_ascii=False to decode Unicode characters properly
+        print(json.dumps(response_data, indent=2, ensure_ascii=False))
         
     except requests.exceptions.HTTPError as err:
         print(f"HTTP Error: {err}")

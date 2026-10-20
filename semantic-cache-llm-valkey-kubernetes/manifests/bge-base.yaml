@@ -1,0 +1,25 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: bge-base
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: provider-kserve
+  topology:
+    type: predictor
+    parameters:
+      externalAccess: EnvoyAIGateway
+      tokenLimitPerHour: 20000000
+  components:
+    predictor:
+      type: modelServer
+      replicas: 1
+      resources:
+        limits:
+          cpu: "4"
+          memory: 6Gi
+      parameters:
+        modelFormat: huggingface
+        storageURI: hf://BAAI/bge-base-en-v1.5
+        task: text_embedding

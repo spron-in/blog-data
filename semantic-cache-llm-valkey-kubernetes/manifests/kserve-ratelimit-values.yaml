@@ -1,0 +1,18 @@
+envoy-gateway:
+  config:
+    envoyGateway:
+      rateLimit:
+        backend:
+          type: Redis
+          redis:
+            url: valkey-vk-quota-primary.ai-demo.svc.cluster.local:6379
+      provider:
+        kubernetes:
+          rateLimitDeployment:
+            container:
+              env:
+                - name: REDIS_AUTH
+                  valueFrom:
+                    secretKeyRef:
+                      name: ai-gateway-ratelimit-redis
+                      key: password

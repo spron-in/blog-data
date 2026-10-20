@@ -1,0 +1,1742 @@
+[
+ {
+  "kind": "paraphrase",
+  "group": "g0",
+  "q": "What steps are needed to use the MIGRATE command to move certain keys from Redis to Valkey?",
+  "nearest": "g0",
+  "dist": 0.0487655997276
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g0",
+  "q": "Can you explain how to migrate individual keys from Redis to Valkey with the redis-cli tool?",
+  "nearest": "g0",
+  "dist": 0.0835193395615
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g0",
+  "q": "How do I use the MIGRATE command to transfer particular keys from Redis to Valkey?",
+  "nearest": "g0",
+  "dist": 0.0242777466774
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g1",
+  "q": "What happens if a Lua script in Valkey uses more memory than the maxmemory setting?",
+  "nearest": "g1",
+  "dist": 0.221986174583
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g1",
+  "q": "Can a Lua script in Valkey continue running even if it hits the maxmemory limit?",
+  "nearest": "g1",
+  "dist": 0.198054134846
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g1",
+  "q": "What is Valkey's behavior when a script's memory usage surpasses the maxmemory threshold?",
+  "nearest": "g1",
+  "dist": 0.152666151524
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g2",
+  "q": "How can I address the latency problems I'm seeing with Valkey?",
+  "nearest": "g2",
+  "dist": 0.0466005802155
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g2",
+  "q": "Can you guide me on troubleshooting Valkey when it seems to be lagging?",
+  "nearest": "g2",
+  "dist": 0.14529299736
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g2",
+  "q": "What steps should I take if Valkey appears to be idle or slow?",
+  "nearest": "g2",
+  "dist": 0.24293833971
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g3",
+  "q": "How does the performance of `BITFIELD` scale with the number of counters accessed?",
+  "nearest": "g3",
+  "dist": 0.178556859493
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g3",
+  "q": "What is the Big O notation for `BITFIELD` when multiple counters are involved?",
+  "nearest": "g3",
+  "dist": 0.143217146397
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g3",
+  "q": "Can you explain the complexity of `BITFIELD` in terms of the number of counters?",
+  "nearest": "g3",
+  "dist": 0.09937697649
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g4",
+  "q": "What is the process for reconnection when `valkey-cli` loses its connection?",
+  "nearest": "g4",
+  "dist": 0.0748746395111
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g4",
+  "q": "Can you explain how `valkey-cli` reconnects and what happens during the reconnection process?",
+  "nearest": "g4",
+  "dist": 0.066682100296
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g4",
+  "q": "What steps does `valkey-cli` take to reconnect and resume operations after losing a connection?",
+  "nearest": "g4",
+  "dist": 0.0999907255173
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g5",
+  "q": "What Redis command should I use to verify if a certain bike is participating in a race within a specific country?",
+  "nearest": "g5",
+  "dist": 0.0698045492172
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g5",
+  "q": "Can you explain how to determine if a bike is part of a race in a given country using Redis sets?",
+  "nearest": "g5",
+  "dist": 0.100391983986
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g5",
+  "q": "Which Redis command allows me to check the presence of a bike in a set representing a race in a specific country?",
+  "nearest": "g5",
+  "dist": 0.071635723114
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g6",
+  "q": "What is the recommended approach for the client to take after receiving a MOVED error?",
+  "nearest": "g6",
+  "dist": 0.356773287058
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g6",
+  "q": "When a MOVED error occurs, how can the client ensure it queries the correct node?",
+  "nearest": "g6",
+  "dist": 0.301611542702
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g6",
+  "q": "Can you explain the best practice for a client to follow upon encountering a MOVED error?",
+  "nearest": "g6",
+  "dist": 0.36878490448
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g7",
+  "q": "Can you list the events triggered by the DEL command in Valkey?",
+  "nearest": "g7",
+  "dist": 0.0991955399513
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g7",
+  "q": "Which events are produced when a key is deleted using DEL in Valkey?",
+  "nearest": "g7",
+  "dist": 0.0984755158424
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g7",
+  "q": "How does Valkey respond with events when a key is deleted via DEL?",
+  "nearest": "g7",
+  "dist": 0.166566431522
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g8",
+  "q": "What is the best way to use bitmaps to keep track of sensor pings in a race using Valkey?",
+  "nearest": "g8",
+  "dist": 0.194400787354
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g8",
+  "q": "Can you explain how to implement a bitmap to monitor sensor activity in a high-scale application?",
+  "nearest": "g8",
+  "dist": 0.342508733273
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g8",
+  "q": "In what scenarios would using bitmaps be beneficial for tracking sensor statuses in a distributed system?",
+  "nearest": "g8",
+  "dist": 0.385181307793
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g9",
+  "q": "How does the authentication layer enhance security for Valkey instances beyond network protection?",
+  "nearest": "g9",
+  "dist": 0.0601578354836
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g9",
+  "q": "What redundancy does the authentication layer offer to protect Valkey instances from unauthorized access?",
+  "nearest": "g9",
+  "dist": 0.0897567868233
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g9",
+  "q": "Can you explain the role of the authentication layer in providing an extra layer of security for Valkey?",
+  "nearest": "g9",
+  "dist": 0.120187044144
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g10",
+  "q": "What is the process for using secondary indexing to provide auto-completion suggestions?",
+  "nearest": "g10",
+  "dist": 0.313773334026
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g10",
+  "q": "Can you explain how to set up a completion system with Valkey's secondary indexing?",
+  "nearest": "g10",
+  "dist": 0.0872984528542
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g10",
+  "q": "How do I use ZRANGE with BYLEX to implement auto-completion?",
+  "nearest": "g10",
+  "dist": 0.606142759323
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g11",
+  "q": "How does Redis handle `FLUSHDB` or `FLUSHALL` commands if they are run on both the source and target nodes?",
+  "nearest": "g11",
+  "dist": 0.269754946232
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g11",
+  "q": "Can you explain the behavior of Redis when `FLUSHDB` or `FLUSHALL` are executed on both the source and target nodes during slot migration?",
+  "nearest": "g11",
+  "dist": 0.224539458752
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g11",
+  "q": "What is the outcome when `FLUSHDB` or `FLUSHALL` commands are applied simultaneously on the source and target nodes in atomic slot migration?",
+  "nearest": "g11",
+  "dist": 0.0141050815582
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g12",
+  "q": "How does the `maxmemory-clients` configuration affect client connections in Valkey?",
+  "nearest": "g12",
+  "dist": 0.105930805206
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g12",
+  "q": "Can you explain what the `maxmemory-clients` parameter is responsible for in the Valkey system?",
+  "nearest": "g12",
+  "dist": 0.054488837719
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g12",
+  "q": "What is the purpose of the `maxmemory-clients` option in Valkey's configuration?",
+  "nearest": "g12",
+  "dist": 0.0584230422974
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g13",
+  "q": "How do I safely perform a major version upgrade on Valkey?",
+  "nearest": "g13",
+  "dist": 0.130331516266
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g13",
+  "q": "What precautions should I take before upgrading to a new major version?",
+  "nearest": "g13",
+  "dist": 0.382219552994
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g13",
+  "q": "Are there any specific steps I need to follow for upgrading to a major version?",
+  "nearest": "g13",
+  "dist": 0.375421702862
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g14",
+  "q": "What is the benefit of using sharded Pub/Sub in a distributed system?",
+  "nearest": "g14",
+  "dist": 0.275962889194
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g14",
+  "q": "Can you explain how message propagation is managed in sharded Pub/Sub to improve scalability?",
+  "nearest": "g14",
+  "dist": 0.298662483692
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g14",
+  "q": "How does sharding reduce the load on the cluster during Pub/Sub operations?",
+  "nearest": "g14",
+  "dist": 0.0978592634201
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g15",
+  "q": "How does the tightening ratio affect the false positive rate of a bloom filter as it scales out?",
+  "nearest": "g15",
+  "dist": 0.149721562862
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g15",
+  "q": "What is the purpose of the tightening ratio in managing false positives in bloom filters?",
+  "nearest": "g15",
+  "dist": 0.16047847271
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g15",
+  "q": "Can you explain how the tightening ratio influences the accuracy of bloom filters during scaling?",
+  "nearest": "g15",
+  "dist": 0.0961639881134
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g16",
+  "q": "How should a client handle a 'one_succeeded' command when most shards fail?",
+  "nearest": "g16",
+  "dist": 0.1282812953
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g16",
+  "q": "In a 'one_succeeded' scenario, what is the correct response if many shards report errors?",
+  "nearest": "g16",
+  "dist": 0.160816013813
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g16",
+  "q": "What action should a client take if it encounters errors from most shards while following 'one_succeeded' rules?",
+  "nearest": "g16",
+  "dist": 0.135509669781
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g17",
+  "q": "How does setting 'yes' for read requests work in the benchmarking tool?",
+  "nearest": "g17",
+  "dist": 0.180317521095
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g17",
+  "q": "Can you explain what enabling 'yes' for read requests means?",
+  "nearest": "g17",
+  "dist": 0.509676039219
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g17",
+  "q": "What is the effect of choosing 'yes' for read requests in the benchmarking tool?",
+  "nearest": "g17",
+  "dist": 0.224946379662
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g18",
+  "q": "What are the steps to initiate a debugging session for a Lua script via valkey-cli?",
+  "nearest": "g18",
+  "dist": 0.0272485017776
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g18",
+  "q": "Can you provide instructions on how to use valkey-cli to debug a Lua script?",
+  "nearest": "g18",
+  "dist": 0.0961285233498
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g18",
+  "q": "What command should I use to start debugging a Lua script with valkey-cli?",
+  "nearest": "g18",
+  "dist": 0.0634201169014
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g19",
+  "q": "How does the `tls-replication` setting influence Sentinel's setup?",
+  "nearest": "g19",
+  "dist": 0.0669506192207
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g19",
+  "q": "Can you explain the impact of `tls-replication` on Sentinel's configuration?",
+  "nearest": "g19",
+  "dist": 0.051805138588
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g19",
+  "q": "What aspects of Sentinel's configuration are impacted by `tls-replication`?",
+  "nearest": "g19",
+  "dist": 0.0543373227119
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g20",
+  "q": "What steps should I follow to ensure there is no downtime when upgrading or restarting Valkey?",
+  "nearest": "g20",
+  "dist": 0.140714049339
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g20",
+  "q": "Can you provide the procedure to avoid service interruption during Valkey updates or restarts?",
+  "nearest": "g33",
+  "dist": 0.282385528088
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g20",
+  "q": "What methods are recommended to perform an upgrade or restart of Valkey without any downtime?",
+  "nearest": "g20",
+  "dist": 0.103031158447
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g21",
+  "q": "Can you explain the categories of data types in RESP and their characteristics?",
+  "nearest": "g21",
+  "dist": 0.271551430225
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g21",
+  "q": "How does RESP classify its data types and what distinguishes each category?",
+  "nearest": "g21",
+  "dist": 0.277415573597
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g21",
+  "q": "What types of data can be represented in RESP and what are the key differences between them?",
+  "nearest": "g21",
+  "dist": 0.145329415798
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g22",
+  "q": "Can I use LPUSH on a key that doesn't exist in Valkey?",
+  "nearest": "g22",
+  "dist": 0.0752394199371
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g22",
+  "q": "How does Valkey handle LPUSH commands on keys that haven't been set yet?",
+  "nearest": "g22",
+  "dist": 0.161782264709
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g22",
+  "q": "What is the behavior of LPUSH when the target key is missing in Valkey?",
+  "nearest": "g22",
+  "dist": 0.104914784431
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g23",
+  "q": "What is the method to store and retrieve elements based on a 128-bit unsigned integer using sorted sets in Redis?",
+  "nearest": "g23",
+  "dist": 0.0860874652863
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g23",
+  "q": "Can you explain how to utilize sorted sets in Redis for indexing by a 128-bit unsigned integer value?",
+  "nearest": "g23",
+  "dist": 0.0352319478989
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g23",
+  "q": "How do I implement a custom index using sorted sets in Redis for a 128-bit unsigned integer key?",
+  "nearest": "g23",
+  "dist": 0.0539900064468
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g24",
+  "q": "Can you explain what the 'oneof' flag means for command arguments?",
+  "nearest": "g24",
+  "dist": 0.203480064869
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g24",
+  "q": "How is the 'oneof' flag used in defining command arguments?",
+  "nearest": "g24",
+  "dist": 0.208520174026
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g24",
+  "q": "What functionality does the 'oneof' flag provide for command arguments?",
+  "nearest": "g24",
+  "dist": 0.229043662548
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g25",
+  "q": "What is the process Valkey uses to allocate memory for user keys?",
+  "nearest": "g25",
+  "dist": 0.0835244655609
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g25",
+  "q": "Can you explain how Valkey controls its memory usage when storing keys?",
+  "nearest": "g25",
+  "dist": 0.0912665128708
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g25",
+  "q": "What are the settings and methods used by Valkey to manage memory for keys?",
+  "nearest": "g25",
+  "dist": 0.134915530682
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g26",
+  "q": "Can you explain the steps Valkey follows when it encounters one of the signals SIGSEGV, SIGBUS, SIGFPE, or SIGILL?",
+  "nearest": "g26",
+  "dist": 0.127765893936
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g26",
+  "q": "What is Valkey's response mechanism for handling signals like SIGSEGV, SIGBUS, SIGFPE, and SIGILL?",
+  "nearest": "g26",
+  "dist": 0.110585033894
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g26",
+  "q": "How does Valkey react to receiving signals such as SIGSEGV, SIGBUS, SIGFPE, or SIGILL?",
+  "nearest": "g26",
+  "dist": 0.0916414260864
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g27",
+  "q": "What is the method to configure the memory usage limit for Valkey?",
+  "nearest": "g27",
+  "dist": 0.114766120911
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g27",
+  "q": "Can you provide an example of setting the maxmemory directive in Valkey?",
+  "nearest": "g12",
+  "dist": 0.188539385796
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g27",
+  "q": "How do I limit the amount of memory Valkey uses for its data?",
+  "nearest": "g27",
+  "dist": 0.0856072902679
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g28",
+  "q": "What is the process for ingesting numeric values into Valkey fields?",
+  "nearest": "g28",
+  "dist": 0.112361311913
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g28",
+  "q": "Can you explain how Valkey processes numerical data when creating a document?",
+  "nearest": "g28",
+  "dist": 0.331448912621
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g28",
+  "q": "What happens when numeric data is inserted into Valkey fields?",
+  "nearest": "g28",
+  "dist": 0.175527095795
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g29",
+  "q": "What are the potential issues with writable replicas in Valkey?",
+  "nearest": "g29",
+  "dist": 0.0739614367485
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g29",
+  "q": "Can you explain the risks associated with writable replicas in Valkey?",
+  "nearest": "g29",
+  "dist": 0.154557168484
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g29",
+  "q": "What problems might arise if I use writable replicas in Valkey?",
+  "nearest": "g29",
+  "dist": 0.0524773597717
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g30",
+  "q": "How does using read-only scripts improve the performance and security of my Redis application?",
+  "nearest": "g30",
+  "dist": 0.100831508636
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g30",
+  "q": "What advantages do read-only scripts offer over regular scripts in terms of functionality and security?",
+  "nearest": "g30",
+  "dist": 0.210416793823
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g30",
+  "q": "Can you explain the improvements and security enhancements provided by read-only scripts in Redis?",
+  "nearest": "g30",
+  "dist": 0.0821310281754
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g31",
+  "q": "What is the method to track distinct user sessions on a webpage with HyperLogLog?",
+  "nearest": "g31",
+  "dist": 0.333984345198
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g31",
+  "q": "Can you explain how to calculate the number of unique users visiting a specific web page daily using HyperLogLog?",
+  "nearest": "g31",
+  "dist": 0.259614348412
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g31",
+  "q": "How do I determine the number of unique visitors to a website using the HyperLogLog data structure?",
+  "nearest": "g31",
+  "dist": 0.193394899368
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g32",
+  "q": "What is the command to run the Valkey Bundle with a specific config file?",
+  "nearest": "g32",
+  "dist": 0.0958870649338
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g32",
+  "q": "Can you show me how to launch the Valkey Bundle using a custom configuration?",
+  "nearest": "g32",
+  "dist": 0.0624301433563
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g32",
+  "q": "How can I initialize the Valkey Bundle with a different configuration than the default?",
+  "nearest": "g32",
+  "dist": 0.114746570587
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g33",
+  "q": "What steps should I take to ensure Valkey remains stable and doesn't crash?",
+  "nearest": "g33",
+  "dist": 0.127238094807
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g33",
+  "q": "Are there any specific checks or configurations I need to perform to avoid Valkey crashing?",
+  "nearest": "g33",
+  "dist": 0.114501237869
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g33",
+  "q": "Can you provide guidance on maintaining the stability of the Valkey server?",
+  "nearest": "g33",
+  "dist": 0.14274096489
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g34",
+  "q": "How do ACL passwords differ from regular passwords in terms of their usage and limitations in Valkey?",
+  "nearest": "g34",
+  "dist": 0.0839455723763
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g34",
+  "q": "What are the unique properties of ACL passwords that set them apart from typical passwords in Valkey?",
+  "nearest": "g34",
+  "dist": 0.142819166183
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g34",
+  "q": "Can you explain the differences between ACL passwords and regular passwords in Valkey?",
+  "nearest": "g34",
+  "dist": 0.0685783624649
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g35",
+  "q": "Can you list the metrics related to search request outcomes in Valkey?",
+  "nearest": "g35",
+  "dist": 0.190031886101
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g35",
+  "q": "Which metrics indicate the success or failure of search queries in Valkey?",
+  "nearest": "g35",
+  "dist": 0.10377573967
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g35",
+  "q": "Provide a list of metrics that track the success and failure of search operations in Valkey.",
+  "nearest": "g35",
+  "dist": 0.0892037153244
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g36",
+  "q": "Can `FT.CREATE` or `FT.DROPINDEX` commands recover from a failed metadata mutation due to network issues?",
+  "nearest": "g36",
+  "dist": 0.400296360254
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g36",
+  "q": "What is the outcome when the convergence protocol times out in `FT.CREATE` or `FT.DROPINDEX`?",
+  "nearest": "g36",
+  "dist": 0.209080159664
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g36",
+  "q": "How does Valkey handle unsuccessful metadata mutations during `FT.CREATE` or `FT.DROPINDEX`?",
+  "nearest": "g36",
+  "dist": 0.256458759308
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g37",
+  "q": "Can you list the distributed lock libraries for various languages?",
+  "nearest": "g37",
+  "dist": 0.157482564449
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g37",
+  "q": "Which distributed locking solutions are supported across multiple languages?",
+  "nearest": "g37",
+  "dist": 0.132939577103
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g37",
+  "q": "What are the available distributed lock implementations in different programming environments?",
+  "nearest": "g37",
+  "dist": 0.0503150224686
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g38",
+  "q": "What are the steps to set up Valkey on my system?",
+  "nearest": "g38",
+  "dist": 0.11191380024
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g38",
+  "q": "Can you provide a guide on installing and setting up Valkey?",
+  "nearest": "g38",
+  "dist": 0.100172281265
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g38",
+  "q": "I need instructions on how to get started with Valkey.",
+  "nearest": "g38",
+  "dist": 0.236646354198
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g39",
+  "q": "What is the method to handle concurrent increments on a Redis key without race conditions?",
+  "nearest": "g39",
+  "dist": 0.230702936649
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g39",
+  "q": "Can you explain how to use WATCH to ensure atomic increments in Redis?",
+  "nearest": "g39",
+  "dist": 0.241371095181
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g39",
+  "q": "What technique does WATCH provide to avoid data inconsistencies due to simultaneous reads and writes?",
+  "nearest": "g39",
+  "dist": 0.535483777523
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g40",
+  "q": "Can you provide the default settings for `ldap.bind_dn_prefix` and `ldap.bind_dn_suffix` in Valkey's LDAP setup?",
+  "nearest": "g40",
+  "dist": 0.132221281528
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g40",
+  "q": "What do `ldap.bind_dn_prefix` and `ldap.bind_dn_suffix` default to in Valkey's LDAP authentication?",
+  "nearest": "g40",
+  "dist": 0.0789388418198
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g40",
+  "q": "Could you tell me the standard values for `ldap.bind_dn_prefix` and `ldap.bind_dn_suffix` in Valkey's LDAP configuration?",
+  "nearest": "g40",
+  "dist": 0.0304943323135
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g41",
+  "q": "What is the process a Valkey client follows to find the primary Valkey instance via Sentinel?",
+  "nearest": "g41",
+  "dist": 0.0855522155762
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g41",
+  "q": "Can you explain how a Valkey client uses Sentinel to dynamically get the primary instance address?",
+  "nearest": "g41",
+  "dist": 0.176951766014
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g41",
+  "q": "What steps does a Valkey client take to automatically locate the current primary Valkey instance through Sentinel?",
+  "nearest": "g41",
+  "dist": 0.0673832893372
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g42",
+  "q": "How does Valkey's pipelining mechanism work to improve performance?",
+  "nearest": "g57",
+  "dist": 0.388217926025
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g42",
+  "q": "Can you explain the sequence of events when a client uses pipelining to send commands to a Valkey server?",
+  "nearest": "g42",
+  "dist": 0.216839790344
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g42",
+  "q": "What technique does Valkey use to issue multiple commands to the server simultaneously?",
+  "nearest": "g42",
+  "dist": 0.166949212551
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g43",
+  "q": "How do I extract all author names from the store section using JSON path expressions?",
+  "nearest": "g43",
+  "dist": 0.11527967453
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g43",
+  "q": "Can you provide the JSON paths needed to get all author names within the store?",
+  "nearest": "g43",
+  "dist": 0.0625950098038
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g43",
+  "q": "Which JSON path should I use to find all author names in the store?",
+  "nearest": "g43",
+  "dist": 0.064172744751
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g44",
+  "q": "How many Sentinels must agree to perform a failover after detecting a primary's unreachability?",
+  "nearest": "g44",
+  "dist": 0.292326331139
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g44",
+  "q": "What majority is required among Sentinels to execute a failover following a primary's failure?",
+  "nearest": "g44",
+  "dist": 0.370853066444
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g44",
+  "q": "In what scenario will Sentinel initiate a failover despite a primary being marked as unavailable?",
+  "nearest": "g44",
+  "dist": 0.289745688438
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g45",
+  "q": "How do Hashes in Valkey help in representing entities such as Users and Updates?",
+  "nearest": "g45",
+  "dist": 0.0720419883728
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g45",
+  "q": "What advantages do Hashes offer for storing User and Update data in Valkey?",
+  "nearest": "g45",
+  "dist": 0.111006736755
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g45",
+  "q": "Why are Hashes recommended for representing Users and Updates in Valkey?",
+  "nearest": "g45",
+  "dist": 0.0514432191849
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g46",
+  "q": "How can I ensure a key is set only once in Valkey for implementing a lock?",
+  "nearest": "g46",
+  "dist": 0.199451804161
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g46",
+  "q": "Which Valkey command should I use to avoid overwriting an existing key while setting a lock?",
+  "nearest": "g46",
+  "dist": 0.217834770679
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g46",
+  "q": "In Valkey, what command do I need to use to create a lock without replacing an existing value?",
+  "nearest": "g46",
+  "dist": 0.195376574993
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g47",
+  "q": "What happens to hash fields in Valkey when they reach their expiration time, and how do commands like HLEN and HRANDFIELD behave then?",
+  "nearest": "g47",
+  "dist": 0.037932574749
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g47",
+  "q": "Can you explain the process of deleting hash fields with expiration times in Valkey, and what effects might this have on commands such as HLEN and HRANDFIELD?",
+  "nearest": "g47",
+  "dist": 0.0915182828903
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g47",
+  "q": "What are the consequences of setting an expiration time on hash fields in Valkey, particularly for commands like HLEN and HRANDFIELD?",
+  "nearest": "g47",
+  "dist": 0.0552345514297
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g48",
+  "q": "What is the command to insert a new record into a stream every time a racer completes a checkpoint?",
+  "nearest": "g48",
+  "dist": 0.148074030876
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g48",
+  "q": "Can you provide an example of adding a stream entry for a racer who just passed a checkpoint?",
+  "nearest": "g48",
+  "dist": 0.0917140245438
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g48",
+  "q": "Which Redis command should I use to log a racer's progress as they pass through checkpoints?",
+  "nearest": "g5",
+  "dist": 0.476612508297
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g49",
+  "q": "Which files and information are necessary to send to the Valkey core team for debugging?",
+  "nearest": "g49",
+  "dist": 0.250495374203
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g49",
+  "q": "What are the essential components to provide when submitting a bug report to the Valkey support team?",
+  "nearest": "g49",
+  "dist": 0.0738115310669
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g49",
+  "q": "How do I prepare and what specific details should I attach to my bug report for the Valkey developers?",
+  "nearest": "g49",
+  "dist": 0.0633177757263
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g50",
+  "q": "What is the command to search for bike rental stations near a point and include the distance to each one?",
+  "nearest": "g50",
+  "dist": 0.156337499619
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g50",
+  "q": "Can you provide the Redis command to find bike rental stations within 5km of a given location and show the distance?",
+  "nearest": "g50",
+  "dist": 0.213972687721
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g50",
+  "q": "How do I use the GEOSEARCH command to find all bike rental stations within 5 kilometers of a specific coordinate and display their distances?",
+  "nearest": "g50",
+  "dist": 0.179346859455
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g51",
+  "q": "Can you explain the difference between the low-level and high-level APIs in Valkey modules and their respective use cases?",
+  "nearest": "g51",
+  "dist": 0.26216006279
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g51",
+  "q": "How do the low-level and high-level APIs differ in terms of accessing Valkey data space, and which one should I prefer?",
+  "nearest": "g51",
+  "dist": 0.158617854118
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g51",
+  "q": "What are the two APIs for accessing Valkey data space in Valkey modules, and under what circumstances should each be used?",
+  "nearest": "g51",
+  "dist": 0.0158067345619
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g52",
+  "q": "What is the correct method for setting up Valkey with a configuration file?",
+  "nearest": "g52",
+  "dist": 0.0364338159561
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g52",
+  "q": "Can you explain how to use a Valkey.conf file to configure Valkey?",
+  "nearest": "g52",
+  "dist": 0.0736209750175
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g52",
+  "q": "Which steps should I follow to configure Valkey via a configuration file?",
+  "nearest": "g52",
+  "dist": 0.049679338932
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g53",
+  "q": "Can you explain the steps involved in setting up an RDMA connection using valkey?",
+  "nearest": "g53",
+  "dist": 0.113615512848
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g53",
+  "q": "How does the RDMA connection establishment work between valkey-client and valkey-server as described?",
+  "nearest": "g53",
+  "dist": 0.070795416832
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g53",
+  "q": "What are the key steps in the RDMA connection setup between valkey-client and valkey-server?",
+  "nearest": "g53",
+  "dist": 0.0504111051559
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g54",
+  "q": "Can you explain the concept of blocking commands in Valkey and their impact on server and client behavior?",
+  "nearest": "g54",
+  "dist": 0.0463678836823
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g54",
+  "q": "How do blocking commands work in Valkey and what is their purpose in relation to client and server interactions?",
+  "nearest": "g54",
+  "dist": 0.0520537495613
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g54",
+  "q": "What is the role of blocking commands in Valkey and how do they influence client operations without affecting the entire server?",
+  "nearest": "g54",
+  "dist": 0.0450079441071
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g55",
+  "q": "What strategies can I use to minimize latency in Valkey connections?",
+  "nearest": "g2",
+  "dist": 0.14575278759
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g55",
+  "q": "Can you suggest methods to decrease the time delay in Valkey communications?",
+  "nearest": "g2",
+  "dist": 0.244502961636
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g55",
+  "q": "What techniques should I employ to lower the latency between Valkey clients and servers?",
+  "nearest": "g2",
+  "dist": 0.154075920582
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g56",
+  "q": "What is the process for sorting and scoring results in vector range queries in Valkey?",
+  "nearest": "g56",
+  "dist": 0.0473746061325
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g56",
+  "q": "Can you explain how Valkey sorts and scores the results of vector range queries?",
+  "nearest": "g56",
+  "dist": 0.0793699026108
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g56",
+  "q": "How are the results of vector range queries ordered and scored in Valkey?",
+  "nearest": "g56",
+  "dist": 0.0914794802666
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g57",
+  "q": "Can you explain the main features of functions in Valkey?",
+  "nearest": "g57",
+  "dist": 0.0572165846825
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g57",
+  "q": "What are the defining traits of functions in Valkey's programming model?",
+  "nearest": "g57",
+  "dist": 0.123337626457
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g57",
+  "q": "How do functions operate in the Valkey environment?",
+  "nearest": "g57",
+  "dist": 0.112769603729
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g58",
+  "q": "Which operating systems does Valkey run on?",
+  "nearest": "g58",
+  "dist": 0.131427645683
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g58",
+  "q": "Can you list the operating systems compatible with Valkey?",
+  "nearest": "g58",
+  "dist": 0.167375743389
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g58",
+  "q": "What OSes are supported for running Valkey?",
+  "nearest": "g58",
+  "dist": 0.10209864378
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g59",
+  "q": "What steps are needed to create a minimal working Valkey cluster?",
+  "nearest": "g59",
+  "dist": 0.160023987293
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g59",
+  "q": "Can you provide instructions on setting up a Valkey cluster with three primary nodes?",
+  "nearest": "g59",
+  "dist": 0.0720599889755
+ },
+ {
+  "kind": "paraphrase",
+  "group": "g59",
+  "q": "How can I configure a Valkey cluster with at least three main nodes?",
+  "nearest": "g59",
+  "dist": 0.0442292094231
+ },
+ {
+  "kind": "near_miss",
+  "group": "g0n",
+  "of": "g0",
+  "q": "What are the requirements for migrating the entire Redis keyspace to Valkey?",
+  "nearest": "g0",
+  "dist": 0.186584711075
+ },
+ {
+  "kind": "near_miss",
+  "group": "g1n",
+  "of": "g1",
+  "q": "What does the `server.pcall` function do in Valkey?",
+  "nearest": "g12",
+  "dist": 0.42794418335
+ },
+ {
+  "kind": "near_miss",
+  "group": "g2n",
+  "of": "g2",
+  "q": "Why does Valkey crash frequently and how can I prevent it?",
+  "nearest": "g33",
+  "dist": 0.130397558212
+ },
+ {
+  "kind": "near_miss",
+  "group": "g3n",
+  "of": "g3",
+  "q": "What does the `BITFIELD` command do with a single counter?",
+  "nearest": "g3",
+  "dist": 0.195010662079
+ },
+ {
+  "kind": "near_miss",
+  "group": "g4n",
+  "of": "g4",
+  "q": "Does `valkey-cli` use `libreadline` for line editing?",
+  "nearest": "g52",
+  "dist": 0.533154010773
+ },
+ {
+  "kind": "near_miss",
+  "group": "g5n",
+  "of": "g5",
+  "q": "How do I add multiple bikes to a set representing a race in a specific country using Redis?",
+  "nearest": "g5",
+  "dist": 0.193853378296
+ },
+ {
+  "kind": "near_miss",
+  "group": "g6n",
+  "of": "g6",
+  "q": "What does the MOVED error indicate about the cluster configuration?",
+  "nearest": "g59",
+  "dist": 0.630640268326
+ },
+ {
+  "kind": "near_miss",
+  "group": "g7n",
+  "of": "g7",
+  "q": "Which events are generated when a key is renamed using RENAME in Valkey?",
+  "nearest": "g7",
+  "dist": 0.392910867929
+ },
+ {
+  "kind": "near_miss",
+  "group": "g8n",
+  "of": "g8",
+  "q": "What does the `SETBIT` command do in Valkey?",
+  "nearest": "g25",
+  "dist": 0.453184962273
+ },
+ {
+  "kind": "near_miss",
+  "group": "g9n",
+  "of": "g9",
+  "q": "Does TLS encryption apply to all communication channels in Valkey, including client connections and replication links?",
+  "nearest": "g53",
+  "dist": 0.537372529507
+ },
+ {
+  "kind": "near_miss",
+  "group": "g10n",
+  "of": "g10",
+  "q": "How does adding every search query to the index affect performance?",
+  "nearest": "g10",
+  "dist": 0.659923672676
+ },
+ {
+  "kind": "near_miss",
+  "group": "g11n",
+  "of": "g11",
+  "q": "Why is it recommended to retry the migration after using `FLUSHDB` or `FLUSHALL` commands?",
+  "nearest": "g11",
+  "dist": 0.303017675877
+ },
+ {
+  "kind": "near_miss",
+  "group": "g12n",
+  "of": "g12",
+  "q": "How does the `maxmemory-clients` setting impact replica and primary connections in Valkey?",
+  "nearest": "g12",
+  "dist": 0.188776135445
+ },
+ {
+  "kind": "near_miss",
+  "group": "g13n",
+  "of": "g13",
+  "q": "How does Valkey handle deprecated commands in minor versions?",
+  "nearest": "g13",
+  "dist": 0.400862395763
+ },
+ {
+  "kind": "near_miss",
+  "group": "g14n",
+  "of": "g14",
+  "q": "What is the purpose of using a hash table in client libraries for Pub/Sub?",
+  "nearest": "g45",
+  "dist": 0.404200196266
+ },
+ {
+  "kind": "near_miss",
+  "group": "g15n",
+  "of": "g15",
+  "q": "How are default bloom properties configured in Valkey?",
+  "nearest": "g52",
+  "dist": 0.385606944561
+ },
+ {
+  "kind": "near_miss",
+  "group": "g16n",
+  "of": "g16",
+  "q": "For a 'one_succeeded' command, how should a client respond if all shards succeed?",
+  "nearest": "g16",
+  "dist": 0.127770423889
+ },
+ {
+  "kind": "near_miss",
+  "group": "g17n",
+  "of": "g17",
+  "q": "What does the 'no' option in the benchmarking tool do?",
+  "nearest": "g17",
+  "dist": 0.106531083584
+ },
+ {
+  "kind": "near_miss",
+  "group": "g18n",
+  "of": "g18",
+  "q": "What does the `--ldb` option do in valkey-cli?",
+  "nearest": "g24",
+  "dist": 0.411784976721
+ },
+ {
+  "kind": "near_miss",
+  "group": "g19n",
+  "of": "g19",
+  "q": "What is the purpose of the `tls-port` directive in Sentinel's configuration?",
+  "nearest": "g19",
+  "dist": 0.240506470203
+ },
+ {
+  "kind": "near_miss",
+  "group": "g20n",
+  "of": "g20",
+  "q": "What should I do if I encounter high latency issues with EBS volumes while using Valkey persistence?",
+  "nearest": "g2",
+  "dist": 0.275553107262
+ },
+ {
+  "kind": "near_miss",
+  "group": "g21n",
+  "of": "g21",
+  "q": "How is a simple string in RESP different from a bulk string in terms of content?",
+  "nearest": "g21",
+  "dist": 0.526658713818
+ },
+ {
+  "kind": "near_miss",
+  "group": "g22n",
+  "of": "g22",
+  "q": "What does Valkey do when I use LLEN on a non-existent key?",
+  "nearest": "g22",
+  "dist": 0.369633764029
+ },
+ {
+  "kind": "near_miss",
+  "group": "g23n",
+  "of": "g23",
+  "q": "What does the ZRANGEBYLEX command do in Redis?",
+  "nearest": "g30",
+  "dist": 0.547637999058
+ },
+ {
+  "kind": "near_miss",
+  "group": "g24n",
+  "of": "g24",
+  "q": "What does the 'block' flag indicate for command arguments in Valkey?",
+  "nearest": "g24",
+  "dist": 0.252875745296
+ },
+ {
+  "kind": "near_miss",
+  "group": "g25n",
+  "of": "g25",
+  "q": "What happens if the maxmemory setting is exceeded in Valkey?",
+  "nearest": "g1",
+  "dist": 0.148181080818
+ },
+ {
+  "kind": "near_miss",
+  "group": "g26n",
+  "of": "g26",
+  "q": "How does Valkey handle the situation when a child process performing an RDB save is killed by a signal?",
+  "nearest": "g26",
+  "dist": 0.397696197033
+ },
+ {
+  "kind": "near_miss",
+  "group": "g27n",
+  "of": "g27",
+  "q": "What does the `maxmemory` directive do in Valkey?",
+  "nearest": "g12",
+  "dist": 0.132691025734
+ },
+ {
+  "kind": "near_miss",
+  "group": "g28n",
+  "of": "g28",
+  "q": "What are the accepted tag formats in Valkey's schema definition?",
+  "nearest": "g51",
+  "dist": 0.444864749908
+ },
+ {
+  "kind": "near_miss",
+  "group": "g29n",
+  "of": "g29",
+  "q": "How do writable replicas differ from read-only replicas in Valkey?",
+  "nearest": "g29",
+  "dist": 0.133905172348
+ },
+ {
+  "kind": "near_miss",
+  "group": "g30n",
+  "of": "g30",
+  "q": "How does the `no-writes` flag affect the execution of scripts in Redis versions before 7.0.1?",
+  "nearest": "g30",
+  "dist": 0.282115399837
+ },
+ {
+  "kind": "near_miss",
+  "group": "g31n",
+  "of": "g31",
+  "q": "What is the process for merging two HyperLogLog sets in Redis?",
+  "nearest": "g31",
+  "dist": 0.467528790236
+ },
+ {
+  "kind": "near_miss",
+  "group": "g32n",
+  "of": "g32",
+  "q": "What does the Valkey Bundle do with a configuration file?",
+  "nearest": "g32",
+  "dist": 0.195552885532
+ },
+ {
+  "kind": "near_miss",
+  "group": "g33n",
+  "of": "g33",
+  "q": "What should I do if Valkey is running slowly?",
+  "nearest": "g2",
+  "dist": 0.178752720356
+ },
+ {
+  "kind": "near_miss",
+  "group": "g34n",
+  "of": "g34",
+  "q": "Why are ACL passwords considered secure in Valkey?",
+  "nearest": "g34",
+  "dist": 0.12522405386
+ },
+ {
+  "kind": "near_miss",
+  "group": "g35n",
+  "of": "g35",
+  "q": "How many successful search requests are there in Valkey?",
+  "nearest": "g35",
+  "dist": 0.233066022396
+ },
+ {
+  "kind": "near_miss",
+  "group": "g36n",
+  "of": "g36",
+  "q": "How does the `FT.INFO` command ensure query consistency across the cluster?",
+  "nearest": "g11",
+  "dist": 0.605053544044
+ },
+ {
+  "kind": "near_miss",
+  "group": "g37n",
+  "of": "g37",
+  "q": "How do I implement a distributed lock using Redis-plus-plus?",
+  "nearest": "g37",
+  "dist": 0.382321208715
+ },
+ {
+  "kind": "near_miss",
+  "group": "g38n",
+  "of": "g38",
+  "q": "Where can I find information about Valkey's signal handling?",
+  "nearest": "g26",
+  "dist": 0.319766044617
+ },
+ {
+  "kind": "near_miss",
+  "group": "g39n",
+  "of": "g39",
+  "q": "Why is it necessary to use MULTI and EXEC in Redis transactions?",
+  "nearest": "g30",
+  "dist": 0.531778216362
+ },
+ {
+  "kind": "near_miss",
+  "group": "g40n",
+  "of": "g40",
+  "q": "How do I set up `ldap.bind_dn_prefix` and `ldap.bind_dn_suffix` in Valkey's LDAP configuration?",
+  "nearest": "g40",
+  "dist": 0.116671979427
+ },
+ {
+  "kind": "near_miss",
+  "group": "g41n",
+  "of": "g41",
+  "q": "What information does a Valkey client need to perform an automatic failover?",
+  "nearest": "g33",
+  "dist": 0.336680173874
+ },
+ {
+  "kind": "near_miss",
+  "group": "g42n",
+  "of": "g42",
+  "q": "How does the Request/Response protocol affect the performance of Valkey?",
+  "nearest": "g42",
+  "dist": 0.330895543098
+ },
+ {
+  "kind": "near_miss",
+  "group": "g43n",
+  "of": "g43",
+  "q": "How can I find the price of all items in the store using JSON paths?",
+  "nearest": "g43",
+  "dist": 0.477361351252
+ },
+ {
+  "kind": "near_miss",
+  "group": "g44n",
+  "of": "g44",
+  "q": "How does configuring a replica with a `replica-priority` of zero affect its role during a failover?",
+  "nearest": "g44",
+  "dist": 0.532134652138
+ },
+ {
+  "kind": "near_miss",
+  "group": "g45n",
+  "of": "g45",
+  "q": "How do I install and configure the Valkey server for running Retwis locally?",
+  "nearest": "g38",
+  "dist": 0.35002219677
+ },
+ {
+  "kind": "near_miss",
+  "group": "g46n",
+  "of": "g46",
+  "q": "How does the INCRBY command work in Valkey?",
+  "nearest": "g24",
+  "dist": 0.390285730362
+ },
+ {
+  "kind": "near_miss",
+  "group": "g47n",
+  "of": "g47",
+  "q": "What is the mechanism for setting expiration times on hash fields in Valkey and how is it implemented?",
+  "nearest": "g47",
+  "dist": 0.13096600771
+ },
+ {
+  "kind": "near_miss",
+  "group": "g48n",
+  "of": "g48",
+  "q": "What does the `XREAD` command do in Redis streams?",
+  "nearest": "g30",
+  "dist": 0.472576022148
+ },
+ {
+  "kind": "near_miss",
+  "group": "g49n",
+  "of": "g49",
+  "q": "How do I use the `gcore` command to generate a core dump for Valkey?",
+  "nearest": "g52",
+  "dist": 0.443892478943
+ },
+ {
+  "kind": "near_miss",
+  "group": "g50n",
+  "of": "g50",
+  "q": "What Redis command should I use to find all bike rental stations within a 5 kilometer radius without including the distances?",
+  "nearest": "g50",
+  "dist": 0.17456382513
+ },
+ {
+  "kind": "near_miss",
+  "group": "g51n",
+  "of": "g51",
+  "q": "What is the main purpose of the Valkey data space and how does it relate to Valkey modules?",
+  "nearest": "g51",
+  "dist": 0.147605419159
+ },
+ {
+  "kind": "near_miss",
+  "group": "g52n",
+  "of": "g52",
+  "q": "What is the format of the configuration file if I choose not to use a configuration file at all?",
+  "nearest": "g32",
+  "dist": 0.61485928297
+ },
+ {
+  "kind": "near_miss",
+  "group": "g53n",
+  "of": "g53",
+  "q": "What RDMA features are supported by valkey-server?",
+  "nearest": "g53",
+  "dist": 0.212370038033
+ },
+ {
+  "kind": "near_miss",
+  "group": "g54n",
+  "of": "g54",
+  "q": "How does the BLPOP command differ from other non-blocking commands in Valkey?",
+  "nearest": "g54",
+  "dist": 0.340789675713
+ },
+ {
+  "kind": "near_miss",
+  "group": "g55n",
+  "of": "g55",
+  "q": "What is the typical latency of a 1 Gbit/s network connection to Valkey?",
+  "nearest": "g2",
+  "dist": 0.281579017639
+ },
+ {
+  "kind": "near_miss",
+  "group": "g56n",
+  "of": "g56",
+  "q": "What happens when a key matches through another branch of an OR in a Valkey query?",
+  "nearest": "g56",
+  "dist": 0.48323982954
+ },
+ {
+  "kind": "near_miss",
+  "group": "g57n",
+  "of": "g57",
+  "q": "How can I update individual functions within a Valkey library without affecting others?",
+  "nearest": "g57",
+  "dist": 0.446275681257
+ },
+ {
+  "kind": "near_miss",
+  "group": "g58n",
+  "of": "g58",
+  "q": "What programming languages does Valkey support for client libraries?",
+  "nearest": "g58",
+  "dist": 0.290898025036
+ },
+ {
+  "kind": "near_miss",
+  "group": "g59n",
+  "of": "g59",
+  "q": "What should I do if my Valkey cluster stops responding to queries?",
+  "nearest": "g33",
+  "dist": 0.324993103743
+ }
+]

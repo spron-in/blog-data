@@ -1,0 +1,112 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: milvus-docs
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: milvus
+  topology:
+    type: standalone
+    parameters:
+      monitoring:
+        prometheus:
+          enabled: true
+  components:
+    standalone:
+      type: milvus
+      replicas: 1
+      resources:
+        limits:
+          cpu: "2"
+          memory: 8Gi
+---
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: vk-cache
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      image: valkey/valkey-bundle:9.0.6
+      replicas: 1
+      resources:
+        limits:
+          cpu: "2"
+          memory: 4Gi
+      storage:
+        size: 10Gi
+      parameters:
+        config:
+          loadmodule: /usr/lib/valkey/libsearch.so
+          maxmemory: 3gb
+          maxmemory-policy: allkeys-lru
+    monitoring:
+      type: exporter
+---
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: minilm
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: provider-kserve
+  topology:
+    type: predictor
+    parameters:
+      externalAccess: EnvoyAIGateway
+      # The predictor default is 1000 tokens per key per hour.
+      tokenLimitPerHour: 20000000
+  components:
+    predictor:
+      type: modelServer
+      replicas: 2
+      resources:
+        limits:
+          cpu: "2"
+          memory: 4Gi
+      parameters:
+        model: all-minilm-l6-v2
+---
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: qwen-7b
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: provider-kserve
+  topology:
+    type: llm
+    parameters:
+      externalAccess: EnvoyAIGateway
+      tokenLimitPerHour: 20000000
+  components:
+    llmEngine:
+      type: vllm
+      replicas: 1
+      resources:
+        limits:
+          cpu: "6"
+          memory: 24Gi
+        requests:
+          cpu: "6"
+          memory: 24Gi
+      parameters:
+        modelURI: hf://Qwen/Qwen2.5-7B-Instruct
+        modelName: qwen-7b
+        config: |
+          template:
+            containers:
+              - name: main
+                args:
+                  - --max-model-len=8192
+                  - --gpu-memory-utilization=0.92

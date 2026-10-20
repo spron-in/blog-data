@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-app
+  namespace: ai-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: rag-app}
+  template:
+    metadata:
+      labels: {app: rag-app}
+    spec:
+      containers:
+      - name: app
+        image: python:3.12-slim
+        workingDir: /app
+        command: ["sh", "-c", "pip install -q 'redis==5.2.1' 'pymilvus==2.6.3' 'httpx==0.28.1' 'numpy<2.3' 'fastapi==0.115.12' 'uvicorn==0.34.2' 'prometheus-client==0.22.1' && exec uvicorn app:app --host 0.0.0.0 --port 8000 --no-access-log"]
+        env:
+        - {name: CACHE_THRESHOLD, value: "0.15"}
+        - {name: CACHE_TTL_SECONDS, value: "86400"}
+        ports:
+        - {name: http, containerPort: 8000}
+        readinessProbe:
+          tcpSocket: {port: 8000}
+          periodSeconds: 5
+        resources:
+          requests: {cpu: "1", memory: 1Gi}
+          limits: {cpu: "2", memory: 2Gi}
+        volumeMounts:
+        - {name: code, mountPath: /app}
+        - {name: vk, mountPath: /conn/vk}
+        - {name: milvus, mountPath: /conn/milvus}
+        - {name: minilm, mountPath: /conn/minilm}
+        - {name: qwen, mountPath: /conn/qwen}
+      volumes:
+      - {name: code, configMap: {name: rag-app}}
+      - {name: vk, secret: {secretName: vk-cache-conn}}
+      - {name: milvus, secret: {secretName: milvus-docs-conn}}
+      - {name: minilm, secret: {secretName: minilm-conn}}
+      - {name: qwen, secret: {secretName: qwen-7b-conn}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-app
+  namespace: ai-demo
+  labels: {app: rag-app}
+spec:
+  selector: {app: rag-app}
+  ports:
+  - {name: http, port: 8000, targetPort: http}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: rag-app
+  namespace: ai-demo
+spec:
+  selector:
+    matchLabels: {app: rag-app}
+  podMetricsEndpoints:
+  - port: http
+    path: /metrics/
+    interval: 5s

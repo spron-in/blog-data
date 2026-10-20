@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lab
+  namespace: ai-demo
+spec:
+  containers:
+  - name: lab
+    image: python:3.12-slim
+    command: ["sh", "-c", "pip install -q 'redis==5.2.1' 'pymilvus==2.6.3' 'httpx==0.28.1' 'numpy<2.3' 'fastapi==0.115.12' 'uvicorn==0.34.2' 'prometheus-client==0.22.1' && touch /tmp/ready && sleep infinity"]
+    readinessProbe:
+      exec: {command: ["test", "-f", "/tmp/ready"]}
+      periodSeconds: 5
+    resources:
+      requests: {cpu: "1", memory: 1Gi}
+      limits: {cpu: "2", memory: 2Gi}
+    volumeMounts:
+    - {name: vk, mountPath: /conn/vk}
+    - {name: milvus, mountPath: /conn/milvus}
+    - {name: minilm, mountPath: /conn/minilm}
+    - {name: qwen, mountPath: /conn/qwen}
+    - {name: bge-base, mountPath: /conn/bge-base}
+    - {name: work, mountPath: /work}
+  volumes:
+  - {name: vk, secret: {secretName: vk-cache-conn}}
+  - {name: milvus, secret: {secretName: milvus-docs-conn}}
+  - {name: minilm, secret: {secretName: minilm-conn}}
+  - {name: qwen, secret: {secretName: qwen-7b-conn, optional: true}}
+  - {name: bge-base, secret: {secretName: bge-base-conn, optional: true}}
+  - {name: work, emptyDir: {}}

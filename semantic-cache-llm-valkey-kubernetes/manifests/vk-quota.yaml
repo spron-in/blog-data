@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-demo
+---
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: vk-quota
+  namespace: ai-demo
+spec:
+  providerRef:
+    name: valkey
+  version: "9.1"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      replicas: 1
+      resources:
+        limits: {cpu: "1", memory: 1Gi}
+      storage:
+        size: 2Gi
+      parameters:
+        tls:
+          mode: disabled
+          clientAuth: optional
+          certificateUser: disabled
+    monitoring:
+      type: exporter

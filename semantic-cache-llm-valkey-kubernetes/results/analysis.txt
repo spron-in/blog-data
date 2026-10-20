@@ -1,0 +1,11 @@
+minilm: AUC paraphrase-vs-nearmiss 0.860; best Youden J 0.53 at t=0.17 (para 70%, nearmiss 17%)
+bge-base: AUC paraphrase-vs-nearmiss 0.851; best Youden J 0.53 at t=0.14 (para 89%, nearmiss 37%)
+
+run         hits  exact  semantic  false  tokens   rps  hit_p50 miss_p50
+ocache      0.0%   0.0%     0.0%      0  312536   4.4       0     3517
+0.05       70.8%  70.5%     0.3%      0  177783  10.3      39     4693
+0.10       74.2%  68.3%     5.8%      3  157636  10.6      98     4656
+0.20       77.2%  62.0%    15.2%     14  138560  13.0      94     4835
+0.25       78.0%  60.8%    17.2%     15  134351  13.1     102     4676
+0.30       80.3%  59.8%    20.5%     30  119956  14.6     101     4651
+015        75.5%  65.2%    10.3%      9  148806  12.7      88     4714

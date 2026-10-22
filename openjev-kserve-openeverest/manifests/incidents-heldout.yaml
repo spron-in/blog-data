@@ -1,0 +1,128 @@
+# Held-out incidents, written after the v2 question text was fixed, to check
+# that it generalises beyond the twelve workloads in incidents.yaml.
+# 13. Healthy Redis with an exec readiness probe.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: cart-cache, namespace: incidents, labels: {incident/cause: healthy}}
+spec:
+  selector: {matchLabels: {app: cart-cache}}
+  template:
+    metadata: {labels: {app: cart-cache}}
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.4-alpine
+        readinessProbe: {exec: {command: [redis-cli, ping]}, periodSeconds: 5}
+        resources: {limits: {memory: 128Mi, cpu: 100m}}
+---
+# 14. Healthy nginx with liveness and readiness probes from second zero.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: api-gateway, namespace: incidents, labels: {incident/cause: healthy}}
+spec:
+  selector: {matchLabels: {app: api-gateway}}
+  template:
+    metadata: {labels: {app: api-gateway}}
+    spec:
+      containers:
+      - name: gw
+        image: nginx:1.27-alpine
+        ports: [{containerPort: 80}]
+        livenessProbe: {httpGet: {path: /, port: 80}, periodSeconds: 5}
+        readinessProbe: {httpGet: {path: /, port: 80}, periodSeconds: 5}
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 15. A Secret key reference to a Secret that does not exist.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: billing-api, namespace: incidents, labels: {incident/cause: missing-config}}
+spec:
+  selector: {matchLabels: {app: billing-api}}
+  template:
+    metadata: {labels: {app: billing-api}}
+    spec:
+      containers:
+      - name: api
+        image: nginx:1.27-alpine
+        env:
+        - name: STRIPE_API_KEY
+          valueFrom: {secretKeyRef: {name: billing-stripe, key: api-key}}
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 16. Memory grows step by step until the kernel kills it.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: ml-scorer, namespace: incidents, labels: {incident/cause: out-of-memory}}
+spec:
+  selector: {matchLabels: {app: ml-scorer}}
+  template:
+    metadata: {labels: {app: ml-scorer}}
+    spec:
+      containers:
+      - name: scorer
+        image: python:3.12-alpine
+        command: [python, -c]
+        args:
+        - |
+          import time
+          chunks = []
+          for i in range(1, 100):
+              chunks.append(bytearray(16 * 1024 * 1024))
+              print(f"loaded feature shard {i} ({16 * i} MiB)", flush=True)
+              time.sleep(0.5)
+        resources: {limits: {memory: 96Mi, cpu: 100m}}
+---
+# 17. Image in a registry that needs credentials.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: geo-api, namespace: incidents, labels: {incident/cause: image-pull}}
+spec:
+  selector: {matchLabels: {app: geo-api}}
+  template:
+    metadata: {labels: {app: geo-api}}
+    spec:
+      containers:
+      - name: api
+        image: ghcr.io/openeverest/geo-api-internal:2.4.0
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 18. A downstream broker whose DNS name does not resolve.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: events-consumer, namespace: incidents, labels: {incident/cause: dependency-down}}
+spec:
+  selector: {matchLabels: {app: events-consumer}}
+  template:
+    metadata: {labels: {app: events-consumer}}
+    spec:
+      containers:
+      - name: consumer
+        image: python:3.12-alpine
+        command: [python, -c]
+        args:
+        - |
+          import socket, sys, time
+          print("events-consumer 2.0.1: joining group 'orders'", flush=True)
+          for attempt in range(1, 4):
+              try:
+                  socket.create_connection(("kafka-0.kafka-headless.streaming.svc.cluster.local", 9092), timeout=2)
+              except OSError as e:
+                  print(f"bootstrap broker unavailable (attempt {attempt}/3): {e}", flush=True)
+                  time.sleep(1)
+          sys.exit("no brokers reachable, exiting")
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 19. Requests more CPU than any node has.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: pdf-render, namespace: incidents, labels: {incident/cause: unschedulable}}
+spec:
+  selector: {matchLabels: {app: pdf-render}}
+  template:
+    metadata: {labels: {app: pdf-render}}
+    spec:
+      containers:
+      - name: render
+        image: busybox:1.37
+        command: [sleep, infinity]
+        resources: {limits: {memory: 64Mi, cpu: "24"}}

@@ -1,0 +1,2 @@
+direct helper : p50=68ms p90=69ms
+via AI Gateway: p50=72ms p90=74ms

@@ -1,0 +1,65 @@
+[
+ {
+  "case": "short",
+  "n": 50,
+  "p50_ms": 66.6,
+  "p90_ms": 67.4,
+  "mean_tokens": 73
+ },
+ {
+  "case": "cold-1k",
+  "n": 30,
+  "p50_ms": 471.1,
+  "p90_ms": 530.5,
+  "mean_tokens": 1267
+ },
+ {
+  "case": "warm-1k",
+  "n": 30,
+  "p50_ms": 70.2,
+  "p90_ms": 71.3,
+  "mean_tokens": 1134
+ },
+ {
+  "case": "cold-4k",
+  "n": 20,
+  "p50_ms": 1652.8,
+  "p90_ms": 1787.9,
+  "mean_tokens": 4732
+ },
+ {
+  "case": "warm-4k",
+  "n": 20,
+  "p50_ms": 204.2,
+  "p90_ms": 204.8,
+  "mean_tokens": 4705
+ },
+ {
+  "case": "throughput-c1",
+  "n": 96,
+  "decisions_per_s": 2.13,
+  "p50_ms": 457.6,
+  "p90_ms": 535.6
+ },
+ {
+  "case": "throughput-c4",
+  "n": 96,
+  "decisions_per_s": 2.37,
+  "p50_ms": 1659.8,
+  "p90_ms": 1829.6
+ },
+ {
+  "case": "throughput-c8",
+  "n": 96,
+  "decisions_per_s": 2.31,
+  "p50_ms": 3532.3,
+  "p90_ms": 3795.9
+ },
+ {
+  "case": "throughput-c16",
+  "n": 96,
+  "decisions_per_s": 2.29,
+  "p50_ms": 6889.2,
+  "p90_ms": 7384.2
+ }
+]

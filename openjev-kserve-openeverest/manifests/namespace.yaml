@@ -1,0 +1,19 @@
+# Namespace for the experiment plus a PVC that caches Hugging Face downloads
+# (model weights and the tokenizer) across pod restarts. Without it every
+# restart pulls 11.9 GB of FP8 weights again.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: decisions
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openjev-hf-cache
+  namespace: decisions
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: linode-block-storage
+  resources:
+    requests:
+      storage: 40Gi

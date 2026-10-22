@@ -1,0 +1,4 @@
+policy              dev (99)  test (200)  all (299)
+v0 labels only         0.788       0.750      0.763
+v1 described           0.818       0.780      0.793
+v2 tuned on dev        0.838       0.735      0.769

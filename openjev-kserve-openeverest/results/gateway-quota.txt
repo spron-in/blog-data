@@ -1,0 +1,6 @@
+tokenLimitPerHour=600
+request 1 -> 200 (tokens charged so far: 239)
+request 2 -> 200 (tokens charged so far: 478)
+request 3 -> 200 (tokens charged so far: 717)
+request 4 -> 429 (tokens charged so far: 717)
+OK: the Gateway enforced the token quota on /typesafe/v1/systemone

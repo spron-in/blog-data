@@ -1,0 +1,37 @@
+[
+ {
+  "case": "fanout-1q",
+  "n": 10,
+  "p50_ms": 437.3,
+  "p90_ms": 532.2,
+  "ms_per_question": 437.3
+ },
+ {
+  "case": "fanout-2q",
+  "n": 10,
+  "p50_ms": 504.6,
+  "p90_ms": 809.0,
+  "ms_per_question": 252.3
+ },
+ {
+  "case": "fanout-4q",
+  "n": 10,
+  "p50_ms": 596.2,
+  "p90_ms": 820.2,
+  "ms_per_question": 149.1
+ },
+ {
+  "case": "fanout-8q",
+  "n": 10,
+  "p50_ms": 1265.7,
+  "p90_ms": 2007.8,
+  "ms_per_question": 158.2
+ },
+ {
+  "case": "fanout-16q",
+  "n": 10,
+  "p50_ms": 1889.0,
+  "p90_ms": 3475.8,
+  "ms_per_question": 118.1
+ }
+]

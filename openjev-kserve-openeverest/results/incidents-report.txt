@@ -1,0 +1,14 @@
+OK  auth-svc         truth=bad-probe        cause=bad-probe        p=0.99 owner=app-team      restart=0.11 page=0.16 sev=2.1 2711ms 12837tok
+OK  checkout-api     truth=out-of-memory    cause=out-of-memory    p=0.99 owner=app-team      restart=0.20 page=0.61 sev=2.3 1590ms 7522tok
+OK  etl-runner       truth=unschedulable    cause=unschedulable    p=0.99 owner=platform-team restart=0.08 page=0.23 sev=2.1 1537ms 2842tok
+OK  inventory-svc    truth=dependency-down  cause=dependency-down  p=0.99 owner=app-team      restart=0.06 page=0.53 sev=2.7 1254ms 8652tok
+OK  llm-batch        truth=unschedulable    cause=unschedulable    p=1.00 owner=platform-team restart=0.05 page=0.15 sev=1.9 1504ms 2942tok
+OK  metrics-agent    truth=bad-command      cause=bad-command      p=0.96 owner=app-team      restart=0.05 page=0.30 sev=2.1 1534ms 7292tok
+OK  notifier         truth=missing-config   cause=missing-config   p=0.99 owner=app-team      restart=0.05 page=0.45 sev=2.2 1583ms 7372tok
+OK  orders-api       truth=missing-config   cause=missing-config   p=0.99 owner=app-team      restart=0.02 page=0.16 sev=2.6 1462ms 4987tok
+OK  payments-worker  truth=image-pull       cause=image-pull       p=0.99 owner=app-team      restart=0.06 page=0.30 sev=2.5 1582ms 5262tok
+OK  reports-db       truth=storage          cause=storage          p=0.96 owner=platform-team restart=0.02 page=0.27 sev=2.5 1435ms 2752tok
+OK  search-api       truth=bad-probe        cause=bad-probe        p=0.74 owner=app-team      restart=0.16 page=0.25 sev=2.6 2111ms 13072tok
+XX  web-frontend     truth=healthy          cause=bad-probe        p=0.94 owner=app-team      restart=0.42 page=0.11 sev=0.6 1477ms 11347tok
+
+11/12 root causes correct

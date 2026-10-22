@@ -1,0 +1,24 @@
+# provider-kserve Helm values used for the Envoy AI Gateway part of the post.
+#   helm upgrade --install provider-kserve oci://ghcr.io/openeverest/charts/provider-kserve \
+#     -n everest-system -f manifests/provider-values.yaml \
+#     --set aiGateway.tls.hostname=<gateway DNS name>
+# The Gateway's LoadBalancer gets a DNS name on LKE (<ip-with-dashes>.ip.linodeusercontent.com);
+# use your own domain and a real issuer (e.g. Let's Encrypt DNS-01) in production.
+envoy-gateway:
+  enabled: true
+  config:
+    envoyGateway:
+      rateLimit:
+        backend:
+          type: Redis
+          redis:
+            url: ratelimit-valkey.everest-system.svc.cluster.local:6379
+envoy-ai-gateway:
+  enabled: true
+aiGateway:
+  enabled: true
+  tls:
+    enabled: true
+    issuerRef:
+      name: selfsigned
+      kind: ClusterIssuer

@@ -1,0 +1,114 @@
+# OpenJev Flash 9B as an OpenEverest Instance (provider-kserve, predictor topology).
+#
+# One pod, two containers:
+#   kserve-container       vLLM 0.29.0 serving openjev/OpenJev-Flash-9B-FP8 on :8080 (GPU)
+#   transformer-container  OpenJev's decision helper (helper/shim.py) on :3000.
+#                          KServe routes the <instance>-predictor Service to it, and it
+#                          talks to vLLM over localhost.
+#
+# The vLLM flags and the five READOUT_* settings are the ones published on the
+# model card; the calibration only holds with them.
+#
+# Published on the shared Envoy AI Gateway as a TypeSafe System One API:
+# clients POST <gateway>/typesafe/v1/systemone with the Instance's API key, and
+# the Gateway sends the helper its own key from the openjev-shim Secret.
+#
+# Prerequisite: kubectl -n decisions create secret generic openjev-shim \
+#                 --from-literal=apiKey="$(openssl rand -hex 24)"
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: openjev
+  namespace: decisions
+spec:
+  providerRef:
+    name: provider-kserve
+  topology:
+    type: predictor
+    parameters:
+      externalAccess: EnvoyAIGateway
+  components:
+    predictor:
+      type: modelServer
+      replicas: 1
+      resources:
+        limits:
+          cpu: "5"
+          memory: 20Gi
+      parameters:
+        image: vllm/vllm-openai:v0.29.0
+        command: [vllm, serve]
+        args:
+          - openjev/OpenJev-Flash-9B-FP8
+          - --revision=ceda5115cb4e3ffdfe9e738e771fc2fee712bd07
+          - --host=0.0.0.0
+          - --port=8080
+          - --served-model-name=qwen          # the helper calls the model by this name
+          - --enable-prefix-caching
+          - --max-model-len=16384
+          - --gpu-memory-utilization=0.90
+          - --limit-mm-per-prompt={"image":1}
+          - --trust-remote-code
+          - --max-num-seqs=16
+          - --max-logprobs=64                 # the helper reads up to 52 option scores
+          - --gdn-prefill-backend=triton
+          - --quantization=fp8
+        port: 8080
+        healthPath: /health
+        gpuCount: 1
+        apiSchema: TypeSafe                   # the API the helper serves
+        backendAPIKeySecret: openjev-shim     # the Gateway authenticates to the helper with it
+        config: |
+          predictor:
+            containers:
+              - name: kserve-container
+                volumeMounts:
+                  - name: hf-cache
+                    mountPath: /root/.cache/huggingface
+              - name: transformer-container
+                # Same image as the model server: it already has python, openai
+                # and transformers, and the node has pulled it.
+                image: vllm/vllm-openai:v0.29.0
+                command: [sh, -c]
+                args:
+                  - |
+                    set -e
+                    python3 - <<'EOF'
+                    import hashlib, urllib.request
+                    url = ("https://huggingface.co/openjev/OpenJev-Flash-9B/resolve/"
+                           "b77b0fff67c77a76c16d4da50a66d2fdbc124fae/helper/shim.py")
+                    data = urllib.request.urlopen(url, timeout=60).read()
+                    digest = hashlib.sha256(data).hexdigest()
+                    assert digest == "81a22f1b1b8912a465059207ef9f60b7c6c16b4de6372305d867efbe38a1987a", digest
+                    open("/tmp/shim.py", "wb").write(data)
+                    EOF
+                    exec python3 /tmp/shim.py --host 0.0.0.0 --port 3000
+                ports:
+                  - containerPort: 3000
+                    protocol: TCP
+                env:
+                  - {name: VLLM, value: "http://127.0.0.1:8080/v1"}
+                  - {name: TOKENIZER, value: openjev/OpenJev-Flash-9B-FP8}
+                  - {name: SHIM_MODEL, value: OpenJev-Flash-9B-FP8}
+                  - {name: READOUT_T, value: "1.07"}
+                  - {name: READOUT_NOUL_T, value: "1.074766"}
+                  - {name: READOUT_NOUL_BIAS, value: "0"}
+                  - {name: READOUT_TARGETED, value: "1"}
+                  - {name: READOUT_INSTR_STYLE, value: pyrepr}
+                  - {name: SHIM_STAGGER, value: "1"}
+                  - name: SHIM_TOKEN
+                    valueFrom:
+                      secretKeyRef: {name: openjev-shim, key: apiKey}
+                readinessProbe:
+                  tcpSocket: {port: 3000}
+                  periodSeconds: 5
+                resources:
+                  requests: {cpu: "1", memory: 2Gi}
+                  limits: {cpu: "1", memory: 2Gi}
+                volumeMounts:
+                  - name: hf-cache
+                    mountPath: /root/.cache/huggingface
+            volumes:
+              - name: hf-cache
+                persistentVolumeClaim:
+                  claimName: openjev-hf-cache

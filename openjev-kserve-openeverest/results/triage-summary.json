@@ -1,0 +1,4921 @@
+{
+ "n": 299,
+ "accuracy": 0.7926,
+ "confusion": {
+  "bug": {
+   "bug": 72,
+   "feature": 9,
+   "question": 19
+  },
+  "feature": {
+   "bug": 4,
+   "feature": 85,
+   "question": 11
+  },
+  "question": {
+   "bug": 14,
+   "feature": 5,
+   "question": 80
+  }
+ },
+ "recall": {
+  "bug": 0.72,
+  "feature": 0.85,
+  "question": 0.8080808080808081
+ },
+ "curve": [
+  {
+   "threshold": 0.0,
+   "coverage": 1.0,
+   "accuracy": 0.7926,
+   "n": 299
+  },
+  {
+   "threshold": 0.4,
+   "coverage": 1.0,
+   "accuracy": 0.7926,
+   "n": 299
+  },
+  {
+   "threshold": 0.5,
+   "coverage": 0.9866,
+   "accuracy": 0.7932,
+   "n": 295
+  },
+  {
+   "threshold": 0.6,
+   "coverage": 0.903,
+   "accuracy": 0.8074,
+   "n": 270
+  },
+  {
+   "threshold": 0.7,
+   "coverage": 0.8127,
+   "accuracy": 0.8354,
+   "n": 243
+  },
+  {
+   "threshold": 0.8,
+   "coverage": 0.709,
+   "accuracy": 0.8679,
+   "n": 212
+  },
+  {
+   "threshold": 0.85,
+   "coverage": 0.6355,
+   "accuracy": 0.8895,
+   "n": 190
+  },
+  {
+   "threshold": 0.9,
+   "coverage": 0.5318,
+   "accuracy": 0.9119,
+   "n": 159
+  },
+  {
+   "threshold": 0.95,
+   "coverage": 0.3478,
+   "accuracy": 0.9231,
+   "n": 104
+  },
+  {
+   "threshold": 0.97,
+   "coverage": 0.2375,
+   "accuracy": 0.9296,
+   "n": 71
+  },
+  {
+   "threshold": 0.99,
+   "coverage": 0.0468,
+   "accuracy": 1.0,
+   "n": 14
+  }
+ ],
+ "reliability": [
+  {
+   "bin": "0.4-0.5",
+   "n": 4,
+   "stated": 0.495,
+   "observed": 0.75
+  },
+  {
+   "bin": "0.5-0.6",
+   "n": 25,
+   "stated": 0.55,
+   "observed": 0.64
+  },
+  {
+   "bin": "0.6-0.7",
+   "n": 27,
+   "stated": 0.649,
+   "observed": 0.556
+  },
+  {
+   "bin": "0.7-0.8",
+   "n": 31,
+   "stated": 0.756,
+   "observed": 0.613
+  },
+  {
+   "bin": "0.8-0.9",
+   "n": 53,
+   "stated": 0.855,
+   "observed": 0.736
+  },
+  {
+   "bin": "0.9-1.0",
+   "n": 159,
+   "stated": 0.96,
+   "observed": 0.912
+  }
+ ],
+ "ece": 0.0808,
+ "latency_ms_p50": 2184,
+ "tokens_p50": 1692,
+ "issues": [
+  {
+   "n": 3256,
+   "url": "https://github.com/kserve/kserve/issues/3256",
+   "title": " KServe PODs is not restored after rebooting",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8841,
+    "feature": 0.0961,
+    "question": 0.0198
+   },
+   "area": "controller",
+   "area_p": 0.4435,
+   "needs_info": 0.2522,
+   "priority": 1.3039,
+   "ms": 1750.9
+  },
+  {
+   "n": 3862,
+   "url": "https://github.com/kserve/kserve/issues/3862",
+   "title": "KServe controller missing SecurityContext in helm chart installation",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9401,
+    "feature": 0.0451,
+    "question": 0.0149
+   },
+   "area": "build",
+   "area_p": 0.8185,
+   "needs_info": 0.041,
+   "priority": 1.9466,
+   "ms": 1748.4
+  },
+  {
+   "n": 3683,
+   "url": "https://github.com/kserve/kserve/issues/3683",
+   "title": "Update image container image but the associated predictor pod image is not change",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9656,
+    "feature": 0.0114,
+    "question": 0.023
+   },
+   "area": "runtimes",
+   "area_p": 0.8175,
+   "needs_info": 0.3185,
+   "priority": 1.0964,
+   "ms": 1371.9
+  },
+  {
+   "n": 3149,
+   "url": "https://github.com/kserve/kserve/issues/3149",
+   "title": "Configurable timeouts for InferenceGraph",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0057,
+    "feature": 0.9779,
+    "question": 0.0164
+   },
+   "area": "controller",
+   "area_p": 0.7102,
+   "needs_info": 0.0455,
+   "priority": 0.4669,
+   "ms": 1748.4
+  },
+  {
+   "n": 3606,
+   "url": "https://github.com/kserve/kserve/issues/3606",
+   "title": "Support overriding model mount path in model server container",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0058,
+    "feature": 0.9877,
+    "question": 0.0065
+   },
+   "area": "runtimes",
+   "area_p": 0.7528,
+   "needs_info": 0.0559,
+   "priority": 0.872,
+   "ms": 630.6
+  },
+  {
+   "n": 2935,
+   "url": "https://github.com/kserve/kserve/issues/2935",
+   "title": "Get `response_code` metrics for gRPC calls and requests",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0759,
+    "feature": 0.8819,
+    "question": 0.0423
+   },
+   "area": "python",
+   "area_p": 0.4547,
+   "needs_info": 0.1638,
+   "priority": 0.5916,
+   "ms": 1412.1
+  },
+  {
+   "n": 1783,
+   "url": "https://github.com/kserve/kserve/issues/1783",
+   "title": "What are the benefits of using Transformer",
+   "label": "question",
+   "kind": {
+    "bug": 0.0027,
+    "feature": 0.0184,
+    "question": 0.9789
+   },
+   "area": "llm",
+   "area_p": 0.3784,
+   "needs_info": 0.0926,
+   "priority": 0.2478,
+   "ms": 1412.2
+  },
+  {
+   "n": 2866,
+   "url": "https://github.com/kserve/kserve/issues/2866",
+   "title": "Update Knative dependencies to a supported version",
+   "label": "question",
+   "kind": {
+    "bug": 0.0112,
+    "feature": 0.0405,
+    "question": 0.9483
+   },
+   "area": "networking",
+   "area_p": 0.8471,
+   "needs_info": 0.0838,
+   "priority": 1.1988,
+   "ms": 1412.1
+  },
+  {
+   "n": 1138,
+   "url": "https://github.com/kserve/kserve/issues/1138",
+   "title": "KFServing behind corporate proxy",
+   "label": "question",
+   "kind": {
+    "bug": 0.4057,
+    "feature": 0.0184,
+    "question": 0.576
+   },
+   "area": "runtimes",
+   "area_p": 0.3679,
+   "needs_info": 0.1494,
+   "priority": 1.2439,
+   "ms": 1669.2
+  },
+  {
+   "n": 1826,
+   "url": "https://github.com/kserve/kserve/issues/1826",
+   "title": "KServe Go module and API group change",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1131,
+    "feature": 0.8239,
+    "question": 0.063
+   },
+   "area": "controller",
+   "area_p": 0.9122,
+   "needs_info": 0.0759,
+   "priority": 1.4279,
+   "ms": 1856.0
+  },
+  {
+   "n": 2843,
+   "url": "https://github.com/kserve/kserve/issues/2843",
+   "title": "moviesentiment example does not work",
+   "label": "bug",
+   "kind": {
+    "bug": 0.936,
+    "feature": 0.0073,
+    "question": 0.0567
+   },
+   "area": "docs",
+   "area_p": 0.3999,
+   "needs_info": 0.0369,
+   "priority": 1.0898,
+   "ms": 1855.9
+  },
+  {
+   "n": 2456,
+   "url": "https://github.com/kserve/kserve/issues/2456",
+   "title": "Allow setting min and max replicas for Inference Graph router.",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0873,
+    "feature": 0.7149,
+    "question": 0.1978
+   },
+   "area": "autoscaling",
+   "area_p": 0.9024,
+   "needs_info": 0.0686,
+   "priority": 0.6577,
+   "ms": 1855.7
+  },
+  {
+   "n": 1217,
+   "url": "https://github.com/kserve/kserve/issues/1217",
+   "title": "Deployment of saved model in Triton inference server with support of gRPC",
+   "label": "question",
+   "kind": {
+    "bug": 0.0778,
+    "feature": 0.017,
+    "question": 0.9051
+   },
+   "area": "runtimes",
+   "area_p": 0.5852,
+   "needs_info": 0.8506,
+   "priority": 1.1628,
+   "ms": 1685.5
+  },
+  {
+   "n": 563,
+   "url": "https://github.com/kserve/kserve/issues/563",
+   "title": "unable to work with pvc",
+   "label": "question",
+   "kind": {
+    "bug": 0.4671,
+    "feature": 0.0078,
+    "question": 0.525
+   },
+   "area": "storage",
+   "area_p": 0.9325,
+   "needs_info": 0.6815,
+   "priority": 1.0938,
+   "ms": 1608.7
+  },
+  {
+   "n": 2823,
+   "url": "https://github.com/kserve/kserve/issues/2823",
+   "title": "Sunset AIX explainer from KServe",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2726,
+    "feature": 0.6941,
+    "question": 0.0333
+   },
+   "area": "docs",
+   "area_p": 0.4013,
+   "needs_info": 0.041,
+   "priority": 2.388,
+   "ms": 1608.5
+  },
+  {
+   "n": 2851,
+   "url": "https://github.com/kserve/kserve/issues/2851",
+   "title": "KServe RestServer Disabling Other Customized Module Level Loggings",
+   "label": "bug",
+   "kind": {
+    "bug": 0.921,
+    "feature": 0.0496,
+    "question": 0.0293
+   },
+   "area": "python",
+   "area_p": 0.7677,
+   "needs_info": 0.1021,
+   "priority": 0.7902,
+   "ms": 1606.2
+  },
+  {
+   "n": 1214,
+   "url": "https://github.com/kserve/kserve/issues/1214",
+   "title": "Scikit-learn version for sklearnserver",
+   "label": "question",
+   "kind": {
+    "bug": 0.0156,
+    "feature": 0.1071,
+    "question": 0.8773
+   },
+   "area": "runtimes",
+   "area_p": 0.9488,
+   "needs_info": 0.0559,
+   "priority": 0.8066,
+   "ms": 1269.1
+  },
+  {
+   "n": 1932,
+   "url": "https://github.com/kserve/kserve/issues/1932",
+   "title": "Second GPU is not allocated in TorchServe Inference Service",
+   "label": "question",
+   "kind": {
+    "bug": 0.8686,
+    "feature": 0.0122,
+    "question": 0.1192
+   },
+   "area": "runtimes",
+   "area_p": 0.8628,
+   "needs_info": 0.2134,
+   "priority": 1.1848,
+   "ms": 1389.9
+  },
+  {
+   "n": 2788,
+   "url": "https://github.com/kserve/kserve/issues/2788",
+   "title": "Explore supporting SSE (Server-Sent Events) streaming for LLM",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0011,
+    "feature": 0.9911,
+    "question": 0.0078
+   },
+   "area": "python",
+   "area_p": 0.7766,
+   "needs_info": 0.0455,
+   "priority": 0.7637,
+   "ms": 1387.4
+  },
+  {
+   "n": 1906,
+   "url": "https://github.com/kserve/kserve/issues/1906",
+   "title": "KServe 0.8 release tracking",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0734,
+    "feature": 0.8532,
+    "question": 0.0734
+   },
+   "area": "build",
+   "area_p": 0.6037,
+   "needs_info": 0.0333,
+   "priority": 1.181,
+   "ms": 1387.5
+  },
+  {
+   "n": 2167,
+   "url": "https://github.com/kserve/kserve/issues/2167",
+   "title": "How can Custom Predictors load models in model storage?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0038,
+    "feature": 0.0123,
+    "question": 0.9839
+   },
+   "area": "storage",
+   "area_p": 0.6014,
+   "needs_info": 0.4192,
+   "priority": 0.7482,
+   "ms": 1385.0
+  },
+  {
+   "n": 2863,
+   "url": "https://github.com/kserve/kserve/issues/2863",
+   "title": "Allow using SSL between transformer and predictor",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0051,
+    "feature": 0.9871,
+    "question": 0.0077
+   },
+   "area": "python",
+   "area_p": 0.5007,
+   "needs_info": 0.0505,
+   "priority": 0.9352,
+   "ms": 1487.3
+  },
+  {
+   "n": 2493,
+   "url": "https://github.com/kserve/kserve/issues/2493",
+   "title": "Add spelling check for KServe docs",
+   "label": "feature",
+   "kind": {
+    "bug": 0.012,
+    "feature": 0.9558,
+    "question": 0.0323
+   },
+   "area": "docs",
+   "area_p": 0.9899,
+   "needs_info": 0.0269,
+   "priority": 0.2149,
+   "ms": 1494.8
+  },
+  {
+   "n": 2292,
+   "url": "https://github.com/kserve/kserve/issues/2292",
+   "title": "Documentation clarification about knative 1.0 and kserve 0.8",
+   "label": "question",
+   "kind": {
+    "bug": 0.0018,
+    "feature": 0.0014,
+    "question": 0.9967
+   },
+   "area": "networking",
+   "area_p": 0.6321,
+   "needs_info": 0.041,
+   "priority": 1.0603,
+   "ms": 1487.3
+  },
+  {
+   "n": 2131,
+   "url": "https://github.com/kserve/kserve/issues/2131",
+   "title": "Allow disabling creation of the HPA in raw deployment mode",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0048,
+    "feature": 0.9721,
+    "question": 0.0231
+   },
+   "area": "autoscaling",
+   "area_p": 0.9843,
+   "needs_info": 0.1238,
+   "priority": 0.6605,
+   "ms": 1494.2
+  },
+  {
+   "n": 1823,
+   "url": "https://github.com/kserve/kserve/issues/1823",
+   "title": "Update github actions",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0224,
+    "feature": 0.9398,
+    "question": 0.0378
+   },
+   "area": "build",
+   "area_p": 0.765,
+   "needs_info": 0.062,
+   "priority": 0.9139,
+   "ms": 1606.0
+  },
+  {
+   "n": 2903,
+   "url": "https://github.com/kserve/kserve/issues/2903",
+   "title": "Problem with local set up for contributor",
+   "label": "bug",
+   "kind": {
+    "bug": 0.4391,
+    "feature": 0.0062,
+    "question": 0.5547
+   },
+   "area": "controller",
+   "area_p": 0.3913,
+   "needs_info": 0.1494,
+   "priority": 0.9131,
+   "ms": 1605.4
+  },
+  {
+   "n": 3011,
+   "url": "https://github.com/kserve/kserve/issues/3011",
+   "title": "Support InferenceGraph on RawDeployment mode",
+   "label": "question",
+   "kind": {
+    "bug": 0.0264,
+    "feature": 0.8297,
+    "question": 0.1438
+   },
+   "area": "controller",
+   "area_p": 0.4674,
+   "needs_info": 0.0759,
+   "priority": 0.644,
+   "ms": 1599.6
+  },
+  {
+   "n": 2102,
+   "url": "https://github.com/kserve/kserve/issues/2102",
+   "title": "Q) GPU Serving, Batcher with containerConcurrency setting and about autoscaling",
+   "label": "question",
+   "kind": {
+    "bug": 0.013,
+    "feature": 0.0041,
+    "question": 0.9829
+   },
+   "area": "autoscaling",
+   "area_p": 0.7086,
+   "needs_info": 0.3185,
+   "priority": 0.9819,
+   "ms": 1815.8
+  },
+  {
+   "n": 3561,
+   "url": "https://github.com/kserve/kserve/issues/3561",
+   "title": "Native integration with KEDA for LLM inference autoscaling",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0023,
+    "feature": 0.9879,
+    "question": 0.0098
+   },
+   "area": "autoscaling",
+   "area_p": 0.9133,
+   "needs_info": 0.1021,
+   "priority": 0.995,
+   "ms": 2722.4
+  },
+  {
+   "n": 1660,
+   "url": "https://github.com/kserve/kserve/issues/1660",
+   "title": "Cannot access KFServing InferenceService through Ingress IAP GCP (Error 503).",
+   "label": "question",
+   "kind": {
+    "bug": 0.1199,
+    "feature": 0.0065,
+    "question": 0.8736
+   },
+   "area": "networking",
+   "area_p": 0.9134,
+   "needs_info": 0.1638,
+   "priority": 1.2323,
+   "ms": 2723.1
+  },
+  {
+   "n": 2186,
+   "url": "https://github.com/kserve/kserve/issues/2186",
+   "title": "Error - Cannot POST /v1/models/sklearn-iris:predict",
+   "label": "question",
+   "kind": {
+    "bug": 0.1623,
+    "feature": 0.0046,
+    "question": 0.8331
+   },
+   "area": "networking",
+   "area_p": 0.7268,
+   "needs_info": 0.2522,
+   "priority": 1.1977,
+   "ms": 2721.2
+  },
+  {
+   "n": 3234,
+   "url": "https://github.com/kserve/kserve/issues/3234",
+   "title": "Upgrade to new protobuf version for better parsing performance",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0281,
+    "feature": 0.9363,
+    "question": 0.0355
+   },
+   "area": "python",
+   "area_p": 0.3806,
+   "needs_info": 0.1021,
+   "priority": 0.8381,
+   "ms": 2863.0
+  },
+  {
+   "n": 1256,
+   "url": "https://github.com/kserve/kserve/issues/1256",
+   "title": "Missing instructions in ONNX InferenceService",
+   "label": "question",
+   "kind": {
+    "bug": 0.0259,
+    "feature": 0.0048,
+    "question": 0.9693
+   },
+   "area": "docs",
+   "area_p": 0.8498,
+   "needs_info": 0.0559,
+   "priority": 0.6594,
+   "ms": 1646.0
+  },
+  {
+   "n": 2694,
+   "url": "https://github.com/kserve/kserve/issues/2694",
+   "title": "'AioServer.shutdown' was never awaited for kserve fastapi server",
+   "label": "bug",
+   "kind": {
+    "bug": 0.7476,
+    "feature": 0.02,
+    "question": 0.2324
+   },
+   "area": "python",
+   "area_p": 0.6715,
+   "needs_info": 0.1238,
+   "priority": 1.0147,
+   "ms": 1647.0
+  },
+  {
+   "n": 2127,
+   "url": "https://github.com/kserve/kserve/issues/2127",
+   "title": "When will new version of python kserve library get released?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0053,
+    "feature": 0.0344,
+    "question": 0.9603
+   },
+   "area": "python",
+   "area_p": 0.9545,
+   "needs_info": 0.0242,
+   "priority": 0.9033,
+   "ms": 1650.2
+  },
+  {
+   "n": 4071,
+   "url": "https://github.com/kserve/kserve/issues/4071",
+   "title": "Can I know why the version is low 0.14, thanks. Can we improve it as 1.xxx?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0128,
+    "feature": 0.1774,
+    "question": 0.8098
+   },
+   "area": "build",
+   "area_p": 0.6826,
+   "needs_info": 0.0559,
+   "priority": 0.5672,
+   "ms": 1650.4
+  },
+  {
+   "n": 3470,
+   "url": "https://github.com/kserve/kserve/issues/3470",
+   "title": "Enhance manager setup based on available CRDs",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1186,
+    "feature": 0.8641,
+    "question": 0.0173
+   },
+   "area": "controller",
+   "area_p": 0.8732,
+   "needs_info": 0.1125,
+   "priority": 1.0335,
+   "ms": 1258.3
+  },
+  {
+   "n": 1611,
+   "url": "https://github.com/kserve/kserve/issues/1611",
+   "title": "Adding KFServing in KubeFlow UI",
+   "label": "question",
+   "kind": {
+    "bug": 0.0043,
+    "feature": 0.6121,
+    "question": 0.3836
+   },
+   "area": "controller",
+   "area_p": 0.3115,
+   "needs_info": 0.0686,
+   "priority": 0.1986,
+   "ms": 2395.1
+  },
+  {
+   "n": 4764,
+   "url": "https://github.com/kserve/kserve/issues/4764",
+   "title": "KServe KEDA autoscaler creates invalid HPA (averageUtilization: 0) and invalid CPU metric value when using Prometheus trigger",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9786,
+    "feature": 0.0077,
+    "question": 0.0138
+   },
+   "area": "autoscaling",
+   "area_p": 0.9765,
+   "needs_info": 0.0559,
+   "priority": 1.5171,
+   "ms": 3041.7
+  },
+  {
+   "n": 2706,
+   "url": "https://github.com/kserve/kserve/issues/2706",
+   "title": "Allow inference graph logger to be configurable",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0051,
+    "feature": 0.9862,
+    "question": 0.0087
+   },
+   "area": "networking",
+   "area_p": 0.5514,
+   "needs_info": 0.0686,
+   "priority": 0.669,
+   "ms": 2684.4
+  },
+  {
+   "n": 3756,
+   "url": "https://github.com/kserve/kserve/issues/3756",
+   "title": "duplicated hosts error after configuring the additional domains",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9372,
+    "feature": 0.0377,
+    "question": 0.0251
+   },
+   "area": "networking",
+   "area_p": 0.9454,
+   "needs_info": 0.0926,
+   "priority": 1.3675,
+   "ms": 2073.6
+  },
+  {
+   "n": 1797,
+   "url": "https://github.com/kserve/kserve/issues/1797",
+   "title": "Wrong path to storage with PersistentVolumeClaim",
+   "label": "question",
+   "kind": {
+    "bug": 0.4945,
+    "feature": 0.0111,
+    "question": 0.4945
+   },
+   "area": "storage",
+   "area_p": 0.9617,
+   "needs_info": 0.5541,
+   "priority": 1.3399,
+   "ms": 1987.5
+  },
+  {
+   "n": 2098,
+   "url": "https://github.com/kserve/kserve/issues/2098",
+   "title": "torchserve GRPC not working",
+   "label": "question",
+   "kind": {
+    "bug": 0.2795,
+    "feature": 0.0089,
+    "question": 0.7116
+   },
+   "area": "runtimes",
+   "area_p": 0.5575,
+   "needs_info": 0.5541,
+   "priority": 1.3567,
+   "ms": 3568.9
+  },
+  {
+   "n": 995,
+   "url": "https://github.com/kserve/kserve/issues/995",
+   "title": "Access to inference service within cluster using cluster-local-gateway",
+   "label": "question",
+   "kind": {
+    "bug": 0.0023,
+    "feature": 0.0034,
+    "question": 0.9943
+   },
+   "area": "networking",
+   "area_p": 0.892,
+   "needs_info": 0.1958,
+   "priority": 0.5778,
+   "ms": 2895.8
+  },
+  {
+   "n": 2568,
+   "url": "https://github.com/kserve/kserve/issues/2568",
+   "title": "Custom model has model agent injected by default",
+   "label": "bug",
+   "kind": {
+    "bug": 0.983,
+    "feature": 0.0073,
+    "question": 0.0097
+   },
+   "area": "runtimes",
+   "area_p": 0.8973,
+   "needs_info": 0.1792,
+   "priority": 1.1116,
+   "ms": 3318.0
+  },
+  {
+   "n": 2731,
+   "url": "https://github.com/kserve/kserve/issues/2731",
+   "title": "qpext e2e keeps failing in the last few days",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9312,
+    "feature": 0.0186,
+    "question": 0.0502
+   },
+   "area": "runtimes",
+   "area_p": 0.4687,
+   "needs_info": 0.5271,
+   "priority": 1.1917,
+   "ms": 2237.6
+  },
+  {
+   "n": 3180,
+   "url": "https://github.com/kserve/kserve/issues/3180",
+   "title": "Runtime selection becomes unpredictable when two different priority is specified for the same model in a servingruntime",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9532,
+    "feature": 0.0341,
+    "question": 0.0126
+   },
+   "area": "runtimes",
+   "area_p": 0.9136,
+   "needs_info": 0.062,
+   "priority": 1.0352,
+   "ms": 1523.6
+  },
+  {
+   "n": 2554,
+   "url": "https://github.com/kserve/kserve/issues/2554",
+   "title": "Does KServe not support using pvc in custom images?",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0778,
+    "feature": 0.0181,
+    "question": 0.9042
+   },
+   "area": "storage",
+   "area_p": 0.7677,
+   "needs_info": 0.1125,
+   "priority": 1.0021,
+   "ms": 2612.3
+  },
+  {
+   "n": 3078,
+   "url": "https://github.com/kserve/kserve/issues/3078",
+   "title": "Unexpected Panic in Inference graph",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9176,
+    "feature": 0.0122,
+    "question": 0.0702
+   },
+   "area": "networking",
+   "area_p": 0.5879,
+   "needs_info": 0.2522,
+   "priority": 1.4227,
+   "ms": 3651.5
+  },
+  {
+   "n": 2421,
+   "url": "https://github.com/kserve/kserve/issues/2421",
+   "title": "Allow adding hostIPC to inferenceservice pod spec",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1396,
+    "feature": 0.8055,
+    "question": 0.0548
+   },
+   "area": "runtimes",
+   "area_p": 0.558,
+   "needs_info": 0.393,
+   "priority": 0.9049,
+   "ms": 3256.4
+  },
+  {
+   "n": 2370,
+   "url": "https://github.com/kserve/kserve/issues/2370",
+   "title": "Introducing DJLServing predictor in KServe",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0051,
+    "feature": 0.9811,
+    "question": 0.0138
+   },
+   "area": "runtimes",
+   "area_p": 0.9337,
+   "needs_info": 0.0559,
+   "priority": 0.5871,
+   "ms": 2806.9
+  },
+  {
+   "n": 2994,
+   "url": "https://github.com/kserve/kserve/issues/2994",
+   "title": "Cannot set custom readinessProbe for the predictor",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9222,
+    "feature": 0.0219,
+    "question": 0.0559
+   },
+   "area": "runtimes",
+   "area_p": 0.5879,
+   "needs_info": 0.1638,
+   "priority": 1.1448,
+   "ms": 2795.0
+  },
+  {
+   "n": 3555,
+   "url": "https://github.com/kserve/kserve/issues/3555",
+   "title": "Support mlflow direct integration through storage initializer",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0078,
+    "feature": 0.4961,
+    "question": 0.4961
+   },
+   "area": "storage",
+   "area_p": 0.9226,
+   "needs_info": 0.607,
+   "priority": 0.444,
+   "ms": 2118.2
+  },
+  {
+   "n": 1762,
+   "url": "https://github.com/kserve/kserve/issues/1762",
+   "title": "Install through Hack method",
+   "label": "question",
+   "kind": {
+    "bug": 0.0509,
+    "feature": 0.0044,
+    "question": 0.9447
+   },
+   "area": "build",
+   "area_p": 0.8197,
+   "needs_info": 0.7047,
+   "priority": 0.8826,
+   "ms": 2176.8
+  },
+  {
+   "n": 2847,
+   "url": "https://github.com/kserve/kserve/issues/2847",
+   "title": "Use buildkit for building docker images",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0073,
+    "feature": 0.983,
+    "question": 0.0097
+   },
+   "area": "build",
+   "area_p": 0.967,
+   "needs_info": 0.1125,
+   "priority": 1.1762,
+   "ms": 2176.5
+  },
+  {
+   "n": 3307,
+   "url": "https://github.com/kserve/kserve/issues/3307",
+   "title": "Support RequestOutput in V2 Inference Request ",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1041,
+    "feature": 0.8525,
+    "question": 0.0433
+   },
+   "area": "python",
+   "area_p": 0.9136,
+   "needs_info": 0.1238,
+   "priority": 0.6028,
+   "ms": 1625.0
+  },
+  {
+   "n": 1924,
+   "url": "https://github.com/kserve/kserve/issues/1924",
+   "title": "Follow up work for ServingRuntime support",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0172,
+    "feature": 0.9691,
+    "question": 0.0136
+   },
+   "area": "runtimes",
+   "area_p": 0.944,
+   "needs_info": 0.041,
+   "priority": 0.8663,
+   "ms": 1625.0
+  },
+  {
+   "n": 3071,
+   "url": "https://github.com/kserve/kserve/issues/3071",
+   "title": "Add minBatchSize to batcher",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0631,
+    "feature": 0.926,
+    "question": 0.0109
+   },
+   "area": "runtimes",
+   "area_p": 0.3694,
+   "needs_info": 0.0759,
+   "priority": 0.7079,
+   "ms": 1814.1
+  },
+  {
+   "n": 5326,
+   "url": "https://github.com/kserve/kserve/issues/5326",
+   "title": "Huggingface models are unusable",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9363,
+    "feature": 0.0355,
+    "question": 0.0281
+   },
+   "area": "storage",
+   "area_p": 0.4907,
+   "needs_info": 0.1361,
+   "priority": 2.0714,
+   "ms": 2078.1
+  },
+  {
+   "n": 892,
+   "url": "https://github.com/kserve/kserve/issues/892",
+   "title": "Long prediction using KFServing API 504 Gateway Timeout",
+   "label": "question",
+   "kind": {
+    "bug": 0.7942,
+    "feature": 0.051,
+    "question": 0.1548
+   },
+   "area": "networking",
+   "area_p": 0.4355,
+   "needs_info": 0.4459,
+   "priority": 1.4096,
+   "ms": 1531.0
+  },
+  {
+   "n": 1722,
+   "url": "https://github.com/kserve/kserve/issues/1722",
+   "title": "How custom kfserving uses the pytorch model stored in pvc.",
+   "label": "question",
+   "kind": {
+    "bug": 0.0017,
+    "feature": 0.0029,
+    "question": 0.9954
+   },
+   "area": "storage",
+   "area_p": 0.7996,
+   "needs_info": 0.2134,
+   "priority": 0.5232,
+   "ms": 2019.8
+  },
+  {
+   "n": 2838,
+   "url": "https://github.com/kserve/kserve/issues/2838",
+   "title": "Controller cannot set blockOwnerDeletion on InferenceGraph CR",
+   "label": "bug",
+   "kind": {
+    "bug": 0.965,
+    "feature": 0.0121,
+    "question": 0.023
+   },
+   "area": "controller",
+   "area_p": 0.8412,
+   "needs_info": 0.1238,
+   "priority": 1.5058,
+   "ms": 1995.2
+  },
+  {
+   "n": 1793,
+   "url": "https://github.com/kserve/kserve/issues/1793",
+   "title": "support minio service",
+   "label": "question",
+   "kind": {
+    "bug": 0.1817,
+    "feature": 0.0802,
+    "question": 0.7381
+   },
+   "area": "storage",
+   "area_p": 0.973,
+   "needs_info": 0.1638,
+   "priority": 0.9874,
+   "ms": 2263.5
+  },
+  {
+   "n": 3385,
+   "url": "https://github.com/kserve/kserve/issues/3385",
+   "title": "Serving MLFlow models - Kserve 0.8",
+   "label": "question",
+   "kind": {
+    "bug": 0.1195,
+    "feature": 0.0097,
+    "question": 0.8708
+   },
+   "area": "runtimes",
+   "area_p": 0.5952,
+   "needs_info": 0.7047,
+   "priority": 0.946,
+   "ms": 2197.0
+  },
+  {
+   "n": 2756,
+   "url": "https://github.com/kserve/kserve/issues/2756",
+   "title": "v2 protocol request \"id\" not received in predict method payload",
+   "label": "bug",
+   "kind": {
+    "bug": 0.964,
+    "feature": 0.0144,
+    "question": 0.0216
+   },
+   "area": "runtimes",
+   "area_p": 0.4834,
+   "needs_info": 0.0926,
+   "priority": 0.8293,
+   "ms": 2313.3
+  },
+  {
+   "n": 2936,
+   "url": "https://github.com/kserve/kserve/issues/2936",
+   "title": "What whould the handler code that's packaged into pytorch mar file contain if transformer is used?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0026,
+    "feature": 0.0069,
+    "question": 0.9905
+   },
+   "area": "runtimes",
+   "area_p": 0.5452,
+   "needs_info": 0.1125,
+   "priority": 0.5478,
+   "ms": 2307.6
+  },
+  {
+   "n": 2601,
+   "url": "https://github.com/kserve/kserve/issues/2601",
+   "title": "Access both http & GRPC with custom model",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0499,
+    "feature": 0.127,
+    "question": 0.8232
+   },
+   "area": "runtimes",
+   "area_p": 0.7303,
+   "needs_info": 0.6575,
+   "priority": 0.7164,
+   "ms": 1775.4
+  },
+  {
+   "n": 1760,
+   "url": "https://github.com/kserve/kserve/issues/1760",
+   "title": "Health API not working with Triton Inference Server",
+   "label": "question",
+   "kind": {
+    "bug": 0.279,
+    "feature": 0.0106,
+    "question": 0.7104
+   },
+   "area": "runtimes",
+   "area_p": 0.9015,
+   "needs_info": 0.8639,
+   "priority": 1.1234,
+   "ms": 2008.3
+  },
+  {
+   "n": 2543,
+   "url": "https://github.com/kserve/kserve/issues/2543",
+   "title": "KServe 0.10.0 release tracking",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0834,
+    "feature": 0.7672,
+    "question": 0.1495
+   },
+   "area": "build",
+   "area_p": 0.9198,
+   "needs_info": 0.0242,
+   "priority": 0.8206,
+   "ms": 2634.8
+  },
+  {
+   "n": 2276,
+   "url": "https://github.com/kserve/kserve/issues/2276",
+   "title": "Deployments managed by InferenceService are not updating status at all!",
+   "label": "question",
+   "kind": {
+    "bug": 0.9609,
+    "feature": 0.0085,
+    "question": 0.0306
+   },
+   "area": "controller",
+   "area_p": 0.9129,
+   "needs_info": 0.5,
+   "priority": 1.7523,
+   "ms": 2718.5
+  },
+  {
+   "n": 2435,
+   "url": "https://github.com/kserve/kserve/issues/2435",
+   "title": "How to include a new predictor(Serving Runtime) in KServe?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0673,
+    "feature": 0.0533,
+    "question": 0.8794
+   },
+   "area": "runtimes",
+   "area_p": 0.8797,
+   "needs_info": 0.2732,
+   "priority": 0.8609,
+   "ms": 2716.8
+  },
+  {
+   "n": 2674,
+   "url": "https://github.com/kserve/kserve/issues/2674",
+   "title": "Cannot disable istio on kserve-controller-manager",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8027,
+    "feature": 0.0215,
+    "question": 0.1758
+   },
+   "area": "networking",
+   "area_p": 0.8268,
+   "needs_info": 0.1638,
+   "priority": 1.3883,
+   "ms": 2750.3
+  },
+  {
+   "n": 1304,
+   "url": "https://github.com/kserve/kserve/issues/1304",
+   "title": "Unable to run custom hello-world sample on kubeflow kfserving",
+   "label": "question",
+   "kind": {
+    "bug": 0.2154,
+    "feature": 0.0058,
+    "question": 0.7788
+   },
+   "area": "runtimes",
+   "area_p": 0.5512,
+   "needs_info": 0.6575,
+   "priority": 0.8885,
+   "ms": 2020.7
+  },
+  {
+   "n": 1517,
+   "url": "https://github.com/kserve/kserve/issues/1517",
+   "title": "Cannot deploy v0.5.1 on GKE 1.18: no matches for kind \"Certificate\" in version \"cert-manager.io/v1alpha2\"",
+   "label": "question",
+   "kind": {
+    "bug": 0.3043,
+    "feature": 0.0064,
+    "question": 0.6893
+   },
+   "area": "build",
+   "area_p": 0.4491,
+   "needs_info": 0.0838,
+   "priority": 1.8211,
+   "ms": 2631.2
+  },
+  {
+   "n": 3897,
+   "url": "https://github.com/kserve/kserve/issues/3897",
+   "title": "RBAC permission for secret is too broad",
+   "label": "bug",
+   "kind": {
+    "bug": 0.7926,
+    "feature": 0.1736,
+    "question": 0.0338
+   },
+   "area": "build",
+   "area_p": 0.58,
+   "needs_info": 0.1021,
+   "priority": 2.2287,
+   "ms": 2631.9
+  },
+  {
+   "n": 1730,
+   "url": "https://github.com/kserve/kserve/issues/1730",
+   "title": "load sklearn pre-processing model",
+   "label": "question",
+   "kind": {
+    "bug": 0.0085,
+    "feature": 0.0289,
+    "question": 0.9626
+   },
+   "area": "runtimes",
+   "area_p": 0.5529,
+   "needs_info": 0.3674,
+   "priority": 0.5263,
+   "ms": 1784.9
+  },
+  {
+   "n": 2675,
+   "url": "https://github.com/kserve/kserve/issues/2675",
+   "title": "Loosen tritonclient version range for python sdk?",
+   "label": "feature",
+   "kind": {
+    "bug": 0.012,
+    "feature": 0.8559,
+    "question": 0.132
+   },
+   "area": "python",
+   "area_p": 0.8146,
+   "needs_info": 0.0759,
+   "priority": 1.072,
+   "ms": 1703.4
+  },
+  {
+   "n": 2441,
+   "url": "https://github.com/kserve/kserve/issues/2441",
+   "title": "pytorch/torchserve-kfs:0.6.0 - No module named 'ts.torch_handler.request_envelope.kfserving'",
+   "label": "question",
+   "kind": {
+    "bug": 0.6059,
+    "feature": 0.0144,
+    "question": 0.3797
+   },
+   "area": "runtimes",
+   "area_p": 0.7478,
+   "needs_info": 0.2522,
+   "priority": 1.4263,
+   "ms": 2729.5
+  },
+  {
+   "n": 1881,
+   "url": "https://github.com/kserve/kserve/issues/1881",
+   "title": "queue-proxy is missing in kserve v0.7",
+   "label": "question",
+   "kind": {
+    "bug": 0.6499,
+    "feature": 0.0277,
+    "question": 0.3224
+   },
+   "area": "runtimes",
+   "area_p": 0.506,
+   "needs_info": 0.0926,
+   "priority": 0.9867,
+   "ms": 2729.1
+  },
+  {
+   "n": 3691,
+   "url": "https://github.com/kserve/kserve/issues/3691",
+   "title": "Download files from Azure storage under virtual directory for Multi-model serving",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0015,
+    "feature": 0.9898,
+    "question": 0.0087
+   },
+   "area": "storage",
+   "area_p": 0.9721,
+   "needs_info": 0.1958,
+   "priority": 0.509,
+   "ms": 2724.5
+  },
+  {
+   "n": 2989,
+   "url": "https://github.com/kserve/kserve/issues/2989",
+   "title": "Unable to fetch image \"docker.io/kserve/sklearnserver:v0.10.0\" in Minikube/Kind version: v1.30.1 on Darwin 13.4 (arm64)",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2801,
+    "feature": 0.0067,
+    "question": 0.7132
+   },
+   "area": "runtimes",
+   "area_p": 0.8346,
+   "needs_info": 0.1638,
+   "priority": 1.2496,
+   "ms": 2522.4
+  },
+  {
+   "n": 1474,
+   "url": "https://github.com/kserve/kserve/issues/1474",
+   "title": "Latest ready inference service is showing the none working update",
+   "label": "question",
+   "kind": {
+    "bug": 0.9759,
+    "feature": 0.0068,
+    "question": 0.0173
+   },
+   "area": "networking",
+   "area_p": 0.6159,
+   "needs_info": 0.1958,
+   "priority": 1.3279,
+   "ms": 2296.6
+  },
+  {
+   "n": 3284,
+   "url": "https://github.com/kserve/kserve/issues/3284",
+   "title": "make dev_install fails for python/kserve",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8353,
+    "feature": 0.0199,
+    "question": 0.1448
+   },
+   "area": "build",
+   "area_p": 0.4422,
+   "needs_info": 0.0838,
+   "priority": 0.9357,
+   "ms": 2296.6
+  },
+  {
+   "n": 371,
+   "url": "https://github.com/kserve/kserve/issues/371",
+   "title": "shared auth with kubeflow",
+   "label": "question",
+   "kind": {
+    "bug": 0.2934,
+    "feature": 0.1152,
+    "question": 0.5914
+   },
+   "area": "networking",
+   "area_p": 0.9784,
+   "needs_info": 0.5,
+   "priority": 2.5337,
+   "ms": 2624.8
+  },
+  {
+   "n": 2149,
+   "url": "https://github.com/kserve/kserve/issues/2149",
+   "title": "Supporting the AMD/Xilinx Inference Server in KServe",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0079,
+    "feature": 0.7568,
+    "question": 0.2353
+   },
+   "area": "runtimes",
+   "area_p": 0.9424,
+   "needs_info": 0.062,
+   "priority": 0.3563,
+   "ms": 2408.8
+  },
+  {
+   "n": 3365,
+   "url": "https://github.com/kserve/kserve/issues/3365",
+   "title": "Python SDK: Optional `InferInput.parameters` missing from `InferRequest.to_rest()/.to_grpc()`",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9417,
+    "feature": 0.0283,
+    "question": 0.03
+   },
+   "area": "python",
+   "area_p": 0.9776,
+   "needs_info": 0.0333,
+   "priority": 0.8779,
+   "ms": 2035.6
+  },
+  {
+   "n": 3117,
+   "url": "https://github.com/kserve/kserve/issues/3117",
+   "title": "First inference service example not working in v0.11",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8846,
+    "feature": 0.0074,
+    "question": 0.108
+   },
+   "area": "runtimes",
+   "area_p": 0.7488,
+   "needs_info": 0.1494,
+   "priority": 1.2768,
+   "ms": 2578.3
+  },
+  {
+   "n": 2965,
+   "url": "https://github.com/kserve/kserve/issues/2965",
+   "title": "Alibi explainer example not working due to old storage uri",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9233,
+    "feature": 0.0207,
+    "question": 0.0559
+   },
+   "area": "docs",
+   "area_p": 0.3476,
+   "needs_info": 0.0926,
+   "priority": 1.3402,
+   "ms": 2834.8
+  },
+  {
+   "n": 1733,
+   "url": "https://github.com/kserve/kserve/issues/1733",
+   "title": "Can't deploy a custom inference service by pythonSDK with PVC",
+   "label": "question",
+   "kind": {
+    "bug": 0.1076,
+    "feature": 0.0117,
+    "question": 0.8808
+   },
+   "area": "storage",
+   "area_p": 0.8622,
+   "needs_info": 0.1792,
+   "priority": 1.3271,
+   "ms": 4168.5
+  },
+  {
+   "n": 3148,
+   "url": "https://github.com/kserve/kserve/issues/3148",
+   "title": "Upgrade openapi-generator version in python client-gen script",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0335,
+    "feature": 0.9366,
+    "question": 0.0298
+   },
+   "area": "python",
+   "area_p": 0.926,
+   "needs_info": 0.041,
+   "priority": 0.6744,
+   "ms": 2465.0
+  },
+  {
+   "n": 1648,
+   "url": "https://github.com/kserve/kserve/issues/1648",
+   "title": "Does KFserving support inference about the entire dataset?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0033,
+    "feature": 0.0365,
+    "question": 0.9602
+   },
+   "area": "python",
+   "area_p": 0.3711,
+   "needs_info": 0.041,
+   "priority": 0.551,
+   "ms": 1920.1
+  },
+  {
+   "n": 1624,
+   "url": "https://github.com/kserve/kserve/issues/1624",
+   "title": "How to add new authorization for model service, not using kubeflow dex.",
+   "label": "question",
+   "kind": {
+    "bug": 0.0034,
+    "feature": 0.0155,
+    "question": 0.9811
+   },
+   "area": "networking",
+   "area_p": 0.4131,
+   "needs_info": 0.2953,
+   "priority": 0.6629,
+   "ms": 1797.8
+  },
+  {
+   "n": 3778,
+   "url": "https://github.com/kserve/kserve/issues/3778",
+   "title": "ImportError: cannot import name 'BentoService' from 'bentoml' (/usr/local/lib/python3.9/dist-packages/bentoml/__init__.py)",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0971,
+    "feature": 0.0094,
+    "question": 0.8935
+   },
+   "area": "runtimes",
+   "area_p": 0.348,
+   "needs_info": 0.2953,
+   "priority": 1.016,
+   "ms": 2472.4
+  },
+  {
+   "n": 2111,
+   "url": "https://github.com/kserve/kserve/issues/2111",
+   "title": "Inferenceservice not responding to curl requests",
+   "label": "question",
+   "kind": {
+    "bug": 0.4384,
+    "feature": 0.0078,
+    "question": 0.5538
+   },
+   "area": "networking",
+   "area_p": 0.5918,
+   "needs_info": 0.4729,
+   "priority": 1.4162,
+   "ms": 2494.3
+  },
+  {
+   "n": 1761,
+   "url": "https://github.com/kserve/kserve/issues/1761",
+   "title": "Run triton python server with custom conda-pack",
+   "label": "question",
+   "kind": {
+    "bug": 0.0319,
+    "feature": 0.0225,
+    "question": 0.9456
+   },
+   "area": "runtimes",
+   "area_p": 0.8978,
+   "needs_info": 0.6326,
+   "priority": 0.6629,
+   "ms": 2464.5
+  },
+  {
+   "n": 1645,
+   "url": "https://github.com/kserve/kserve/issues/1645",
+   "title": "Does KFserving support inferencing about the entire dataset?",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0031,
+    "feature": 0.0326,
+    "question": 0.9643
+   },
+   "area": "python",
+   "area_p": 0.4056,
+   "needs_info": 0.041,
+   "priority": 0.587,
+   "ms": 2008.7
+  },
+  {
+   "n": 3776,
+   "url": "https://github.com/kserve/kserve/issues/3776",
+   "title": "storage initializer container downloads all the folder/files from matching path instead of absolute path",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9865,
+    "feature": 0.0092,
+    "question": 0.0043
+   },
+   "area": "storage",
+   "area_p": 0.9726,
+   "needs_info": 0.041,
+   "priority": 1.2586,
+   "ms": 1065.6
+  },
+  {
+   "n": 3763,
+   "url": "https://github.com/kserve/kserve/issues/3763",
+   "title": "Can't find version compatibility matrix for KServe",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0043,
+    "feature": 0.0082,
+    "question": 0.9875
+   },
+   "area": "docs",
+   "area_p": 0.7373,
+   "needs_info": 0.0299,
+   "priority": 0.7078,
+   "ms": 1730.3
+  },
+  {
+   "n": 1965,
+   "url": "https://github.com/kserve/kserve/issues/1965",
+   "title": "Chore: Cleanup `InferenceService` configmap for ML framework related fields",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0762,
+    "feature": 0.886,
+    "question": 0.0378
+   },
+   "area": "controller",
+   "area_p": 0.6219,
+   "needs_info": 0.041,
+   "priority": 0.4111,
+   "ms": 1730.4
+  },
+  {
+   "n": 2800,
+   "url": "https://github.com/kserve/kserve/issues/2800",
+   "title": "Allow dynamic version extraction for poetry",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0043,
+    "feature": 0.9773,
+    "question": 0.0184
+   },
+   "area": "build",
+   "area_p": 0.8402,
+   "needs_info": 0.0759,
+   "priority": 0.8769,
+   "ms": 1834.9
+  },
+  {
+   "n": 2304,
+   "url": "https://github.com/kserve/kserve/issues/2304",
+   "title": "Add request encoder/decoder in Explainer model wrapper",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0085,
+    "feature": 0.9591,
+    "question": 0.0324
+   },
+   "area": "python",
+   "area_p": 0.6527,
+   "needs_info": 0.1361,
+   "priority": 0.4915,
+   "ms": 2138.7
+  },
+  {
+   "n": 2227,
+   "url": "https://github.com/kserve/kserve/issues/2227",
+   "title": "can not make inference when using transformer",
+   "label": "question",
+   "kind": {
+    "bug": 0.3544,
+    "feature": 0.01,
+    "question": 0.6356
+   },
+   "area": "python",
+   "area_p": 0.5757,
+   "needs_info": 0.5808,
+   "priority": 1.0985,
+   "ms": 2660.6
+  },
+  {
+   "n": 1662,
+   "url": "https://github.com/kserve/kserve/issues/1662",
+   "title": "Serving service from github examples created with kubectl, but can not nor infere nor find the service, looks like it did not exist.",
+   "label": "question",
+   "kind": {
+    "bug": 0.3826,
+    "feature": 0.0068,
+    "question": 0.6106
+   },
+   "area": "runtimes",
+   "area_p": 0.4767,
+   "needs_info": 0.6575,
+   "priority": 1.1069,
+   "ms": 2659.5
+  },
+  {
+   "n": 3639,
+   "url": "https://github.com/kserve/kserve/issues/3639",
+   "title": "Merge responses from InferenceGraph Sequence node steps",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0181,
+    "feature": 0.9042,
+    "question": 0.0778
+   },
+   "area": "controller",
+   "area_p": 0.5069,
+   "needs_info": 0.3185,
+   "priority": 0.5525,
+   "ms": 3077.3
+  },
+  {
+   "n": 3239,
+   "url": "https://github.com/kserve/kserve/issues/3239",
+   "title": "Retry on resource conflict",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8524,
+    "feature": 0.1315,
+    "question": 0.0161
+   },
+   "area": "controller",
+   "area_p": 0.8815,
+   "needs_info": 0.1361,
+   "priority": 0.844,
+   "ms": 3015.9
+  },
+  {
+   "n": 3554,
+   "url": "https://github.com/kserve/kserve/issues/3554",
+   "title": "Add ability to InferenceGraph to passTrough custom annotations ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0556,
+    "feature": 0.9183,
+    "question": 0.026
+   },
+   "area": "networking",
+   "area_p": 0.6425,
+   "needs_info": 0.0926,
+   "priority": 0.5299,
+   "ms": 2453.3
+  },
+  {
+   "n": 1814,
+   "url": "https://github.com/kserve/kserve/issues/1814",
+   "title": "Propose new storage spec to support next-gen multi-model serving",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0017,
+    "feature": 0.9934,
+    "question": 0.0049
+   },
+   "area": "storage",
+   "area_p": 0.9368,
+   "needs_info": 0.0559,
+   "priority": 0.9096,
+   "ms": 2450.4
+  },
+  {
+   "n": 2750,
+   "url": "https://github.com/kserve/kserve/issues/2750",
+   "title": "Inference Service prediction failed with 403 Forbidden when run the first InferenceService ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.7329,
+    "feature": 0.0109,
+    "question": 0.2561
+   },
+   "area": "networking",
+   "area_p": 0.6142,
+   "needs_info": 0.2322,
+   "priority": 1.2945,
+   "ms": 2582.1
+  },
+  {
+   "n": 1740,
+   "url": "https://github.com/kserve/kserve/issues/1740",
+   "title": "Unable to use the image in the docker hub private repository",
+   "label": "question",
+   "kind": {
+    "bug": 0.196,
+    "feature": 0.0079,
+    "question": 0.7962
+   },
+   "area": "runtimes",
+   "area_p": 0.5836,
+   "needs_info": 0.2134,
+   "priority": 1.3429,
+   "ms": 1960.9
+  },
+  {
+   "n": 1562,
+   "url": "https://github.com/kserve/kserve/issues/1562",
+   "title": "Model chaining/sequence in kfserving with a custom model.",
+   "label": "question",
+   "kind": {
+    "bug": 0.0072,
+    "feature": 0.3825,
+    "question": 0.6103
+   },
+   "area": "runtimes",
+   "area_p": 0.3867,
+   "needs_info": 0.3185,
+   "priority": 0.6217,
+   "ms": 1648.4
+  },
+  {
+   "n": 2139,
+   "url": "https://github.com/kserve/kserve/issues/2139",
+   "title": "Support custom init containers and volumes in KServe",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0024,
+    "feature": 0.9792,
+    "question": 0.0184
+   },
+   "area": "storage",
+   "area_p": 0.903,
+   "needs_info": 0.0455,
+   "priority": 0.7226,
+   "ms": 1647.0
+  },
+  {
+   "n": 3327,
+   "url": "https://github.com/kserve/kserve/issues/3327",
+   "title": "bump kserve",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1306,
+    "feature": 0.7532,
+    "question": 0.1162
+   },
+   "area": "python",
+   "area_p": 0.4675,
+   "needs_info": 0.0455,
+   "priority": 0.6998,
+   "ms": 1280.3
+  },
+  {
+   "n": 2392,
+   "url": "https://github.com/kserve/kserve/issues/2392",
+   "title": "Azure Blob Storage to support shared access signatures(SAS)",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0132,
+    "feature": 0.9364,
+    "question": 0.0505
+   },
+   "area": "storage",
+   "area_p": 0.9706,
+   "needs_info": 0.0926,
+   "priority": 1.0138,
+   "ms": 1142.6
+  },
+  {
+   "n": 2692,
+   "url": "https://github.com/kserve/kserve/issues/2692",
+   "title": "Bug with parsing optional parameters field in .proto",
+   "label": "bug",
+   "kind": {
+    "bug": 0.989,
+    "feature": 0.0049,
+    "question": 0.0061
+   },
+   "area": "python",
+   "area_p": 0.9325,
+   "needs_info": 0.0686,
+   "priority": 1.6254,
+   "ms": 2173.9
+  },
+  {
+   "n": 1460,
+   "url": "https://github.com/kserve/kserve/issues/1460",
+   "title": "Disabling the Istio Ingress gateway will result in calls to the knative local gateway to timeout.",
+   "label": "question",
+   "kind": {
+    "bug": 0.7282,
+    "feature": 0.0173,
+    "question": 0.2545
+   },
+   "area": "networking",
+   "area_p": 0.9644,
+   "needs_info": 0.1361,
+   "priority": 1.3705,
+   "ms": 2176.1
+  },
+  {
+   "n": 2949,
+   "url": "https://github.com/kserve/kserve/issues/2949",
+   "title": "[Proposal] Decouple the model \"fetch mechanism\" from the internal storage field in the CRD",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0041,
+    "feature": 0.9882,
+    "question": 0.0078
+   },
+   "area": "storage",
+   "area_p": 0.9337,
+   "needs_info": 0.062,
+   "priority": 0.9144,
+   "ms": 2444.1
+  },
+  {
+   "n": 2607,
+   "url": "https://github.com/kserve/kserve/issues/2607",
+   "title": "Numpy 1.24 breaking changes ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9366,
+    "feature": 0.021,
+    "question": 0.0424
+   },
+   "area": "runtimes",
+   "area_p": 0.6534,
+   "needs_info": 0.0505,
+   "priority": 1.5956,
+   "ms": 2270.9
+  },
+  {
+   "n": 3445,
+   "url": "https://github.com/kserve/kserve/issues/3445",
+   "title": "Serve the large language model with InferenceService\uff0creport an error\uff1a'type': 'InternalServerException', 'message': 'Worker died.'",
+   "label": "bug",
+   "kind": {
+    "bug": 0.7437,
+    "feature": 0.0251,
+    "question": 0.2312
+   },
+   "area": "llm",
+   "area_p": 0.7231,
+   "needs_info": 0.1792,
+   "priority": 1.6407,
+   "ms": 2165.9
+  },
+  {
+   "n": 2988,
+   "url": "https://github.com/kserve/kserve/issues/2988",
+   "title": "Please update ray dependency",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2295,
+    "feature": 0.6567,
+    "question": 0.1138
+   },
+   "area": "python",
+   "area_p": 0.5032,
+   "needs_info": 0.062,
+   "priority": 1.3871,
+   "ms": 2829.5
+  },
+  {
+   "n": 3525,
+   "url": "https://github.com/kserve/kserve/issues/3525",
+   "title": "Setting timeout not effective",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5782,
+    "feature": 0.0146,
+    "question": 0.4072
+   },
+   "area": "python",
+   "area_p": 0.4458,
+   "needs_info": 0.0759,
+   "priority": 1.1499,
+   "ms": 3424.5
+  },
+  {
+   "n": 1294,
+   "url": "https://github.com/kserve/kserve/issues/1294",
+   "title": "Running the tf-flower sample kfp returns 404 on the first step of the run. ",
+   "label": "question",
+   "kind": {
+    "bug": 0.256,
+    "feature": 0.0116,
+    "question": 0.7325
+   },
+   "area": "controller",
+   "area_p": 0.5904,
+   "needs_info": 0.5541,
+   "priority": 1.1008,
+   "ms": 3644.7
+  },
+  {
+   "n": 867,
+   "url": "https://github.com/kserve/kserve/issues/867",
+   "title": "ResourceQuota and LimitRange doesn't work with KFServing",
+   "label": "question",
+   "kind": {
+    "bug": 0.7846,
+    "feature": 0.0222,
+    "question": 0.1931
+   },
+   "area": "runtimes",
+   "area_p": 0.3314,
+   "needs_info": 0.1238,
+   "priority": 1.3753,
+   "ms": 3899.7
+  },
+  {
+   "n": 1656,
+   "url": "https://github.com/kserve/kserve/issues/1656",
+   "title": "different InferenceService name and model_name returns 404 [torch serve]",
+   "label": "question",
+   "kind": {
+    "bug": 0.2397,
+    "feature": 0.0745,
+    "question": 0.6858
+   },
+   "area": "runtimes",
+   "area_p": 0.7509,
+   "needs_info": 0.1958,
+   "priority": 1.1544,
+   "ms": 3231.5
+  },
+  {
+   "n": 3506,
+   "url": "https://github.com/kserve/kserve/issues/3506",
+   "title": "Sample inference deployed using the modelcar functionality is not starting",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9383,
+    "feature": 0.0111,
+    "question": 0.0506
+   },
+   "area": "runtimes",
+   "area_p": 0.425,
+   "needs_info": 0.1125,
+   "priority": 1.3372,
+   "ms": 3278.1
+  },
+  {
+   "n": 3278,
+   "url": "https://github.com/kserve/kserve/issues/3278",
+   "title": "Can I link custom transformer and inference service ?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0424,
+    "feature": 0.0199,
+    "question": 0.9377
+   },
+   "area": "runtimes",
+   "area_p": 0.5281,
+   "needs_info": 0.607,
+   "priority": 0.6508,
+   "ms": 3368.4
+  },
+  {
+   "n": 3784,
+   "url": "https://github.com/kserve/kserve/issues/3784",
+   "title": "Bump vLLM version in huggingface_server to v0.5.1",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0518,
+    "feature": 0.9071,
+    "question": 0.041
+   },
+   "area": "llm",
+   "area_p": 0.6164,
+   "needs_info": 0.0369,
+   "priority": 0.7553,
+   "ms": 2760.6
+  },
+  {
+   "n": 1900,
+   "url": "https://github.com/kserve/kserve/issues/1900",
+   "title": "ksvc Uninitialized with Waiting for load balancer to be ready error",
+   "label": "question",
+   "kind": {
+    "bug": 0.3523,
+    "feature": 0.0159,
+    "question": 0.6318
+   },
+   "area": "networking",
+   "area_p": 0.7845,
+   "needs_info": 0.3425,
+   "priority": 1.1646,
+   "ms": 3319.8
+  },
+  {
+   "n": 2717,
+   "url": "https://github.com/kserve/kserve/issues/2717",
+   "title": "No support volcano 1.7  for kserve 0.8",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5615,
+    "feature": 0.0866,
+    "question": 0.3519
+   },
+   "area": "controller",
+   "area_p": 0.7244,
+   "needs_info": 0.1021,
+   "priority": 1.1057,
+   "ms": 3361.2
+  },
+  {
+   "n": 2310,
+   "url": "https://github.com/kserve/kserve/issues/2310",
+   "title": "Overwrite pod/container args",
+   "label": "question",
+   "kind": {
+    "bug": 0.3234,
+    "feature": 0.6519,
+    "question": 0.0247
+   },
+   "area": "runtimes",
+   "area_p": 0.9756,
+   "needs_info": 0.0686,
+   "priority": 0.9893,
+   "ms": 2702.8
+  },
+  {
+   "n": 3372,
+   "url": "https://github.com/kserve/kserve/issues/3372",
+   "title": "failed with message: Unable to fetch image \"kserve/sklearnserver:v0.11.2\": failed to resolve image to digest: Get \"https://index.docker.io/v2/\": dial tcp 3.219.239.5:443: i/o timeout.",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1331,
+    "feature": 0.0042,
+    "question": 0.8627
+   },
+   "area": "runtimes",
+   "area_p": 0.7934,
+   "needs_info": 0.1958,
+   "priority": 1.6583,
+   "ms": 2711.6
+  },
+  {
+   "n": 2451,
+   "url": "https://github.com/kserve/kserve/issues/2451",
+   "title": "Generate new traceID in inference graph",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0121,
+    "feature": 0.9696,
+    "question": 0.0183
+   },
+   "area": "controller",
+   "area_p": 0.2654,
+   "needs_info": 0.1021,
+   "priority": 0.5941,
+   "ms": 2841.3
+  },
+  {
+   "n": 3706,
+   "url": "https://github.com/kserve/kserve/issues/3706",
+   "title": "ResponseStartTimeoutSeconds does not honor TimeoutSeconds specified by user",
+   "label": "bug",
+   "kind": {
+    "bug": 0.962,
+    "feature": 0.0273,
+    "question": 0.0107
+   },
+   "area": "networking",
+   "area_p": 0.4833,
+   "needs_info": 0.1021,
+   "priority": 1.424,
+   "ms": 1904.7
+  },
+  {
+   "n": 1885,
+   "url": "https://github.com/kserve/kserve/issues/1885",
+   "title": "New revision created at every redeployment of InferenceService",
+   "label": "question",
+   "kind": {
+    "bug": 0.367,
+    "feature": 0.0475,
+    "question": 0.5855
+   },
+   "area": "controller",
+   "area_p": 0.5713,
+   "needs_info": 0.5541,
+   "priority": 1.0915,
+   "ms": 1904.7
+  },
+  {
+   "n": 3082,
+   "url": "https://github.com/kserve/kserve/issues/3082",
+   "title": "Kserve Sklearn arm64 image issue",
+   "label": "bug",
+   "kind": {
+    "bug": 0.4664,
+    "feature": 0.0093,
+    "question": 0.5242
+   },
+   "area": "runtimes",
+   "area_p": 0.7586,
+   "needs_info": 0.2732,
+   "priority": 1.0604,
+   "ms": 1843.3
+  },
+  {
+   "n": 619,
+   "url": "https://github.com/kserve/kserve/issues/619",
+   "title": "`rolllout_canary` by sdk, the service's status will turn to 'false' for a while.",
+   "label": "question",
+   "kind": {
+    "bug": 0.4327,
+    "feature": 0.0208,
+    "question": 0.5466
+   },
+   "area": "controller",
+   "area_p": 0.7181,
+   "needs_info": 0.4192,
+   "priority": 1.1086,
+   "ms": 1818.1
+  },
+  {
+   "n": 2236,
+   "url": "https://github.com/kserve/kserve/issues/2236",
+   "title": "Inference Service failed -- Triton Server not running",
+   "label": "question",
+   "kind": {
+    "bug": 0.1469,
+    "feature": 0.0059,
+    "question": 0.8472
+   },
+   "area": "runtimes",
+   "area_p": 0.9041,
+   "needs_info": 0.2134,
+   "priority": 1.3349,
+   "ms": 3297.3
+  },
+  {
+   "n": 2058,
+   "url": "https://github.com/kserve/kserve/issues/2058",
+   "title": "Autoscaling",
+   "label": "question",
+   "kind": {
+    "bug": 0.0164,
+    "feature": 0.0057,
+    "question": 0.9779
+   },
+   "area": "autoscaling",
+   "area_p": 0.9731,
+   "needs_info": 0.8979,
+   "priority": 0.5697,
+   "ms": 2097.0
+  },
+  {
+   "n": 2693,
+   "url": "https://github.com/kserve/kserve/issues/2693",
+   "title": "Make \"propagate headers\" configurable per Inference Graph instead of global",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0065,
+    "feature": 0.9838,
+    "question": 0.0097
+   },
+   "area": "networking",
+   "area_p": 0.4391,
+   "needs_info": 0.062,
+   "priority": 0.6426,
+   "ms": 2471.0
+  },
+  {
+   "n": 2785,
+   "url": "https://github.com/kserve/kserve/issues/2785",
+   "title": "Create a separate github repository for open inference protocol",
+   "label": "feature",
+   "kind": {
+    "bug": 0.008,
+    "feature": 0.9675,
+    "question": 0.0244
+   },
+   "area": "python",
+   "area_p": 0.7462,
+   "needs_info": 0.0333,
+   "priority": 0.7364,
+   "ms": 1804.8
+  },
+  {
+   "n": 2950,
+   "url": "https://github.com/kserve/kserve/issues/2950",
+   "title": "Need larger github action node to run triton test",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1306,
+    "feature": 0.7532,
+    "question": 0.1162
+   },
+   "area": "runtimes",
+   "area_p": 0.8656,
+   "needs_info": 0.0838,
+   "priority": 0.9476,
+   "ms": 1524.0
+  },
+  {
+   "n": 3238,
+   "url": "https://github.com/kserve/kserve/issues/3238",
+   "title": "custom predictor is not working",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1082,
+    "feature": 0.0055,
+    "question": 0.8863
+   },
+   "area": "runtimes",
+   "area_p": 0.937,
+   "needs_info": 0.8042,
+   "priority": 1.3376,
+   "ms": 1336.1
+  },
+  {
+   "n": 3091,
+   "url": "https://github.com/kserve/kserve/issues/3091",
+   "title": "Support openvino-model-server(ovms) servingruntime",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0085,
+    "feature": 0.9609,
+    "question": 0.0306
+   },
+   "area": "runtimes",
+   "area_p": 0.9471,
+   "needs_info": 0.0759,
+   "priority": 0.7886,
+   "ms": 1977.8
+  },
+  {
+   "n": 3804,
+   "url": "https://github.com/kserve/kserve/issues/3804",
+   "title": "Support Envoy Gateway as ingress option ",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0017,
+    "feature": 0.9879,
+    "question": 0.0104
+   },
+   "area": "networking",
+   "area_p": 0.9815,
+   "needs_info": 0.0759,
+   "priority": 0.4044,
+   "ms": 1977.9
+  },
+  {
+   "n": 2125,
+   "url": "https://github.com/kserve/kserve/issues/2125",
+   "title": "What is the configmap kserve-config used for?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0131,
+    "feature": 0.0029,
+    "question": 0.9841
+   },
+   "area": "networking",
+   "area_p": 0.9135,
+   "needs_info": 0.0926,
+   "priority": 0.3473,
+   "ms": 2046.5
+  },
+  {
+   "n": 2894,
+   "url": "https://github.com/kserve/kserve/issues/2894",
+   "title": "Adding prometheus annotations to InferenceService does not show torchserve metrics",
+   "label": "question",
+   "kind": {
+    "bug": 0.4545,
+    "feature": 0.0348,
+    "question": 0.5108
+   },
+   "area": "runtimes",
+   "area_p": 0.9246,
+   "needs_info": 0.3185,
+   "priority": 0.7918,
+   "ms": 1944.8
+  },
+  {
+   "n": 1500,
+   "url": "https://github.com/kserve/kserve/issues/1500",
+   "title": "Differences between yaml syntax v1alpha2 and v1beta1 (for NodeSelector support)",
+   "label": "question",
+   "kind": {
+    "bug": 0.011,
+    "feature": 0.0032,
+    "question": 0.9858
+   },
+   "area": "controller",
+   "area_p": 0.813,
+   "needs_info": 0.1494,
+   "priority": 1.0413,
+   "ms": 2483.2
+  },
+  {
+   "n": 4366,
+   "url": "https://github.com/kserve/kserve/issues/4366",
+   "title": "Flaky vllm guided regex test",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9154,
+    "feature": 0.0292,
+    "question": 0.0555
+   },
+   "area": "llm",
+   "area_p": 0.8759,
+   "needs_info": 0.1238,
+   "priority": 0.4841,
+   "ms": 3113.7
+  },
+  {
+   "n": 919,
+   "url": "https://github.com/kserve/kserve/issues/919",
+   "title": "Can anyone share an example of nginx sidecar implementation?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0015,
+    "feature": 0.0073,
+    "question": 0.9912
+   },
+   "area": "runtimes",
+   "area_p": 0.4278,
+   "needs_info": 0.0926,
+   "priority": 0.3776,
+   "ms": 2729.2
+  },
+  {
+   "n": 3663,
+   "url": "https://github.com/kserve/kserve/issues/3663",
+   "title": "Model Storage For Multi-Node Scaling of Large Models",
+   "label": "feature",
+   "kind": {
+    "bug": 0.007,
+    "feature": 0.1467,
+    "question": 0.8463
+   },
+   "area": "storage",
+   "area_p": 0.9025,
+   "needs_info": 0.0559,
+   "priority": 0.8136,
+   "ms": 2463.5
+  },
+  {
+   "n": 3176,
+   "url": "https://github.com/kserve/kserve/issues/3176",
+   "title": "Runtime not found for triton if protocolVersion is not specified",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9463,
+    "feature": 0.0268,
+    "question": 0.0268
+   },
+   "area": "runtimes",
+   "area_p": 0.8872,
+   "needs_info": 0.0838,
+   "priority": 1.5141,
+   "ms": 1865.5
+  },
+  {
+   "n": 3795,
+   "url": "https://github.com/kserve/kserve/issues/3795",
+   "title": "Large model deployment timesout",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2561,
+    "feature": 0.2278,
+    "question": 0.5161
+   },
+   "area": "llm",
+   "area_p": 0.2841,
+   "needs_info": 0.1125,
+   "priority": 1.6534,
+   "ms": 1930.9
+  },
+  {
+   "n": 2753,
+   "url": "https://github.com/kserve/kserve/issues/2753",
+   "title": "404: Model with name <InferenceServiceName> does not exist.",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2122,
+    "feature": 0.1053,
+    "question": 0.6825
+   },
+   "area": "runtimes",
+   "area_p": 0.2355,
+   "needs_info": 0.2322,
+   "priority": 1.1443,
+   "ms": 3117.8
+  },
+  {
+   "n": 3770,
+   "url": "https://github.com/kserve/kserve/issues/3770",
+   "title": "Reconciler error while creating InferenceService: failed to call webhook kserve-webhook-server-service.kserve.svc context deadline ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8996,
+    "feature": 0.0134,
+    "question": 0.087
+   },
+   "area": "controller",
+   "area_p": 0.8728,
+   "needs_info": 0.2522,
+   "priority": 1.6678,
+   "ms": 2476.9
+  },
+  {
+   "n": 1489,
+   "url": "https://github.com/kserve/kserve/issues/1489",
+   "title": "kfserving pytorch demo fails",
+   "label": "question",
+   "kind": {
+    "bug": 0.0877,
+    "feature": 0.005,
+    "question": 0.9073
+   },
+   "area": "networking",
+   "area_p": 0.6766,
+   "needs_info": 0.4192,
+   "priority": 0.8698,
+   "ms": 2514.2
+  },
+  {
+   "n": 2404,
+   "url": "https://github.com/kserve/kserve/issues/2404",
+   "title": "Explore Poetry as Python dependency management tool",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0039,
+    "feature": 0.9553,
+    "question": 0.0408
+   },
+   "area": "python",
+   "area_p": 0.8517,
+   "needs_info": 0.0333,
+   "priority": 0.1169,
+   "ms": 2157.2
+  },
+  {
+   "n": 868,
+   "url": "https://github.com/kserve/kserve/issues/868",
+   "title": "Return OOM error when resource limit is exceeded?",
+   "label": "question",
+   "kind": {
+    "bug": 0.2147,
+    "feature": 0.6905,
+    "question": 0.0948
+   },
+   "area": "runtimes",
+   "area_p": 0.381,
+   "needs_info": 0.5808,
+   "priority": 1.0198,
+   "ms": 2291.7
+  },
+  {
+   "n": 2565,
+   "url": "https://github.com/kserve/kserve/issues/2565",
+   "title": "nodeSelector support for InferenceGraph router",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0109,
+    "feature": 0.9776,
+    "question": 0.0115
+   },
+   "area": "networking",
+   "area_p": 0.4574,
+   "needs_info": 0.0926,
+   "priority": 0.6546,
+   "ms": 2297.1
+  },
+  {
+   "n": 2904,
+   "url": "https://github.com/kserve/kserve/issues/2904",
+   "title": "Check if poetry lockfile is up to date with pyproject.toml in CI environment",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0128,
+    "feature": 0.9629,
+    "question": 0.0243
+   },
+   "area": "build",
+   "area_p": 0.9502,
+   "needs_info": 0.0369,
+   "priority": 0.8504,
+   "ms": 1663.8
+  },
+  {
+   "n": 3553,
+   "url": "https://github.com/kserve/kserve/issues/3553",
+   "title": "Transformers don't deploy with ModelMesh InferenceService in RawDeployment mode",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9662,
+    "feature": 0.023,
+    "question": 0.0108
+   },
+   "area": "controller",
+   "area_p": 0.7032,
+   "needs_info": 0.0686,
+   "priority": 1.01,
+   "ms": 1822.7
+  },
+  {
+   "n": 1897,
+   "url": "https://github.com/kserve/kserve/issues/1897",
+   "title": "Update KServe -> Ray dependency to most recent version",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0399,
+    "feature": 0.8318,
+    "question": 0.1283
+   },
+   "area": "python",
+   "area_p": 0.6155,
+   "needs_info": 0.041,
+   "priority": 0.4081,
+   "ms": 1149.9
+  },
+  {
+   "n": 2837,
+   "url": "https://github.com/kserve/kserve/issues/2837",
+   "title": "Add support for SSE (Server-Sent Events) streaming for LLM in IG router",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0065,
+    "feature": 0.9858,
+    "question": 0.0077
+   },
+   "area": "networking",
+   "area_p": 0.6687,
+   "needs_info": 0.0686,
+   "priority": 1.0254,
+   "ms": 2166.8
+  },
+  {
+   "n": 3473,
+   "url": "https://github.com/kserve/kserve/issues/3473",
+   "title": "Kserve Model Deployment issue",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5242,
+    "feature": 0.0093,
+    "question": 0.4664
+   },
+   "area": "runtimes",
+   "area_p": 0.4748,
+   "needs_info": 0.2953,
+   "priority": 1.1071,
+   "ms": 2165.9
+  },
+  {
+   "n": 3416,
+   "url": "https://github.com/kserve/kserve/issues/3416",
+   "title": "Re-enable dependabot",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0084,
+    "feature": 0.6366,
+    "question": 0.355
+   },
+   "area": "build",
+   "area_p": 0.9069,
+   "needs_info": 0.041,
+   "priority": 0.6297,
+   "ms": 2246.9
+  },
+  {
+   "n": 1892,
+   "url": "https://github.com/kserve/kserve/issues/1892",
+   "title": "Support ?raw query params on ONNX models",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0501,
+    "feature": 0.9291,
+    "question": 0.0209
+   },
+   "area": "storage",
+   "area_p": 0.7436,
+   "needs_info": 0.062,
+   "priority": 0.6506,
+   "ms": 1598.5
+  },
+  {
+   "n": 3057,
+   "url": "https://github.com/kserve/kserve/issues/3057",
+   "title": "Model deployment database",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0038,
+    "feature": 0.9824,
+    "question": 0.0138
+   },
+   "area": "controller",
+   "area_p": 0.7349,
+   "needs_info": 0.1125,
+   "priority": 0.651,
+   "ms": 1094.9
+  },
+  {
+   "n": 3623,
+   "url": "https://github.com/kserve/kserve/issues/3623",
+   "title": "Any specific optimization did in kserve to support LLM inference?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0022,
+    "feature": 0.0326,
+    "question": 0.9652
+   },
+   "area": "llm",
+   "area_p": 0.9213,
+   "needs_info": 0.0505,
+   "priority": 0.2985,
+   "ms": 1088.0
+  },
+  {
+   "n": 1829,
+   "url": "https://github.com/kserve/kserve/issues/1829",
+   "title": "Kubeflow pipeline integration for KServe",
+   "label": "feature",
+   "kind": {
+    "bug": 0.005,
+    "feature": 0.969,
+    "question": 0.0259
+   },
+   "area": "python",
+   "area_p": 0.7298,
+   "needs_info": 0.0455,
+   "priority": 0.5874,
+   "ms": 1377.4
+  },
+  {
+   "n": 950,
+   "url": "https://github.com/kserve/kserve/issues/950",
+   "title": "port forward process being lost after some time",
+   "label": "question",
+   "kind": {
+    "bug": 0.3239,
+    "feature": 0.0234,
+    "question": 0.6528
+   },
+   "area": "networking",
+   "area_p": 0.7467,
+   "needs_info": 0.4192,
+   "priority": 1.1213,
+   "ms": 1377.2
+  },
+  {
+   "n": 920,
+   "url": "https://github.com/kserve/kserve/issues/920",
+   "title": "What if a pre-build custom image have more than one prediction APIs?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0034,
+    "feature": 0.0219,
+    "question": 0.9747
+   },
+   "area": "runtimes",
+   "area_p": 0.4704,
+   "needs_info": 0.1494,
+   "priority": 0.4934,
+   "ms": 1448.3
+  },
+  {
+   "n": 2665,
+   "url": "https://github.com/kserve/kserve/issues/2665",
+   "title": "Parametrized container builds",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0046,
+    "feature": 0.9838,
+    "question": 0.0116
+   },
+   "area": "build",
+   "area_p": 0.6728,
+   "needs_info": 0.0759,
+   "priority": 0.8768,
+   "ms": 1448.5
+  },
+  {
+   "n": 2672,
+   "url": "https://github.com/kserve/kserve/issues/2672",
+   "title": "Inference Logger broken with Triton backend",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9788,
+    "feature": 0.0038,
+    "question": 0.0174
+   },
+   "area": "runtimes",
+   "area_p": 0.967,
+   "needs_info": 0.1361,
+   "priority": 1.1107,
+   "ms": 1855.9
+  },
+  {
+   "n": 3404,
+   "url": "https://github.com/kserve/kserve/issues/3404",
+   "title": "Add exception handler for model server",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9527,
+    "feature": 0.0431,
+    "question": 0.0042
+   },
+   "area": "python",
+   "area_p": 0.6476,
+   "needs_info": 0.0926,
+   "priority": 1.3877,
+   "ms": 1856.0
+  },
+  {
+   "n": 3147,
+   "url": "https://github.com/kserve/kserve/issues/3147",
+   "title": "Minikube fails to set up Kubernetes v1.27.4 due to TLS handshake timeout",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5716,
+    "feature": 0.0259,
+    "question": 0.4026
+   },
+   "area": "build",
+   "area_p": 0.8952,
+   "needs_info": 0.2522,
+   "priority": 1.0395,
+   "ms": 2269.8
+  },
+  {
+   "n": 3297,
+   "url": "https://github.com/kserve/kserve/issues/3297",
+   "title": "Fix bug in quick_install.sh for quick installation",
+   "label": "bug",
+   "kind": {
+    "bug": 0.94,
+    "feature": 0.0093,
+    "question": 0.0507
+   },
+   "area": "build",
+   "area_p": 0.9161,
+   "needs_info": 0.0926,
+   "priority": 1.005,
+   "ms": 3656.7
+  },
+  {
+   "n": 1437,
+   "url": "https://github.com/kserve/kserve/issues/1437",
+   "title": "How to  upgrade kfserving in kubeflow1.2",
+   "label": "question",
+   "kind": {
+    "bug": 0.0174,
+    "feature": 0.0028,
+    "question": 0.9797
+   },
+   "area": "python",
+   "area_p": 0.3592,
+   "needs_info": 0.2322,
+   "priority": 1.1191,
+   "ms": 2978.0
+  },
+  {
+   "n": 2233,
+   "url": "https://github.com/kserve/kserve/issues/2233",
+   "title": "pycaret model  support on kserve",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0475,
+    "feature": 0.367,
+    "question": 0.5855
+   },
+   "area": "runtimes",
+   "area_p": 0.7615,
+   "needs_info": 0.9162,
+   "priority": 0.4818,
+   "ms": 2978.1
+  },
+  {
+   "n": 2187,
+   "url": "https://github.com/kserve/kserve/issues/2187",
+   "title": "Kubeflow-Gateway with httpsRedicrect - Response: 301 Moved Permanently",
+   "label": "question",
+   "kind": {
+    "bug": 0.1196,
+    "feature": 0.0092,
+    "question": 0.8713
+   },
+   "area": "networking",
+   "area_p": 0.9146,
+   "needs_info": 0.1125,
+   "priority": 1.058,
+   "ms": 3704.1
+  },
+  {
+   "n": 2778,
+   "url": "https://github.com/kserve/kserve/issues/2778",
+   "title": "Customize the Uvicorn's access log format on Kserve 0.10+",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0081,
+    "feature": 0.8137,
+    "question": 0.1782
+   },
+   "area": "runtimes",
+   "area_p": 0.6454,
+   "needs_info": 0.0926,
+   "priority": 0.3726,
+   "ms": 2317.1
+  },
+  {
+   "n": 2557,
+   "url": "https://github.com/kserve/kserve/issues/2557",
+   "title": "Weekly scan of docker images",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0168,
+    "feature": 0.9452,
+    "question": 0.038
+   },
+   "area": "build",
+   "area_p": 0.8094,
+   "needs_info": 0.0686,
+   "priority": 0.8441,
+   "ms": 2002.2
+  },
+  {
+   "n": 2721,
+   "url": "https://github.com/kserve/kserve/issues/2721",
+   "title": "Make transformer preprocess API consistent between gRPC and HTTP protocols",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1188,
+    "feature": 0.8658,
+    "question": 0.0154
+   },
+   "area": "python",
+   "area_p": 0.9409,
+   "needs_info": 0.0455,
+   "priority": 0.6777,
+   "ms": 2002.1
+  },
+  {
+   "n": 2668,
+   "url": "https://github.com/kserve/kserve/issues/2668",
+   "title": "Improve KServe model server observability with metrics and distributed tracing",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0069,
+    "feature": 0.9363,
+    "question": 0.0567
+   },
+   "area": "python",
+   "area_p": 0.9369,
+   "needs_info": 0.0505,
+   "priority": 0.5178,
+   "ms": 942.6
+  },
+  {
+   "n": 1724,
+   "url": "https://github.com/kserve/kserve/issues/1724",
+   "title": "How to use GPU in custom kfserving?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0016,
+    "feature": 0.0049,
+    "question": 0.9935
+   },
+   "area": "runtimes",
+   "area_p": 0.646,
+   "needs_info": 0.0926,
+   "priority": 0.757,
+   "ms": 1612.5
+  },
+  {
+   "n": 2010,
+   "url": "https://github.com/kserve/kserve/issues/2010",
+   "title": "High availability control plane",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0296,
+    "feature": 0.827,
+    "question": 0.1434
+   },
+   "area": "controller",
+   "area_p": 0.9751,
+   "needs_info": 0.1792,
+   "priority": 1.905,
+   "ms": 1338.2
+  },
+  {
+   "n": 2066,
+   "url": "https://github.com/kserve/kserve/issues/2066",
+   "title": "Support convert of input to numpy array - sklearnserver",
+   "label": "feature",
+   "kind": {
+    "bug": 0.004,
+    "feature": 0.9776,
+    "question": 0.0184
+   },
+   "area": "runtimes",
+   "area_p": 0.9185,
+   "needs_info": 0.1125,
+   "priority": 0.4836,
+   "ms": 1335.3
+  },
+  {
+   "n": 323,
+   "url": "https://github.com/kserve/kserve/issues/323",
+   "title": "Need Interface Spec for the Custom Container",
+   "label": "question",
+   "kind": {
+    "bug": 0.0086,
+    "feature": 0.0705,
+    "question": 0.9209
+   },
+   "area": "runtimes",
+   "area_p": 0.9106,
+   "needs_info": 0.3425,
+   "priority": 0.6875,
+   "ms": 982.2
+  },
+  {
+   "n": 2273,
+   "url": "https://github.com/kserve/kserve/issues/2273",
+   "title": "socket.gaierror: [Errno -2] Name or service not known",
+   "label": "question",
+   "kind": {
+    "bug": 0.1621,
+    "feature": 0.0062,
+    "question": 0.8318
+   },
+   "area": "networking",
+   "area_p": 0.4928,
+   "needs_info": 0.2134,
+   "priority": 1.2597,
+   "ms": 2250.5
+  },
+  {
+   "n": 3094,
+   "url": "https://github.com/kserve/kserve/issues/3094",
+   "title": "validation error for InferenceResponse on V2 mnist for v0.11.0",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9021,
+    "feature": 0.0106,
+    "question": 0.0872
+   },
+   "area": "python",
+   "area_p": 0.5303,
+   "needs_info": 0.1021,
+   "priority": 1.3122,
+   "ms": 2851.2
+  },
+  {
+   "n": 2745,
+   "url": "https://github.com/kserve/kserve/issues/2745",
+   "title": "Make KServe Storage as an optional package",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0051,
+    "feature": 0.9845,
+    "question": 0.0103
+   },
+   "area": "storage",
+   "area_p": 0.9677,
+   "needs_info": 0.0559,
+   "priority": 0.5622,
+   "ms": 2851.3
+  },
+  {
+   "n": 2760,
+   "url": "https://github.com/kserve/kserve/issues/2760",
+   "title": "ConnectionResetError (104, 'Connection reset by peer) ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2147,
+    "feature": 0.0092,
+    "question": 0.7761
+   },
+   "area": "networking",
+   "area_p": 0.6684,
+   "needs_info": 0.8762,
+   "priority": 1.7257,
+   "ms": 2862.1
+  },
+  {
+   "n": 911,
+   "url": "https://github.com/kserve/kserve/issues/911",
+   "title": "KFserving Porting Tensorflow Object Detection models",
+   "label": "question",
+   "kind": {
+    "bug": 0.0018,
+    "feature": 0.0078,
+    "question": 0.9904
+   },
+   "area": "runtimes",
+   "area_p": 0.6748,
+   "needs_info": 0.4459,
+   "priority": 0.6083,
+   "ms": 1231.2
+  },
+  {
+   "n": 2997,
+   "url": "https://github.com/kserve/kserve/issues/2997",
+   "title": "End to End tests are broken because of a typo in workflow file",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9606,
+    "feature": 0.0152,
+    "question": 0.0242
+   },
+   "area": "build",
+   "area_p": 0.9722,
+   "needs_info": 0.0759,
+   "priority": 1.5221,
+   "ms": 1158.6
+  },
+  {
+   "n": 1709,
+   "url": "https://github.com/kserve/kserve/issues/1709",
+   "title": "How to use the pytorchserver image built by myself",
+   "label": "question",
+   "kind": {
+    "bug": 0.0016,
+    "feature": 0.0022,
+    "question": 0.9962
+   },
+   "area": "runtimes",
+   "area_p": 0.9157,
+   "needs_info": 0.7478,
+   "priority": 0.5012,
+   "ms": 1154.6
+  },
+  {
+   "n": 2358,
+   "url": "https://github.com/kserve/kserve/issues/2358",
+   "title": "Support multiple model versions in kserve python model server",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0355,
+    "feature": 0.9347,
+    "question": 0.0298
+   },
+   "area": "python",
+   "area_p": 0.9107,
+   "needs_info": 0.1021,
+   "priority": 0.8446,
+   "ms": 1160.0
+  },
+  {
+   "n": 848,
+   "url": "https://github.com/kserve/kserve/issues/848",
+   "title": "Authentication setup interfering with kfserving",
+   "label": "question",
+   "kind": {
+    "bug": 0.0555,
+    "feature": 0.0276,
+    "question": 0.9169
+   },
+   "area": "networking",
+   "area_p": 0.906,
+   "needs_info": 0.4459,
+   "priority": 1.2038,
+   "ms": 2482.0
+  },
+  {
+   "n": 857,
+   "url": "https://github.com/kserve/kserve/issues/857",
+   "title": "Using microk8s built-in registry",
+   "label": "question",
+   "kind": {
+    "bug": 0.0563,
+    "feature": 0.0147,
+    "question": 0.929
+   },
+   "area": "runtimes",
+   "area_p": 0.7191,
+   "needs_info": 0.1792,
+   "priority": 0.7814,
+   "ms": 2585.7
+  },
+  {
+   "n": 3744,
+   "url": "https://github.com/kserve/kserve/issues/3744",
+   "title": "Client fails to list clusterservingruntimes",
+   "label": "bug",
+   "kind": {
+    "bug": 0.3828,
+    "feature": 0.0064,
+    "question": 0.6108
+   },
+   "area": "runtimes",
+   "area_p": 0.9388,
+   "needs_info": 0.2322,
+   "priority": 0.9956,
+   "ms": 2866.3
+  },
+  {
+   "n": 2795,
+   "url": "https://github.com/kserve/kserve/issues/2795",
+   "title": "Change KFServing to KServe",
+   "label": "bug",
+   "kind": {
+    "bug": 0.2324,
+    "feature": 0.665,
+    "question": 0.1026
+   },
+   "area": "docs",
+   "area_p": 0.8599,
+   "needs_info": 0.0242,
+   "priority": 0.5916,
+   "ms": 2548.4
+  },
+  {
+   "n": 3649,
+   "url": "https://github.com/kserve/kserve/issues/3649",
+   "title": "Kserve deployment certificate issue - tls: failed to verify certificate: x509: certificate signed by unknown authority\\nError from server (InternalError)",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5214,
+    "feature": 0.0148,
+    "question": 0.4639
+   },
+   "area": "networking",
+   "area_p": 0.4954,
+   "needs_info": 0.2522,
+   "priority": 1.7786,
+   "ms": 2316.4
+  },
+  {
+   "n": 2755,
+   "url": "https://github.com/kserve/kserve/issues/2755",
+   "title": "Inference Service Predictor ONNX Triton Ready, but \"Request for unknown model: 'sklearn-iris-triton-onnx' is not found\"",
+   "label": "question",
+   "kind": {
+    "bug": 0.3467,
+    "feature": 0.0316,
+    "question": 0.6217
+   },
+   "area": "runtimes",
+   "area_p": 0.8453,
+   "needs_info": 0.7678,
+   "priority": 1.0467,
+   "ms": 3697.5
+  },
+  {
+   "n": 3467,
+   "url": "https://github.com/kserve/kserve/issues/3467",
+   "title": "Controller out-of-memory kill when cluster has too many secrets",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9851,
+    "feature": 0.0098,
+    "question": 0.0051
+   },
+   "area": "controller",
+   "area_p": 0.9571,
+   "needs_info": 0.2134,
+   "priority": 2.4198,
+   "ms": 3413.1
+  },
+  {
+   "n": 1785,
+   "url": "https://github.com/kserve/kserve/issues/1785",
+   "title": "How to setup sklearn prediction v2 (MLServer) with gRPC and MultiModelServer ?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0139,
+    "feature": 0.1073,
+    "question": 0.8788
+   },
+   "area": "runtimes",
+   "area_p": 0.8927,
+   "needs_info": 0.1021,
+   "priority": 0.6266,
+   "ms": 4485.0
+  },
+  {
+   "n": 871,
+   "url": "https://github.com/kserve/kserve/issues/871",
+   "title": "[autoscaling] can not scale down the pod",
+   "label": "question",
+   "kind": {
+    "bug": 0.7883,
+    "feature": 0.0177,
+    "question": 0.194
+   },
+   "area": "autoscaling",
+   "area_p": 0.954,
+   "needs_info": 0.4459,
+   "priority": 1.5416,
+   "ms": 3516.4
+  },
+  {
+   "n": 3221,
+   "url": "https://github.com/kserve/kserve/issues/3221",
+   "title": "KServe lgbserver runtime error input for v1 endpoint",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9491,
+    "feature": 0.0169,
+    "question": 0.034
+   },
+   "area": "runtimes",
+   "area_p": 0.8575,
+   "needs_info": 0.0926,
+   "priority": 1.3527,
+   "ms": 1858.9
+  },
+  {
+   "n": 2678,
+   "url": "https://github.com/kserve/kserve/issues/2678",
+   "title": "Document inferenceservice config options",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0306,
+    "feature": 0.7594,
+    "question": 0.2101
+   },
+   "area": "docs",
+   "area_p": 0.7692,
+   "needs_info": 0.041,
+   "priority": 0.4187,
+   "ms": 1856.5
+  },
+  {
+   "n": 2548,
+   "url": "https://github.com/kserve/kserve/issues/2548",
+   "title": "Istio 503",
+   "label": "bug",
+   "kind": {
+    "bug": 0.4958,
+    "feature": 0.0083,
+    "question": 0.4958
+   },
+   "area": "networking",
+   "area_p": 0.8638,
+   "needs_info": 0.7678,
+   "priority": 1.6098,
+   "ms": 1690.1
+  },
+  {
+   "n": 2909,
+   "url": "https://github.com/kserve/kserve/issues/2909",
+   "title": "Add Support for specifying collocation of transformer and predictor in model spec",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0027,
+    "feature": 0.99,
+    "question": 0.0073
+   },
+   "area": "runtimes",
+   "area_p": 0.4334,
+   "needs_info": 0.0559,
+   "priority": 0.6532,
+   "ms": 1262.2
+  },
+  {
+   "n": 2740,
+   "url": "https://github.com/kserve/kserve/issues/2740",
+   "title": "Separate timeoutSeconds to two different properties, terminationGracePeriod and request timeout. ",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0229,
+    "feature": 0.9643,
+    "question": 0.0128
+   },
+   "area": "controller",
+   "area_p": 0.52,
+   "needs_info": 0.2322,
+   "priority": 1.1748,
+   "ms": 1513.6
+  },
+  {
+   "n": 3132,
+   "url": "https://github.com/kserve/kserve/issues/3132",
+   "title": "Quick install script should install storageContainer CRD and the default CR",
+   "label": "feature",
+   "kind": {
+    "bug": 0.2226,
+    "feature": 0.7159,
+    "question": 0.0616
+   },
+   "area": "build",
+   "area_p": 0.4509,
+   "needs_info": 0.062,
+   "priority": 0.8507,
+   "ms": 1513.1
+  },
+  {
+   "n": 2388,
+   "url": "https://github.com/kserve/kserve/issues/2388",
+   "title": "Enable explainers to work with ModelMesh",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0266,
+    "feature": 0.9397,
+    "question": 0.0337
+   },
+   "area": "runtimes",
+   "area_p": 0.4693,
+   "needs_info": 0.3185,
+   "priority": 0.6574,
+   "ms": 1977.9
+  },
+  {
+   "n": 2120,
+   "url": "https://github.com/kserve/kserve/issues/2120",
+   "title": "StatusCode.UNIMPLEMENTED when calling torchserve grpc using port-forward",
+   "label": "question",
+   "kind": {
+    "bug": 0.5199,
+    "feature": 0.0176,
+    "question": 0.4626
+   },
+   "area": "networking",
+   "area_p": 0.6321,
+   "needs_info": 0.1494,
+   "priority": 1.1274,
+   "ms": 1976.1
+  },
+  {
+   "n": 1880,
+   "url": "https://github.com/kserve/kserve/issues/1880",
+   "title": "404 Not Found: Deploying Sklearn Inference Service on KServe 0.7.0 Using Raw Deployment Mode",
+   "label": "question",
+   "kind": {
+    "bug": 0.3561,
+    "feature": 0.0053,
+    "question": 0.6386
+   },
+   "area": "networking",
+   "area_p": 0.6287,
+   "needs_info": 0.4459,
+   "priority": 1.1081,
+   "ms": 2157.5
+  },
+  {
+   "n": 2918,
+   "url": "https://github.com/kserve/kserve/issues/2918",
+   "title": "Load kubeconfig from dict",
+   "label": "feature",
+   "kind": {
+    "bug": 0.004,
+    "feature": 0.9753,
+    "question": 0.0206
+   },
+   "area": "python",
+   "area_p": 0.9755,
+   "needs_info": 0.0686,
+   "priority": 0.3979,
+   "ms": 2677.3
+  },
+  {
+   "n": 4211,
+   "url": "https://github.com/kserve/kserve/issues/4211",
+   "title": "Flaky test for gateway API raw deployment mode",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9268,
+    "feature": 0.0313,
+    "question": 0.0419
+   },
+   "area": "networking",
+   "area_p": 0.7591,
+   "needs_info": 0.0926,
+   "priority": 0.6363,
+   "ms": 2630.1
+  },
+  {
+   "n": 3423,
+   "url": "https://github.com/kserve/kserve/issues/3423",
+   "title": "FileNotFoundError when using an s3 bucket as the model_dir with HuggingFace model server",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9843,
+    "feature": 0.0034,
+    "question": 0.0123
+   },
+   "area": "storage",
+   "area_p": 0.5794,
+   "needs_info": 0.0455,
+   "priority": 0.9961,
+   "ms": 2630.4
+  },
+  {
+   "n": 741,
+   "url": "https://github.com/kserve/kserve/issues/741",
+   "title": "Question: Kubeflow installation's ingress gateway for kfserving is different than an independent install - which gateway to document in kfserving docs? ",
+   "label": "question",
+   "kind": {
+    "bug": 0.0273,
+    "feature": 0.0101,
+    "question": 0.9626
+   },
+   "area": "docs",
+   "area_p": 0.538,
+   "needs_info": 0.0759,
+   "priority": 0.947,
+   "ms": 2495.6
+  },
+  {
+   "n": 3050,
+   "url": "https://github.com/kserve/kserve/issues/3050",
+   "title": "scikit-learn 1.0.2 does not have wheels for python 3.11",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5544,
+    "feature": 0.1365,
+    "question": 0.3091
+   },
+   "area": "runtimes",
+   "area_p": 0.9303,
+   "needs_info": 0.2522,
+   "priority": 1.3915,
+   "ms": 2148.3
+  },
+  {
+   "n": 2576,
+   "url": "https://github.com/kserve/kserve/issues/2576",
+   "title": "Error: Model with name BERTSeqClassification does not exist",
+   "label": "bug",
+   "kind": {
+    "bug": 0.4941,
+    "feature": 0.0118,
+    "question": 0.4941
+   },
+   "area": "runtimes",
+   "area_p": 0.4972,
+   "needs_info": 0.6575,
+   "priority": 0.9958,
+   "ms": 3037.0
+  },
+  {
+   "n": 2661,
+   "url": "https://github.com/kserve/kserve/issues/2661",
+   "title": "[bugfix]: Fix kubectl server version",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9479,
+    "feature": 0.0066,
+    "question": 0.0455
+   },
+   "area": "build",
+   "area_p": 0.968,
+   "needs_info": 0.0505,
+   "priority": 1.1537,
+   "ms": 3035.2
+  },
+  {
+   "n": 1842,
+   "url": "https://github.com/kserve/kserve/issues/1842",
+   "title": "Support LightGBM with V2 protocol",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0046,
+    "feature": 0.9824,
+    "question": 0.013
+   },
+   "area": "runtimes",
+   "area_p": 0.5749,
+   "needs_info": 0.0505,
+   "priority": 0.4882,
+   "ms": 2965.8
+  },
+  {
+   "n": 481,
+   "url": "https://github.com/kserve/kserve/issues/481",
+   "title": "uninstall and reinstall flow with and without kfctl",
+   "label": "question",
+   "kind": {
+    "bug": 0.3023,
+    "feature": 0.0129,
+    "question": 0.6848
+   },
+   "area": "controller",
+   "area_p": 0.6835,
+   "needs_info": 0.3425,
+   "priority": 1.2303,
+   "ms": 4320.1
+  },
+  {
+   "n": 3724,
+   "url": "https://github.com/kserve/kserve/issues/3724",
+   "title": "ClusterRole permissions are too broadly scoped?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0124,
+    "feature": 0.0564,
+    "question": 0.9312
+   },
+   "area": "controller",
+   "area_p": 0.6653,
+   "needs_info": 0.0686,
+   "priority": 1.9617,
+   "ms": 2637.2
+  },
+  {
+   "n": 940,
+   "url": "https://github.com/kserve/kserve/issues/940",
+   "title": "How can we include post and pre process code inside the kfserving deployment?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0025,
+    "feature": 0.0219,
+    "question": 0.9756
+   },
+   "area": "runtimes",
+   "area_p": 0.5153,
+   "needs_info": 0.4459,
+   "priority": 0.6267,
+   "ms": 2105.2
+  },
+  {
+   "n": 2257,
+   "url": "https://github.com/kserve/kserve/issues/2257",
+   "title": "Is path-based serving supported?",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0028,
+    "feature": 0.1791,
+    "question": 0.818
+   },
+   "area": "networking",
+   "area_p": 0.9758,
+   "needs_info": 0.062,
+   "priority": 0.3754,
+   "ms": 2059.6
+  },
+  {
+   "n": 3197,
+   "url": "https://github.com/kserve/kserve/issues/3197",
+   "title": "Add worker callback after forking",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0108,
+    "feature": 0.9719,
+    "question": 0.0173
+   },
+   "area": "python",
+   "area_p": 0.4311,
+   "needs_info": 0.0838,
+   "priority": 1.0707,
+   "ms": 1785.6
+  },
+  {
+   "n": 1992,
+   "url": "https://github.com/kserve/kserve/issues/1992",
+   "title": "Make model type + version support more specific in Serving Runtimes and add auto-placement for models with no versions",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0286,
+    "feature": 0.9513,
+    "question": 0.0201
+   },
+   "area": "runtimes",
+   "area_p": 0.9611,
+   "needs_info": 0.0505,
+   "priority": 1.0191,
+   "ms": 1784.3
+  },
+  {
+   "n": 2572,
+   "url": "https://github.com/kserve/kserve/issues/2572",
+   "title": "How to health check model server with multiple pod",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0034,
+    "feature": 0.0146,
+    "question": 0.982
+   },
+   "area": "runtimes",
+   "area_p": 0.2999,
+   "needs_info": 0.1494,
+   "priority": 0.7329,
+   "ms": 2016.5
+  },
+  {
+   "n": 1717,
+   "url": "https://github.com/kserve/kserve/issues/1717",
+   "title": "sklearn sample not accessible through postman",
+   "label": "question",
+   "kind": {
+    "bug": 0.2796,
+    "feature": 0.0084,
+    "question": 0.712
+   },
+   "area": "networking",
+   "area_p": 0.7189,
+   "needs_info": 0.5271,
+   "priority": 0.7785,
+   "ms": 2015.0
+  },
+  {
+   "n": 3032,
+   "url": "https://github.com/kserve/kserve/issues/3032",
+   "title": "GPU Metrics using Prometheus and Grafana",
+   "label": "feature",
+   "kind": {
+    "bug": 0.003,
+    "feature": 0.0104,
+    "question": 0.9866
+   },
+   "area": "autoscaling",
+   "area_p": 0.6402,
+   "needs_info": 0.2134,
+   "priority": 0.3814,
+   "ms": 1628.6
+  },
+  {
+   "n": 2768,
+   "url": "https://github.com/kserve/kserve/issues/2768",
+   "title": "MLflow modelserver crashing for exported tensorflow model artifacts ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9125,
+    "feature": 0.009,
+    "question": 0.0785
+   },
+   "area": "runtimes",
+   "area_p": 0.8272,
+   "needs_info": 0.4192,
+   "priority": 1.4692,
+   "ms": 1628.7
+  },
+  {
+   "n": 3545,
+   "url": "https://github.com/kserve/kserve/issues/3545",
+   "title": "Support download huggingface models in storage initializer",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0017,
+    "feature": 0.9891,
+    "question": 0.0092
+   },
+   "area": "storage",
+   "area_p": 0.9503,
+   "needs_info": 0.1021,
+   "priority": 0.6827,
+   "ms": 2171.6
+  },
+  {
+   "n": 3750,
+   "url": "https://github.com/kserve/kserve/issues/3750",
+   "title": "Multi-Lora support",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0023,
+    "feature": 0.9813,
+    "question": 0.0164
+   },
+   "area": "llm",
+   "area_p": 0.4864,
+   "needs_info": 0.0759,
+   "priority": 0.6494,
+   "ms": 2170.3
+  },
+  {
+   "n": 3391,
+   "url": "https://github.com/kserve/kserve/issues/3391",
+   "title": "Integration with Deeploy for model explainability",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0038,
+    "feature": 0.9788,
+    "question": 0.0174
+   },
+   "area": "runtimes",
+   "area_p": 0.7083,
+   "needs_info": 0.0926,
+   "priority": 0.6061,
+   "ms": 2538.5
+  },
+  {
+   "n": 2667,
+   "url": "https://github.com/kserve/kserve/issues/2667",
+   "title": "error in installation of kserve in kubeflow.",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0456,
+    "feature": 0.0035,
+    "question": 0.9509
+   },
+   "area": "build",
+   "area_p": 0.8261,
+   "needs_info": 0.1638,
+   "priority": 1.115,
+   "ms": 2536.9
+  },
+  {
+   "n": 1005,
+   "url": "https://github.com/kserve/kserve/issues/1005",
+   "title": "External IP for istio-ingressgateway in pending status",
+   "label": "question",
+   "kind": {
+    "bug": 0.0345,
+    "feature": 0.0035,
+    "question": 0.962
+   },
+   "area": "networking",
+   "area_p": 0.9665,
+   "needs_info": 0.4729,
+   "priority": 0.9233,
+   "ms": 2972.8
+  },
+  {
+   "n": 2646,
+   "url": "https://github.com/kserve/kserve/issues/2646",
+   "title": "flux cannot work with kserve controller",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9553,
+    "feature": 0.0063,
+    "question": 0.0385
+   },
+   "area": "controller",
+   "area_p": 0.5236,
+   "needs_info": 0.1125,
+   "priority": 1.9508,
+   "ms": 2977.8
+  },
+  {
+   "n": 2405,
+   "url": "https://github.com/kserve/kserve/issues/2405",
+   "title": "Example project structure for a GitHub repo of KServe models",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0054,
+    "feature": 0.1329,
+    "question": 0.8617
+   },
+   "area": "docs",
+   "area_p": 0.5272,
+   "needs_info": 0.062,
+   "priority": 0.2438,
+   "ms": 2323.6
+  },
+  {
+   "n": 2751,
+   "url": "https://github.com/kserve/kserve/issues/2751",
+   "title": "Provide 2-3 model versions in S3 and docs to quickly test out progressive rollout approaches",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0036,
+    "feature": 0.978,
+    "question": 0.0184
+   },
+   "area": "runtimes",
+   "area_p": 0.4691,
+   "needs_info": 0.0369,
+   "priority": 0.2052,
+   "ms": 2474.8
+  },
+  {
+   "n": 3087,
+   "url": "https://github.com/kserve/kserve/issues/3087",
+   "title": "Question on InferenceService Swagger UI",
+   "label": "question",
+   "kind": {
+    "bug": 0.0077,
+    "feature": 0.0069,
+    "question": 0.9854
+   },
+   "area": "runtimes",
+   "area_p": 0.3984,
+   "needs_info": 0.2953,
+   "priority": 0.4209,
+   "ms": 1748.1
+  },
+  {
+   "n": 2770,
+   "url": "https://github.com/kserve/kserve/issues/2770",
+   "title": "KServe throughput (RPS) do not perform well on GPU nodes (compared to directly run in Triton)",
+   "label": "question",
+   "kind": {
+    "bug": 0.9059,
+    "feature": 0.0324,
+    "question": 0.0617
+   },
+   "area": "runtimes",
+   "area_p": 0.911,
+   "needs_info": 0.4459,
+   "priority": 1.4039,
+   "ms": 3027.1
+  },
+  {
+   "n": 1821,
+   "url": "https://github.com/kserve/kserve/issues/1821",
+   "title": "Update kfserving references in config",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1352,
+    "feature": 0.78,
+    "question": 0.0847
+   },
+   "area": "controller",
+   "area_p": 0.4034,
+   "needs_info": 0.0369,
+   "priority": 0.6629,
+   "ms": 2450.2
+  },
+  {
+   "n": 3455,
+   "url": "https://github.com/kserve/kserve/issues/3455",
+   "title": "Inference graph router can't resolve domain for node without coredns pod",
+   "label": "bug",
+   "kind": {
+    "bug": 0.936,
+    "feature": 0.0073,
+    "question": 0.0567
+   },
+   "area": "networking",
+   "area_p": 0.9157,
+   "needs_info": 0.2134,
+   "priority": 1.1847,
+   "ms": 2993.3
+  },
+  {
+   "n": 2277,
+   "url": "https://github.com/kserve/kserve/issues/2277",
+   "title": "Kserve dependencies conflicts with KFP - Tensorflow - etc...",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0646,
+    "feature": 0.1848,
+    "question": 0.7507
+   },
+   "area": "python",
+   "area_p": 0.5926,
+   "needs_info": 0.2522,
+   "priority": 1.3155,
+   "ms": 2302.5
+  },
+  {
+   "n": 2625,
+   "url": "https://github.com/kserve/kserve/issues/2625",
+   "title": "kserve-controller-manager crashing",
+   "label": "bug",
+   "kind": {
+    "bug": 0.7962,
+    "feature": 0.0079,
+    "question": 0.196
+   },
+   "area": "controller",
+   "area_p": 0.945,
+   "needs_info": 0.7268,
+   "priority": 1.3089,
+   "ms": 2864.8
+  },
+  {
+   "n": 2541,
+   "url": "https://github.com/kserve/kserve/issues/2541",
+   "title": "Compatibility with renovate, dependabot",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0139,
+    "feature": 0.4357,
+    "question": 0.5504
+   },
+   "area": "build",
+   "area_p": 0.9169,
+   "needs_info": 0.1638,
+   "priority": 0.7963,
+   "ms": 2857.7
+  },
+  {
+   "n": 3085,
+   "url": "https://github.com/kserve/kserve/issues/3085",
+   "title": "Question on Canary deployment of InferenceService",
+   "label": "question",
+   "kind": {
+    "bug": 0.0081,
+    "feature": 0.0786,
+    "question": 0.9134
+   },
+   "area": "controller",
+   "area_p": 0.6182,
+   "needs_info": 0.1792,
+   "priority": 0.5126,
+   "ms": 2805.0
+  },
+  {
+   "n": 2220,
+   "url": "https://github.com/kserve/kserve/issues/2220",
+   "title": "Adding kserve into a poetry-managed package dramatically increases dependency resolution time",
+   "label": "feature",
+   "kind": {
+    "bug": 0.5629,
+    "feature": 0.1233,
+    "question": 0.3139
+   },
+   "area": "python",
+   "area_p": 0.7217,
+   "needs_info": 0.4192,
+   "priority": 0.9424,
+   "ms": 3308.7
+  },
+  {
+   "n": 1703,
+   "url": "https://github.com/kserve/kserve/issues/1703",
+   "title": "The problem of kfserving handling multiple requests at the same time",
+   "label": "question",
+   "kind": {
+    "bug": 0.5459,
+    "feature": 0.022,
+    "question": 0.4321
+   },
+   "area": "python",
+   "area_p": 0.3446,
+   "needs_info": 0.7678,
+   "priority": 1.2019,
+   "ms": 2644.3
+  },
+  {
+   "n": 2861,
+   "url": "https://github.com/kserve/kserve/issues/2861",
+   "title": "Transformer image approx 7GB in size, transformer pod takes a lot of time to start",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0745,
+    "feature": 0.2397,
+    "question": 0.6858
+   },
+   "area": "runtimes",
+   "area_p": 0.7367,
+   "needs_info": 0.1021,
+   "priority": 1.0682,
+   "ms": 3340.2
+  },
+  {
+   "n": 2942,
+   "url": "https://github.com/kserve/kserve/issues/2942",
+   "title": "logging.py hides native the python module in IDE (Pycharm)",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8297,
+    "feature": 0.0901,
+    "question": 0.0802
+   },
+   "area": "python",
+   "area_p": 0.9118,
+   "needs_info": 0.1021,
+   "priority": 1.2119,
+   "ms": 2702.7
+  },
+  {
+   "n": 1841,
+   "url": "https://github.com/kserve/kserve/issues/1841",
+   "title": "Upgrade MLServer image to 0.5.0",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0206,
+    "feature": 0.917,
+    "question": 0.0624
+   },
+   "area": "build",
+   "area_p": 0.6508,
+   "needs_info": 0.0299,
+   "priority": 0.5512,
+   "ms": 1983.1
+  },
+  {
+   "n": 1379,
+   "url": "https://github.com/kserve/kserve/issues/1379",
+   "title": "What is the kfserving_endpoint for a remote KFServing installation? Using http://$INGRESS_HOST:$INGRESS_PORT/deploy-model returns 404",
+   "label": "question",
+   "kind": {
+    "bug": 0.0569,
+    "feature": 0.0033,
+    "question": 0.9398
+   },
+   "area": "networking",
+   "area_p": 0.784,
+   "needs_info": 0.5808,
+   "priority": 1.2605,
+   "ms": 1328.0
+  },
+  {
+   "n": 2793,
+   "url": "https://github.com/kserve/kserve/issues/2793",
+   "title": "Additional parameter in V2 Infernce Protocol",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1711,
+    "feature": 0.0473,
+    "question": 0.7815
+   },
+   "area": "python",
+   "area_p": 0.8048,
+   "needs_info": 0.4459,
+   "priority": 1.0714,
+   "ms": 2278.4
+  },
+  {
+   "n": 2872,
+   "url": "https://github.com/kserve/kserve/issues/2872",
+   "title": "[TorchServe Model] Connection refused",
+   "label": "bug",
+   "kind": {
+    "bug": 0.6081,
+    "feature": 0.0108,
+    "question": 0.3811
+   },
+   "area": "runtimes",
+   "area_p": 0.8903,
+   "needs_info": 0.1238,
+   "priority": 1.2899,
+   "ms": 2647.1
+  },
+  {
+   "n": 3717,
+   "url": "https://github.com/kserve/kserve/issues/3717",
+   "title": "Make MAX_GRPC_MESSAGE_LENGTH Configurable for Image Input Size Flexibility",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0046,
+    "feature": 0.9857,
+    "question": 0.0098
+   },
+   "area": "python",
+   "area_p": 0.7217,
+   "needs_info": 0.062,
+   "priority": 0.6999,
+   "ms": 3179.4
+  },
+  {
+   "n": 1442,
+   "url": "https://github.com/kserve/kserve/issues/1442",
+   "title": "Changing the Resource allocation for containers in predictor",
+   "label": "question",
+   "kind": {
+    "bug": 0.172,
+    "feature": 0.0423,
+    "question": 0.7856
+   },
+   "area": "runtimes",
+   "area_p": 0.6615,
+   "needs_info": 0.607,
+   "priority": 0.8028,
+   "ms": 2658.6
+  },
+  {
+   "n": 3725,
+   "url": "https://github.com/kserve/kserve/issues/3725",
+   "title": "Add Oracle Cloud Infrastructure (OCI) Object Storage as a storage agent",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0011,
+    "feature": 0.9937,
+    "question": 0.0052
+   },
+   "area": "storage",
+   "area_p": 0.9872,
+   "needs_info": 0.062,
+   "priority": 0.3547,
+   "ms": 1346.8
+  },
+  {
+   "n": 3801,
+   "url": "https://github.com/kserve/kserve/issues/3801",
+   "title": "Tensorflow model Could not find variable",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1786,
+    "feature": 0.006,
+    "question": 0.8154
+   },
+   "area": "storage",
+   "area_p": 0.4411,
+   "needs_info": 0.2953,
+   "priority": 1.5939,
+   "ms": 1955.7
+  },
+  {
+   "n": 2647,
+   "url": "https://github.com/kserve/kserve/issues/2647",
+   "title": "Custom model example does not work in master branch",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8716,
+    "feature": 0.022,
+    "question": 0.1064
+   },
+   "area": "docs",
+   "area_p": 0.6433,
+   "needs_info": 0.062,
+   "priority": 1.0448,
+   "ms": 1958.1
+  },
+  {
+   "n": 2455,
+   "url": "https://github.com/kserve/kserve/issues/2455",
+   "title": "Add support for resources/limits and affinity to IG spec.",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0046,
+    "feature": 0.9877,
+    "question": 0.0077
+   },
+   "area": "controller",
+   "area_p": 0.3436,
+   "needs_info": 0.0926,
+   "priority": 0.8338,
+   "ms": 1956.7
+  },
+  {
+   "n": 3212,
+   "url": "https://github.com/kserve/kserve/issues/3212",
+   "title": "Could I run Inference Service without model ?",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0423,
+    "feature": 0.0758,
+    "question": 0.8819
+   },
+   "area": "python",
+   "area_p": 0.4137,
+   "needs_info": 0.1958,
+   "priority": 0.4612,
+   "ms": 2059.4
+  },
+  {
+   "n": 2155,
+   "url": "https://github.com/kserve/kserve/issues/2155",
+   "title": "expose triton prometheus metric",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0054,
+    "feature": 0.9782,
+    "question": 0.0164
+   },
+   "area": "runtimes",
+   "area_p": 0.9653,
+   "needs_info": 0.1958,
+   "priority": 0.5226,
+   "ms": 1345.1
+  },
+  {
+   "n": 2744,
+   "url": "https://github.com/kserve/kserve/issues/2744",
+   "title": "Proto file conflict when I use MLServer for MLFlow",
+   "label": "bug",
+   "kind": {
+    "bug": 0.599,
+    "feature": 0.0256,
+    "question": 0.3754
+   },
+   "area": "python",
+   "area_p": 0.9426,
+   "needs_info": 0.1361,
+   "priority": 1.0816,
+   "ms": 1838.3
+  },
+  {
+   "n": 2496,
+   "url": "https://github.com/kserve/kserve/issues/2496",
+   "title": "Enable KServe warning flags ",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0468,
+    "feature": 0.8691,
+    "question": 0.084
+   },
+   "area": "build",
+   "area_p": 0.7405,
+   "needs_info": 0.0838,
+   "priority": 0.5491,
+   "ms": 1838.5
+  },
+  {
+   "n": 2427,
+   "url": "https://github.com/kserve/kserve/issues/2427",
+   "title": "How to mount additional custom storage in V1beta1PredictorSpec?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0782,
+    "feature": 0.0121,
+    "question": 0.9097
+   },
+   "area": "storage",
+   "area_p": 0.722,
+   "needs_info": 0.2953,
+   "priority": 0.9426,
+   "ms": 2248.6
+  },
+  {
+   "n": 2612,
+   "url": "https://github.com/kserve/kserve/issues/2612",
+   "title": "Publish multi-arch docker images for kserve-controller, modelmesh and modelmesh-controller",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0034,
+    "feature": 0.9721,
+    "question": 0.0245
+   },
+   "area": "build",
+   "area_p": 0.819,
+   "needs_info": 0.0218,
+   "priority": 0.8089,
+   "ms": 1983.8
+  },
+  {
+   "n": 733,
+   "url": "https://github.com/kserve/kserve/issues/733",
+   "title": "custom image has 2 interfaces, how to access them?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0129,
+    "feature": 0.0163,
+    "question": 0.9708
+   },
+   "area": "runtimes",
+   "area_p": 0.4971,
+   "needs_info": 0.1238,
+   "priority": 0.8089,
+   "ms": 2008.4
+  },
+  {
+   "n": 3595,
+   "url": "https://github.com/kserve/kserve/issues/3595",
+   "title": "Parallel Model Inference with Ray Serving not working due to deprecated API",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8063,
+    "feature": 0.0171,
+    "question": 0.1766
+   },
+   "area": "runtimes",
+   "area_p": 0.7511,
+   "needs_info": 0.1021,
+   "priority": 1.6946,
+   "ms": 3160.1
+  },
+  {
+   "n": 2979,
+   "url": "https://github.com/kserve/kserve/issues/2979",
+   "title": "Missing prometheus metrics on multiple uvicorn worker processes",
+   "label": "bug",
+   "kind": {
+    "bug": 0.6059,
+    "feature": 0.0935,
+    "question": 0.3006
+   },
+   "area": "runtimes",
+   "area_p": 0.6715,
+   "needs_info": 0.1238,
+   "priority": 1.251,
+   "ms": 3264.2
+  },
+  {
+   "n": 1606,
+   "url": "https://github.com/kserve/kserve/issues/1606",
+   "title": ".pkl or .pickle file is not supported in v2 sklearn server",
+   "label": "feature",
+   "kind": {
+    "bug": 0.929,
+    "feature": 0.0147,
+    "question": 0.0563
+   },
+   "area": "runtimes",
+   "area_p": 0.4831,
+   "needs_info": 0.1125,
+   "priority": 1.2945,
+   "ms": 3873.0
+  },
+  {
+   "n": 2521,
+   "url": "https://github.com/kserve/kserve/issues/2521",
+   "title": "InferenceService Deployments cannot scale beyond 1 replica due to Reconciliation",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8869,
+    "feature": 0.0964,
+    "question": 0.0167
+   },
+   "area": "autoscaling",
+   "area_p": 0.7063,
+   "needs_info": 0.2522,
+   "priority": 1.493,
+   "ms": 3503.0
+  },
+  {
+   "n": 2119,
+   "url": "https://github.com/kserve/kserve/issues/2119",
+   "title": "Unable to delete inferenceservice",
+   "label": "question",
+   "kind": {
+    "bug": 0.9703,
+    "feature": 0.0038,
+    "question": 0.0259
+   },
+   "area": "controller",
+   "area_p": 0.9155,
+   "needs_info": 0.7866,
+   "priority": 1.4735,
+   "ms": 2158.2
+  },
+  {
+   "n": 2844,
+   "url": "https://github.com/kserve/kserve/issues/2844",
+   "title": "Python docker images do not set permissions on $VIRTUAL_ENV",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8954,
+    "feature": 0.0685,
+    "question": 0.036
+   },
+   "area": "runtimes",
+   "area_p": 0.4905,
+   "needs_info": 0.0759,
+   "priority": 1.3729,
+   "ms": 2505.4
+  },
+  {
+   "n": 2457,
+   "url": "https://github.com/kserve/kserve/issues/2457",
+   "title": "No containerConcurrency concept for IG\u2019s router like we have in ISVC\u2019s",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0114,
+    "feature": 0.9669,
+    "question": 0.0217
+   },
+   "area": "networking",
+   "area_p": 0.773,
+   "needs_info": 0.2732,
+   "priority": 0.6919,
+   "ms": 1895.1
+  },
+  {
+   "n": 4389,
+   "url": "https://github.com/kserve/kserve/issues/4389",
+   "title": "Handle Knative Autoscaler Configuration When Creating Knative Services",
+   "label": "feature",
+   "kind": {
+    "bug": 0.6862,
+    "feature": 0.3029,
+    "question": 0.0108
+   },
+   "area": "autoscaling",
+   "area_p": 0.9336,
+   "needs_info": 0.1494,
+   "priority": 1.2987,
+   "ms": 2624.5
+  },
+  {
+   "n": 1723,
+   "url": "https://github.com/kserve/kserve/issues/1723",
+   "title": "Can't set termination_grace_period_seconds",
+   "label": "question",
+   "kind": {
+    "bug": 0.2093,
+    "feature": 0.0342,
+    "question": 0.7565
+   },
+   "area": "controller",
+   "area_p": 0.4521,
+   "needs_info": 0.2322,
+   "priority": 0.9104,
+   "ms": 2995.1
+  },
+  {
+   "n": 3043,
+   "url": "https://github.com/kserve/kserve/issues/3043",
+   "title": "Enhancing KServe Model Fetching with oci: Schema and Sidecar Containers",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0012,
+    "feature": 0.9944,
+    "question": 0.0043
+   },
+   "area": "storage",
+   "area_p": 0.9247,
+   "needs_info": 0.0455,
+   "priority": 0.5603,
+   "ms": 2544.0
+  },
+  {
+   "n": 3288,
+   "url": "https://github.com/kserve/kserve/issues/3288",
+   "title": "Add health check for kserve controller manager",
+   "label": "bug",
+   "kind": {
+    "bug": 0.6339,
+    "feature": 0.3535,
+    "question": 0.0127
+   },
+   "area": "controller",
+   "area_p": 0.7648,
+   "needs_info": 0.1238,
+   "priority": 1.358,
+   "ms": 2840.5
+  },
+  {
+   "n": 4505,
+   "url": "https://github.com/kserve/kserve/issues/4505",
+   "title": "MIG support for huggingface runtime",
+   "label": "question",
+   "kind": {
+    "bug": 0.0599,
+    "feature": 0.5516,
+    "question": 0.3885
+   },
+   "area": "llm",
+   "area_p": 0.4774,
+   "needs_info": 0.1638,
+   "priority": 0.5106,
+   "ms": 2218.9
+  },
+  {
+   "n": 2928,
+   "url": "https://github.com/kserve/kserve/issues/2928",
+   "title": "Decode cloudevent with avro binary",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9254,
+    "feature": 0.063,
+    "question": 0.0116
+   },
+   "area": "python",
+   "area_p": 0.7881,
+   "needs_info": 0.2953,
+   "priority": 0.9722,
+   "ms": 2276.7
+  },
+  {
+   "n": 2733,
+   "url": "https://github.com/kserve/kserve/issues/2733",
+   "title": "Improve InferenceService status",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1002,
+    "feature": 0.8205,
+    "question": 0.0793
+   },
+   "area": "controller",
+   "area_p": 0.8929,
+   "needs_info": 0.0926,
+   "priority": 0.801,
+   "ms": 2227.2
+  },
+  {
+   "n": 2651,
+   "url": "https://github.com/kserve/kserve/issues/2651",
+   "title": "Graph handler can not tranport request.files to nodes",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8831,
+    "feature": 0.0567,
+    "question": 0.0601
+   },
+   "area": "python",
+   "area_p": 0.3239,
+   "needs_info": 0.2732,
+   "priority": 1.0383,
+   "ms": 2398.6
+  },
+  {
+   "n": 2798,
+   "url": "https://github.com/kserve/kserve/issues/2798",
+   "title": "Custom KServe model gives an error which is hard to figure out.",
+   "label": "bug",
+   "kind": {
+    "bug": 0.8433,
+    "feature": 0.0106,
+    "question": 0.1462
+   },
+   "area": "python",
+   "area_p": 0.8986,
+   "needs_info": 0.1494,
+   "priority": 1.42,
+   "ms": 2317.8
+  },
+  {
+   "n": 2081,
+   "url": "https://github.com/kserve/kserve/issues/2081",
+   "title": "Instructions not complete. ",
+   "label": "feature",
+   "kind": {
+    "bug": 0.146,
+    "feature": 0.0118,
+    "question": 0.8422
+   },
+   "area": "docs",
+   "area_p": 0.9316,
+   "needs_info": 0.1021,
+   "priority": 0.6009,
+   "ms": 1696.4
+  },
+  {
+   "n": 2775,
+   "url": "https://github.com/kserve/kserve/issues/2775",
+   "title": "KServe REST Server doesn't check model readiness before attempting inference.",
+   "label": "feature",
+   "kind": {
+    "bug": 0.7846,
+    "feature": 0.1931,
+    "question": 0.0222
+   },
+   "area": "python",
+   "area_p": 0.8465,
+   "needs_info": 0.0759,
+   "priority": 1.3055,
+   "ms": 2253.2
+  },
+  {
+   "n": 3501,
+   "url": "https://github.com/kserve/kserve/issues/3501",
+   "title": "Storage Initializer Azure IsADirectoryError ",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9738,
+    "feature": 0.0068,
+    "question": 0.0194
+   },
+   "area": "storage",
+   "area_p": 0.9803,
+   "needs_info": 0.1958,
+   "priority": 1.3604,
+   "ms": 1785.4
+  },
+  {
+   "n": 3453,
+   "url": "https://github.com/kserve/kserve/issues/3453",
+   "title": " `predictor.model.args` defined in `InferenceService` does not override `containers.args` in `ServingRuntime`",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9509,
+    "feature": 0.0341,
+    "question": 0.015
+   },
+   "area": "runtimes",
+   "area_p": 0.5633,
+   "needs_info": 0.1238,
+   "priority": 1.3246,
+   "ms": 3187.4
+  },
+  {
+   "n": 3406,
+   "url": "https://github.com/kserve/kserve/issues/3406",
+   "title": "Model server throws error when multiprocessing start method is already set",
+   "label": "bug",
+   "kind": {
+    "bug": 0.9155,
+    "feature": 0.0145,
+    "question": 0.0701
+   },
+   "area": "python",
+   "area_p": 0.8501,
+   "needs_info": 0.1125,
+   "priority": 1.3019,
+   "ms": 3187.6
+  },
+  {
+   "n": 3546,
+   "url": "https://github.com/kserve/kserve/issues/3546",
+   "title": "Support .json and .ubj model format for XGBoost server image",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0173,
+    "feature": 0.9725,
+    "question": 0.0102
+   },
+   "area": "runtimes",
+   "area_p": 0.9391,
+   "needs_info": 0.0559,
+   "priority": 1.4878,
+   "ms": 2947.7
+  },
+  {
+   "n": 1671,
+   "url": "https://github.com/kserve/kserve/issues/1671",
+   "title": "Cloud events responses need to be configurable for custom predictors and transformers",
+   "label": "feature",
+   "kind": {
+    "bug": 0.1396,
+    "feature": 0.5048,
+    "question": 0.3556
+   },
+   "area": "runtimes",
+   "area_p": 0.476,
+   "needs_info": 0.2134,
+   "priority": 1.0024,
+   "ms": 2946.1
+  },
+  {
+   "n": 4571,
+   "url": "https://github.com/kserve/kserve/issues/4571",
+   "title": "When trying to host an embedding model, torch error",
+   "label": "bug",
+   "kind": {
+    "bug": 0.1784,
+    "feature": 0.0072,
+    "question": 0.8145
+   },
+   "area": "runtimes",
+   "area_p": 0.6927,
+   "needs_info": 0.607,
+   "priority": 1.4316,
+   "ms": 2362.5
+  },
+  {
+   "n": 966,
+   "url": "https://github.com/kserve/kserve/issues/966",
+   "title": "should the port forwarding be on service or pod in the tutorial on README.md?",
+   "label": "question",
+   "kind": {
+    "bug": 0.0975,
+    "feature": 0.005,
+    "question": 0.8975
+   },
+   "area": "docs",
+   "area_p": 0.6572,
+   "needs_info": 0.2953,
+   "priority": 0.7766,
+   "ms": 2770.0
+  },
+  {
+   "n": 2990,
+   "url": "https://github.com/kserve/kserve/issues/2990",
+   "title": "(S3) SA Annotations not making it to Pod",
+   "label": "bug",
+   "kind": {
+    "bug": 0.5279,
+    "feature": 0.0541,
+    "question": 0.4179
+   },
+   "area": "storage",
+   "area_p": 0.8998,
+   "needs_info": 0.1638,
+   "priority": 1.013,
+   "ms": 3312.6
+  },
+  {
+   "n": 1551,
+   "url": "https://github.com/kserve/kserve/issues/1551",
+   "title": "New model deployments are missing virtualServices",
+   "label": "question",
+   "kind": {
+    "bug": 0.3034,
+    "feature": 0.0091,
+    "question": 0.6874
+   },
+   "area": "networking",
+   "area_p": 0.9324,
+   "needs_info": 0.2522,
+   "priority": 1.3088,
+   "ms": 3316.9
+  },
+  {
+   "n": 2746,
+   "url": "https://github.com/kserve/kserve/issues/2746",
+   "title": "Support for v2 inference request of datatype bytes in HTTP",
+   "label": "bug",
+   "kind": {
+    "bug": 0.0962,
+    "feature": 0.0187,
+    "question": 0.8851
+   },
+   "area": "python",
+   "area_p": 0.5096,
+   "needs_info": 0.2732,
+   "priority": 0.9627,
+   "ms": 2504.0
+  },
+  {
+   "n": 3800,
+   "url": "https://github.com/kserve/kserve/issues/3800",
+   "title": "Support speculative decoding in vLLM backend of HuggingFace server",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0108,
+    "feature": 0.9662,
+    "question": 0.023
+   },
+   "area": "llm",
+   "area_p": 0.7226,
+   "needs_info": 0.0505,
+   "priority": 0.6593,
+   "ms": 2184.4
+  },
+  {
+   "n": 2293,
+   "url": "https://github.com/kserve/kserve/issues/2293",
+   "title": "Question about kafka message delivery to model handler",
+   "label": "question",
+   "kind": {
+    "bug": 0.0027,
+    "feature": 0.002,
+    "question": 0.9952
+   },
+   "area": "python",
+   "area_p": 0.2851,
+   "needs_info": 0.2134,
+   "priority": 0.3957,
+   "ms": 1417.9
+  },
+  {
+   "n": 2002,
+   "url": "https://github.com/kserve/kserve/issues/2002",
+   "title": "Update KServe helm chart for 0.8 release",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0522,
+    "feature": 0.9131,
+    "question": 0.0347
+   },
+   "area": "build",
+   "area_p": 0.9003,
+   "needs_info": 0.0559,
+   "priority": 1.0089,
+   "ms": 1712.3
+  },
+  {
+   "n": 3314,
+   "url": "https://github.com/kserve/kserve/issues/3314",
+   "title": "Remove unnecessary separate kustomize binary from build process",
+   "label": "feature",
+   "kind": {
+    "bug": 0.0188,
+    "feature": 0.9411,
+    "question": 0.0402
+   },
+   "area": "build",
+   "area_p": 0.9574,
+   "needs_info": 0.0838,
+   "priority": 0.321,
+   "ms": 1089.9
+  }
+ ]
+}

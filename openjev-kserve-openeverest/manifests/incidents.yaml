@@ -1,0 +1,220 @@
+# Twelve small workloads, each broken in one known way (plus one healthy control).
+# OpenJev reads their real `kubectl describe` output and logs and names the cause.
+# The name of each Deployment hides the fault; the label `incident/cause` holds
+# the ground truth and is stripped before the state is sent to the model.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: incidents
+---
+# 1. OOMKilled: allocates 200 MiB under a 64 MiB limit.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: checkout-api, namespace: incidents, labels: {incident/cause: out-of-memory}}
+spec:
+  selector: {matchLabels: {app: checkout-api}}
+  template:
+    metadata: {labels: {app: checkout-api}}
+    spec:
+      containers:
+      - name: app
+        image: python:3.12-alpine
+        command: [python, -c, "print('checkout-api 4.1.0 warming product cache', flush=True); x = bytearray(200 * 1024 * 1024); import time; time.sleep(3600)"]
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 2. Image that does not exist.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: payments-worker, namespace: incidents, labels: {incident/cause: image-pull}}
+spec:
+  selector: {matchLabels: {app: payments-worker}}
+  template:
+    metadata: {labels: {app: payments-worker}}
+    spec:
+      containers:
+      - name: worker
+        image: nginx:1.27.99-payments
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 3. envFrom a ConfigMap that was never created.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: orders-api, namespace: incidents, labels: {incident/cause: missing-config}}
+spec:
+  selector: {matchLabels: {app: orders-api}}
+  template:
+    metadata: {labels: {app: orders-api}}
+    spec:
+      containers:
+      - name: api
+        image: nginx:1.27-alpine
+        envFrom: [{configMapRef: {name: orders-api-config}}]
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 4. The app is fine; its database is not reachable.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: inventory-svc, namespace: incidents, labels: {incident/cause: dependency-down}}
+spec:
+  selector: {matchLabels: {app: inventory-svc}}
+  template:
+    metadata: {labels: {app: inventory-svc}}
+    spec:
+      containers:
+      - name: svc
+        image: busybox:1.37
+        command: [sh, -c]
+        args:
+        - |
+          echo "INFO inventory-svc 1.8.2 starting"
+          for i in 1 2 3 4 5; do
+            echo "WARN connect postgres://inventory-db.incidents.svc:5432/inventory failed: connection refused (attempt $i/5)"
+            sleep 1
+          done
+          echo "FATAL database unavailable, giving up"
+          exit 1
+        resources: {limits: {memory: 32Mi, cpu: 50m}}
+---
+# 5. Asks for four GPUs on a cluster that has one.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: llm-batch, namespace: incidents, labels: {incident/cause: unschedulable}}
+spec:
+  selector: {matchLabels: {app: llm-batch}}
+  template:
+    metadata: {labels: {app: llm-batch}}
+    spec:
+      containers:
+      - name: batch
+        image: busybox:1.37
+        command: [sleep, infinity]
+        resources: {limits: {nvidia.com/gpu: 4, memory: 64Mi, cpu: 100m}}
+---
+# 6. Liveness probe on a port nothing listens on: nginx is fine, kubelet kills it.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: search-api, namespace: incidents, labels: {incident/cause: bad-probe}}
+spec:
+  selector: {matchLabels: {app: search-api}}
+  template:
+    metadata: {labels: {app: search-api}}
+    spec:
+      containers:
+      - name: api
+        image: nginx:1.27-alpine
+        ports: [{containerPort: 80}]
+        livenessProbe:
+          httpGet: {path: /, port: 8081}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 2
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 7. PVC on a StorageClass that does not exist.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: reports-data, namespace: incidents}
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: fast-nvme
+  resources: {requests: {storage: 10Gi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: reports-db, namespace: incidents, labels: {incident/cause: storage}}
+spec:
+  selector: {matchLabels: {app: reports-db}}
+  template:
+    metadata: {labels: {app: reports-db}}
+    spec:
+      containers:
+      - name: db
+        image: busybox:1.37
+        command: [sleep, infinity]
+        volumeMounts: [{name: data, mountPath: /data}]
+        resources: {limits: {memory: 32Mi, cpu: 50m}}
+      volumes: [{name: data, persistentVolumeClaim: {claimName: reports-data}}]
+---
+# 8. Healthy control.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: web-frontend, namespace: incidents, labels: {incident/cause: healthy}}
+spec:
+  selector: {matchLabels: {app: web-frontend}}
+  template:
+    metadata: {labels: {app: web-frontend}}
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.27-alpine
+        ports: [{containerPort: 80}]
+        readinessProbe: {httpGet: {path: /, port: 80}}
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 9. Readiness probe on a path that returns 404: running, never Ready.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: auth-svc, namespace: incidents, labels: {incident/cause: bad-probe}}
+spec:
+  selector: {matchLabels: {app: auth-svc}}
+  template:
+    metadata: {labels: {app: auth-svc}}
+    spec:
+      containers:
+      - name: auth
+        image: nginx:1.27-alpine
+        ports: [{containerPort: 80}]
+        readinessProbe: {httpGet: {path: /healthz, port: 80}, periodSeconds: 5}
+        resources: {limits: {memory: 64Mi, cpu: 100m}}
+---
+# 10. Entrypoint that is not in the image.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: metrics-agent, namespace: incidents, labels: {incident/cause: bad-command}}
+spec:
+  selector: {matchLabels: {app: metrics-agent}}
+  template:
+    metadata: {labels: {app: metrics-agent}}
+    spec:
+      containers:
+      - name: agent
+        image: busybox:1.37
+        command: [/usr/local/bin/metrics-agent, --config=/etc/agent.yaml]
+        resources: {limits: {memory: 32Mi, cpu: 50m}}
+---
+# 11. nodeSelector that no node satisfies.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: etl-runner, namespace: incidents, labels: {incident/cause: unschedulable}}
+spec:
+  selector: {matchLabels: {app: etl-runner}}
+  template:
+    metadata: {labels: {app: etl-runner}}
+    spec:
+      nodeSelector: {disktype: nvme}
+      containers:
+      - name: etl
+        image: busybox:1.37
+        command: [sleep, infinity]
+        resources: {limits: {memory: 32Mi, cpu: 50m}}
+---
+# 12. The app crashes because a required secret value is not set.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: notifier, namespace: incidents, labels: {incident/cause: missing-config}}
+spec:
+  selector: {matchLabels: {app: notifier}}
+  template:
+    metadata: {labels: {app: notifier}}
+    spec:
+      containers:
+      - name: notifier
+        image: python:3.12-alpine
+        command: [python, -c]
+        args:
+        - |
+          import os
+          print("notifier 0.9.4: loading SMTP settings", flush=True)
+          host = os.environ.get("SMTP_HOST", "smtp.internal")
+          password = os.environ["SMTP_PASSWORD"]
+        resources: {limits: {memory: 64Mi, cpu: 100m}}

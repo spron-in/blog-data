@@ -1,0 +1,41 @@
+# Prerequisites for the Envoy AI Gateway part of the post.
+#
+# 1. cert-manager with Gateway API support (it issues the Gateway's certificate):
+#      helm upgrade cert-manager jetstack/cert-manager -n cert-manager --reuse-values \
+#        --set config.apiVersion=controller.config.cert-manager.io/v1alpha1 \
+#        --set config.kind=ControllerConfiguration --set config.enableGatewayAPI=true
+# 2. When enabling the gateway subcharts on an existing release, apply their CRDs first:
+#      helm template eg oci://docker.io/envoyproxy/gateway-crds-helm --version v1.9.2 \
+#        --set crds.gatewayAPI.enabled=true --set crds.envoyGateway.enabled=true \
+#        | kubectl apply --server-side --force-conflicts -f -
+#
+# A self-signed issuer for the test certificate (clients use curl -k):
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned
+spec:
+  selfSigned: {}
+---
+# A minimal Valkey as the rate-limit backend for per-key token quotas.
+# (provider-valkey can run this as an OpenEverest Instance instead.)
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: ratelimit-valkey, namespace: everest-system}
+spec:
+  selector: {matchLabels: {app: ratelimit-valkey}}
+  template:
+    metadata: {labels: {app: ratelimit-valkey}}
+    spec:
+      containers:
+      - name: valkey
+        image: valkey/valkey:8.1-alpine
+        ports: [{containerPort: 6379}]
+        resources: {limits: {cpu: 250m, memory: 256Mi}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: ratelimit-valkey, namespace: everest-system}
+spec:
+  selector: {app: ratelimit-valkey}
+  ports: [{port: 6379}]

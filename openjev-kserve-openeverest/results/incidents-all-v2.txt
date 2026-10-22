@@ -1,0 +1,21 @@
+OK  api-gateway      truth=healthy          cause=healthy          p=0.51 owner=app-team      restart=0.42 page=0.12 sev=0.7 1458ms
+OK  auth-svc         truth=bad-probe        cause=bad-probe        p=0.98 owner=app-team      restart=0.10 page=0.15 sev=2.0 1903ms
+OK  billing-api      truth=missing-config   cause=missing-config   p=0.99 owner=app-team      restart=0.01 page=0.23 sev=2.6 1187ms
+OK  cart-cache       truth=healthy          cause=healthy          p=0.96 owner=nobody        restart=0.11 page=0.01 sev=0.2 1545ms
+OK  checkout-api     truth=out-of-memory    cause=out-of-memory    p=0.98 owner=app-team      restart=0.16 page=0.58 sev=2.3 1631ms
+OK  etl-runner       truth=unschedulable    cause=unschedulable    p=0.99 owner=platform-team restart=0.07 page=0.25 sev=2.3 905ms
+OK  events-consumer  truth=dependency-down  cause=dependency-down  p=0.97 owner=platform-team restart=0.06 page=0.53 sev=2.4 1742ms
+OK  geo-api          truth=image-pull       cause=image-pull       p=0.99 owner=app-team      restart=0.05 page=0.39 sev=2.7 1518ms
+OK  inventory-svc    truth=dependency-down  cause=dependency-down  p=0.98 owner=app-team      restart=0.06 page=0.53 sev=2.7 1246ms
+OK  llm-batch        truth=unschedulable    cause=unschedulable    p=1.00 owner=platform-team restart=0.06 page=0.11 sev=2.1 944ms
+OK  metrics-agent    truth=bad-command      cause=bad-command      p=0.95 owner=app-team      restart=0.03 page=0.30 sev=2.1 1513ms
+OK  ml-scorer        truth=out-of-memory    cause=out-of-memory    p=0.98 owner=app-team      restart=0.08 page=0.32 sev=2.3 1741ms
+OK  notifier         truth=missing-config   cause=missing-config   p=0.99 owner=app-team      restart=0.02 page=0.47 sev=2.3 1428ms
+OK  orders-api       truth=missing-config   cause=missing-config   p=0.99 owner=app-team      restart=0.02 page=0.18 sev=2.6 1289ms
+OK  payments-worker  truth=image-pull       cause=image-pull       p=0.99 owner=app-team      restart=0.07 page=0.23 sev=2.6 1369ms
+OK  pdf-render       truth=unschedulable    cause=unschedulable    p=1.00 owner=platform-team restart=0.05 page=0.23 sev=2.2 1547ms
+OK  reports-db       truth=storage          cause=storage          p=0.97 owner=platform-team restart=0.02 page=0.27 sev=2.5 1537ms
+OK  search-api       truth=bad-probe        cause=bad-probe        p=0.85 owner=app-team      restart=0.15 page=0.23 sev=2.6 2098ms
+OK  web-frontend     truth=healthy          cause=healthy          p=0.63 owner=app-team      restart=0.42 page=0.09 sev=0.5 1262ms
+
+19/19 root causes correct

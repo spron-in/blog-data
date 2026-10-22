@@ -1,0 +1,18 @@
+# Only the decision helper (:3000) is reachable from other pods. vLLM (:8080)
+# has no authentication and must stay private to the pod; the helper reaches it
+# over localhost, which a NetworkPolicy does not filter. Kubelet probes come
+# from the node and keep working.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: openjev-helper-only
+  namespace: decisions
+spec:
+  podSelector:
+    matchLabels:
+      serving.kserve.io/inferenceservice: openjev
+  policyTypes: [Ingress]
+  ingress:
+    - ports:
+        - port: 3000
+          protocol: TCP

@@ -1,0 +1,9 @@
+gateway: https://104-105-24-24.ip.linodeusercontent.com/typesafe (via 104.105.24.24:443), model: openjev
+no API key                -> 401 (want 401)
+key for another model     -> 403 (want 403)
+valid key                 -> 200 in 1.007773s (want 200)
+  route  : billing {'billing': 0.9965, 'shipping': 0.0024, 'technical': 0.0011}
+  angry  : 0.7866
+  urgency: 1.7767 {'0': 0.0651, '1': 0.315, '2': 0.398, '3': 0.2219}
+  usage  : {'input_tokens': 239, 'output_tokens': 0}
+OK: the helper accepted the key the Gateway injected (it rejects requests without one)

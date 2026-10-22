@@ -1,0 +1,46 @@
+--- without the token (expect 401)
+401
+--- /v1/version
+{"model_dir": "OpenJev-Flash-9B-FP8", "T": 1.07, "noul_t": 1.074766, "noul_bias": 0.0, "flags": {"perms": 1, "stagger": true, "loop_break": false, "compact": false, "compact_cap": 0, "layout": "", "pad": 0, "targeted": true, "instr_style": "pyrepr"}, "shim_file": "shim.py", "shim_sha256": "81a22f1b1b8912a465059207ef9f60b7c6c16b4de6372305d867efbe38a1987a"}
+--- /v1/systemone
+{
+    "id": "shim-1792652614103",
+    "model": "OpenJev-Flash-9B-FP8 T=1.07 noul=1.074766,0.0 flags={\"perms\":1,\"stagger\":true,\"loop_break\":false,\"compact\":false,\"compact_cap\":0,\"layout\":\"\",\"pad\":0,\"targeted\":true,\"instr_style\":\"pyrepr\"} shim=shim.py@81a22f1b1b89",
+    "answers": {
+        "route": {
+            "type": "choice",
+            "choice": "billing",
+            "probabilities": {
+                "billing": 0.9965,
+                "shipping": 0.0024,
+                "technical": 0.0011
+            },
+            "confidence": 0.9947
+        },
+        "angry": {
+            "type": "noul",
+            "noul": 0.7678
+        },
+        "urgency": {
+            "type": "score",
+            "score": 1.8182,
+            "legend": {
+                "0": "can wait",
+                "1": "this week",
+                "2": "today",
+                "3": "right now"
+            },
+            "probabilities": {
+                "0": 0.0604,
+                "1": 0.2926,
+                "2": 0.4154,
+                "3": 0.2316
+            },
+            "confidence": 0.3549
+        }
+    },
+    "usage": {
+        "input_tokens": 239,
+        "output_tokens": 0
+    }
+}

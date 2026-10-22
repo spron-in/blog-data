@@ -1,0 +1,35 @@
+# In-cluster client for the experiments. They call the decision helper directly
+# through the predictor Service (OPENJEV_URL) with its own key, the openjev-shim
+# Secret mounted at /conn/shim. Remove OPENJEV_URL to go through the Envoy AI
+# Gateway with the Instance's connection Secret (/conn/openjev). Copy the
+# scripts in with:
+#   kubectl -n decisions cp scripts lab:/work/scripts
+#   kubectl -n decisions cp data lab:/work/data
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lab
+  namespace: decisions
+spec:
+  containers:
+  - name: lab
+    image: python:3.12-slim
+    workingDir: /work
+    command: ["sh", "-c", "pip install -q 'httpx==0.28.1' && touch /tmp/ready && sleep infinity"]
+    env:
+    - {name: PYTHONPATH, value: /work/scripts}
+    - {name: OPENJEV_URL, value: http://openjev-predictor.decisions.svc.cluster.local}
+    readinessProbe:
+      exec: {command: ["test", "-f", "/tmp/ready"]}
+      periodSeconds: 5
+    resources:
+      requests: {cpu: "1", memory: 1Gi}
+      limits: {cpu: "2", memory: 2Gi}
+    volumeMounts:
+    - {name: openjev, mountPath: /conn/openjev}
+    - {name: shim, mountPath: /conn/shim}
+    - {name: work, mountPath: /work}
+  volumes:
+  - {name: openjev, secret: {secretName: openjev-conn}}
+  - {name: shim, secret: {secretName: openjev-shim}}
+  - {name: work, emptyDir: {}}

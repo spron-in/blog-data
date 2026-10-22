@@ -1,0 +1,20 @@
+{
+  "_note": "Disagreements between OpenJev (policy v1) and the kserve/kserve kind/ label where OpenJev's probability was >= 0.90. Verdicts are a re-reading of the cleaned issue text, made for the blog post; they are a judgement call, not ground truth.",
+  "summary": {"total": 14, "openjev": 8, "ambiguous": 6, "label": 0},
+  "items": [
+    {"n": 3763, "label": "bug", "openjev": "question", "p": 0.99, "verdict": "openjev", "why": "Asks where to find a compatibility matrix and ends with 'Please help!'"},
+    {"n": 3032, "label": "feature", "openjev": "question", "p": 0.99, "verdict": "openjev", "why": "'How can I scrape GPU metrics... Could anyone kindly help here?'"},
+    {"n": 2572, "label": "feature", "openjev": "question", "p": 0.98, "verdict": "openjev", "why": "'I'd like to ask about health check'; a how-to question"},
+    {"n": 1474, "label": "question", "openjev": "bug", "p": 0.98, "verdict": "openjev", "why": "A crashing revision is reported as the latest Ready revision: incorrect controller behaviour"},
+    {"n": 2119, "label": "question", "openjev": "bug", "p": 0.97, "verdict": "openjev", "why": "Deleting an InferenceService hangs every time"},
+    {"n": 1645, "label": "feature", "openjev": "question", "p": 0.96, "verdict": "openjev", "why": "'Does KFServing support inference about the entire dataset?'"},
+    {"n": 2276, "label": "question", "openjev": "bug", "p": 0.96, "verdict": "openjev", "why": "Deployments created by the controller never report rollout status; works for every other Deployment"},
+    {"n": 2554, "label": "bug", "openjev": "question", "p": 0.90, "verdict": "openjev", "why": "Title and body ask whether PVCs are supported in custom images"},
+    {"n": 2667, "label": "bug", "openjev": "question", "p": 0.95, "verdict": "ambiguous", "why": "pip install failure inside Kubeflow: a dependency conflict could be either"},
+    {"n": 3148, "label": "bug", "openjev": "feature", "p": 0.94, "verdict": "ambiguous", "why": "Upgrade an old code generator: a chore, neither a defect nor a feature"},
+    {"n": 1606, "label": "feature", "openjev": "bug", "p": 0.93, "verdict": "ambiguous", "why": "Reads as a failure report, but supporting .pkl files is new functionality"},
+    {"n": 3554, "label": "bug", "openjev": "feature", "p": 0.92, "verdict": "ambiguous", "why": "Title 'Add ability...' versus a body that reports annotations not propagated"},
+    {"n": 3784, "label": "bug", "openjev": "feature", "p": 0.91, "verdict": "ambiguous", "why": "Dependency bump to enable new models: the project files these as bugs"},
+    {"n": 2770, "label": "question", "openjev": "bug", "p": 0.91, "verdict": "ambiguous", "why": "Performance gap versus plain Triton: could be a defect or a tuning question"}
+  ]
+}

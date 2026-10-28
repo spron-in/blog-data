@@ -1,7 +1,7 @@
 # Self-hosting TiDB on Kubernetes
 
 Scripts, manifests and raw results for the blog post
-[Self-Hosting TiDB on Kubernetes: HTAP, Scaling and Backups, Measured](https://openeverest.io/blog/self-hosting-tidb-on-kubernetes/).
+[Running TiDB on Kubernetes with OpenEverest](https://openeverest.io/blog/self-hosting-tidb-on-kubernetes/).
 
 TiDB clusters are [OpenEverest](https://openeverest.io) Instances, created by
 [provider-tidb](https://github.com/openeverest/provider-tidb) on TiDB Operator v2. The load is

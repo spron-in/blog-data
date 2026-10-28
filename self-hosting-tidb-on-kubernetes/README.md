@@ -12,10 +12,10 @@ all run from one `loadgen` pod inside the cluster.
 
 | | |
 |---|---|
-| Kubernetes | Linode Kubernetes Engine 1.36, Frankfurt |
+| Kubernetes | A managed Kubernetes service, Kubernetes 1.36, Frankfurt |
 | Database nodes | 6 × dedicated 16 vCPU / 64 GB, tainted `dedicated=tidb:NoSchedule` |
 | Other nodes | 2 × dedicated 8 vCPU / 16 GB: OpenEverest, the operator and Prometheus on one, `loadgen` on the other |
-| Storage | `linode-block-storage` (reclaim policy `Delete`) |
+| Storage | The cloud provider's network block storage, a StorageClass with reclaim policy `Delete` |
 | Software | OpenEverest v2.0.0-dev.4, provider-tidb 0.2.2, TiDB Operator v2.0.1, TiDB 8.5.2 (7.5.5 for the upgrade) |
 
 ## Layout
@@ -26,7 +26,7 @@ all run from one `loadgen` pod inside the cluster.
 | `manifests/loadgen.yaml` | The load generator pod (Python, pymysql, MariaDB client, go-tpc); set the node it runs on |
 | `manifests/prepull.yaml` | DaemonSet that pulls every TiDB image onto the database nodes before the start-up timings |
 | `manifests/backup-storage.yaml` | S3-compatible `BackupStorage` and its credentials (placeholders) |
-| `scripts/common/gen.py` | Writes an `Instance` from a live `InstancePreset` (`tidb-standard`, `tidb-analytics`), pinned to the database nodes; `--version`, `--no-tls`, `--drop tiproxy` |
+| `scripts/common/gen.py` | Writes an `Instance` from a live `InstancePreset` (`tidb-standard`, `tidb-analytics`), pinned to the database nodes, volumes on `$STORAGE_CLASS`; `--version`, `--no-tls`, `--drop tiproxy` |
 | `scripts/common/env.sh` | Turns an Instance's `<name>-conn` Secret into `/work/<name>.env` in `loadgen` (`H`, `PO`, `PW`, `CA`, `$MYSQL`, `$SSL`) |
 | `scripts/common/setup-loadgen.sh` | Copies the Python tools and the CH query set into `loadgen:/work` |
 | `scripts/common/inpod.sh` | Runs any test script below inside `loadgen`, detached, with an Instance's env |
@@ -46,7 +46,9 @@ The chart data in the post (`ttr.json`, `htap.json`, `timeline.json`) is next to
 ## Run it
 
 You need a Kubernetes cluster with OpenEverest and provider-tidb installed (see the post), `kubectl`,
-and Python 3 on your machine. Every script uses the `tidb` namespace; set `NS` to change it.
+and Python 3 on your machine. Every script uses the `tidb` namespace; set `NS` to change it. `gen.py`
+puts the data volumes on the `STORAGE_CLASS` StorageClass (the cluster default if unset); pick one
+with reclaim policy `Delete`, or deleted clusters leave their volumes behind.
 
 ```bash
 kubectl create namespace tidb

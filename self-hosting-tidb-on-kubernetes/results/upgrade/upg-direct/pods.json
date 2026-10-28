@@ -10,7 +10,7 @@
                     "cni.projectcalico.org/podIP": "10.2.3.148/32",
                     "cni.projectcalico.org/podIPs": "10.2.3.148/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "2379",
                     "prometheus.io/scrape": "true"
@@ -157,7 +157,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-4r79c",
+                "nodeName": "db-node-1",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -447,7 +447,7 @@
                     "cni.projectcalico.org/podIP": "10.2.6.147/32",
                     "cni.projectcalico.org/podIPs": "10.2.6.147/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "2379",
                     "prometheus.io/scrape": "true"
@@ -594,7 +594,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-ktf5m",
+                "nodeName": "db-node-4",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -884,7 +884,7 @@
                     "cni.projectcalico.org/podIP": "10.2.5.19/32",
                     "cni.projectcalico.org/podIPs": "10.2.5.19/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "2379",
                     "prometheus.io/scrape": "true"
@@ -1031,7 +1031,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-mdglm",
+                "nodeName": "db-node-5",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -1447,7 +1447,7 @@
                 "dnsPolicy": "ClusterFirst",
                 "enableServiceLinks": true,
                 "hostname": "upg-direct-tidb-pa21m7",
-                "nodeName": "lke679771-1005186-ktf5m",
+                "nodeName": "db-node-4",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -1833,7 +1833,7 @@
                 "dnsPolicy": "ClusterFirst",
                 "enableServiceLinks": true,
                 "hostname": "upg-direct-tidb-rg7zvq",
-                "nodeName": "lke679771-1005186-mdglm",
+                "nodeName": "db-node-5",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -2093,7 +2093,7 @@
                     "cni.projectcalico.org/podIP": "10.2.6.14/32",
                     "cni.projectcalico.org/podIPs": "10.2.6.14/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "20180",
                     "prometheus.io/scrape": "true"
@@ -2234,7 +2234,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-7d86j",
+                "nodeName": "db-node-2",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -2523,7 +2523,7 @@
                     "cni.projectcalico.org/podIP": "10.2.4.145/32",
                     "cni.projectcalico.org/podIPs": "10.2.4.145/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "20180",
                     "prometheus.io/scrape": "true"
@@ -2664,7 +2664,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-tlg2q",
+                "nodeName": "db-node-6",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },
@@ -2953,7 +2953,7 @@
                     "cni.projectcalico.org/podIP": "10.2.3.149/32",
                     "cni.projectcalico.org/podIPs": "10.2.3.149/32",
                     "core.pingcap.com/features": "",
-                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
                     "prometheus.io/path": "/metrics",
                     "prometheus.io/port": "20180",
                     "prometheus.io/scrape": "true"
@@ -3094,7 +3094,7 @@
                         ]
                     }
                 ],
-                "nodeName": "lke679771-1005186-4r79c",
+                "nodeName": "db-node-1",
                 "nodeSelector": {
                     "tidb-bench": "db"
                 },

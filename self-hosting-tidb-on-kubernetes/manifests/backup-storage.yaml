@@ -1,5 +1,4 @@
-# S3-compatible backup storage (Linode Object Storage in the post). Fill in your bucket, region,
-# endpoint and keys, then enable backups on an Instance:
+# S3-compatible backup storage. Fill in your bucket, region, endpoint and keys, then enable backups on an Instance:
 #   spec.backup: {enabled: true, classRef: {name: br}, storages: [{storageRef: {name: s3-store}}]}
 apiVersion: v1
 kind: Secret
@@ -14,7 +13,7 @@ spec:
   type: s3
   s3:
     bucket: CHANGE-ME
-    region: de-fra-1
-    endpointURL: https://de-fra-1.linodeobjects.com
+    region: CHANGE-ME
+    endpointURL: https://CHANGE-ME
     forcePathStyle: true
     credentialsSecretRef: {name: s3-credentials}

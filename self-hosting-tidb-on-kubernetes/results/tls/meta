@@ -1,0 +1,17 @@
+18:15:58 start tls-off run1
+18:26:03 end tls-off run1: tpmC: 31192.1, tpmTotal: 69257.1, efficiency: 4851.0%
+18:27:03 start tls-on run1
+18:28:31 end tls-on run1: 
+18:29:31 start tls-off run2
+18:31 discarded tls-on run1 and tls-off run2 (overlapped after an exec stream dropped)
+18:34:46 start tls-on run1
+18:44:54 end tls-on run1: tpmC: 29140.8, tpmTotal: 64823.3, efficiency: 4532.0% __EXIT=0 
+18:45:54 start tls-off run2
+19:05:31 end tls-off run2: tpmC: 31328.4, tpmTotal: 69592.8, efficiency: 4872.2% __EXIT=0 
+19:06:31 start tls-on run2
+19:21:52 end tls-on run2: tpmC: 29343.9, tpmTotal: 65148.5, efficiency: 4563.6% __EXIT=0 
+19:22:52 start tls-off run3
+19:32:58 end tls-off run3: tpmC: 31618.9, tpmTotal: 70194.7, efficiency: 4917.4% __EXIT=0 
+19:33:58 start tls-on run3
+19:44:04 end tls-on run3: tpmC: 29113.8, tpmTotal: 64611.3, efficiency: 4527.8% __EXIT=0 
+done

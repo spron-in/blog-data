@@ -1,0 +1,177 @@
+{
+    "apiVersion": "core.openeverest.io/v1alpha1",
+    "kind": "Instance",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"core.openeverest.io/v1alpha1\",\"kind\":\"Instance\",\"metadata\":{\"annotations\":{},\"name\":\"upg-direct\",\"namespace\":\"tidb\"},\"spec\":{\"components\":{\"pd\":{\"replicas\":3,\"resources\":{\"limits\":{\"cpu\":\"2\",\"memory\":\"4Gi\"}},\"schedulingPolicy\":{\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"effect\":\"NoSchedule\",\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\"}]},\"storage\":{\"size\":\"20Gi\",\"storageClass\":\"linode-block-storage\"},\"type\":\"pd\"},\"tidb\":{\"replicas\":2,\"resources\":{\"limits\":{\"cpu\":\"4\",\"memory\":\"8Gi\"}},\"schedulingPolicy\":{\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"effect\":\"NoSchedule\",\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\"}]},\"type\":\"tidb\"},\"tikv\":{\"replicas\":3,\"resources\":{\"limits\":{\"cpu\":\"4\",\"memory\":\"16Gi\"}},\"schedulingPolicy\":{\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"effect\":\"NoSchedule\",\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\"}]},\"storage\":{\"size\":\"100Gi\",\"storageClass\":\"linode-block-storage\"},\"type\":\"tikv\"}},\"deletionPolicy\":\"Cascade\",\"providerRef\":{\"name\":\"tidb\"},\"topology\":{\"parameters\":{\"tls\":{\"client\":true,\"cluster\":true}},\"type\":\"cluster\"},\"version\":\"7.5.5\"}}\n"
+        },
+        "creationTimestamp": "2026-10-27T17:23:05Z",
+        "finalizers": [
+            "everest.percona.com/provider-finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+            "core.openeverest.io/provider": "tidb"
+        },
+        "name": "upg-direct",
+        "namespace": "tidb",
+        "resourceVersion": "178980",
+        "uid": "9b60ed6b-44d1-44bd-8db1-4383caf4f8fd"
+    },
+    "spec": {
+        "components": {
+            "pd": {
+                "replicas": 3,
+                "resources": {
+                    "limits": {
+                        "cpu": "2",
+                        "memory": "4Gi"
+                    }
+                },
+                "schedulingPolicy": {
+                    "nodeSelector": {
+                        "tidb-bench": "db"
+                    },
+                    "tolerations": [
+                        {
+                            "effect": "NoSchedule",
+                            "key": "dedicated",
+                            "operator": "Equal",
+                            "value": "tidb"
+                        }
+                    ]
+                },
+                "storage": {
+                    "size": "20Gi",
+                    "storageClass": "linode-block-storage"
+                },
+                "type": "pd"
+            },
+            "tidb": {
+                "replicas": 2,
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "8Gi"
+                    }
+                },
+                "schedulingPolicy": {
+                    "nodeSelector": {
+                        "tidb-bench": "db"
+                    },
+                    "tolerations": [
+                        {
+                            "effect": "NoSchedule",
+                            "key": "dedicated",
+                            "operator": "Equal",
+                            "value": "tidb"
+                        }
+                    ]
+                },
+                "type": "tidb"
+            },
+            "tikv": {
+                "replicas": 3,
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "16Gi"
+                    }
+                },
+                "schedulingPolicy": {
+                    "nodeSelector": {
+                        "tidb-bench": "db"
+                    },
+                    "tolerations": [
+                        {
+                            "effect": "NoSchedule",
+                            "key": "dedicated",
+                            "operator": "Equal",
+                            "value": "tidb"
+                        }
+                    ]
+                },
+                "storage": {
+                    "size": "100Gi",
+                    "storageClass": "linode-block-storage"
+                },
+                "type": "tikv"
+            }
+        },
+        "deletionPolicy": "Cascade",
+        "providerRef": {
+            "name": "tidb"
+        },
+        "topology": {
+            "parameters": {
+                "tls": {
+                    "client": true,
+                    "cluster": true
+                }
+            },
+            "type": "cluster"
+        },
+        "version": "8.5.2"
+    },
+    "status": {
+        "components": [
+            {
+                "name": "pd",
+                "readyReplicas": 3,
+                "replicas": 3,
+                "selector": "core.openeverest.io/component=pd,core.openeverest.io/instance=upg-direct"
+            },
+            {
+                "name": "tidb",
+                "readyReplicas": 2,
+                "replicas": 2,
+                "selector": "core.openeverest.io/component=tidb,core.openeverest.io/instance=upg-direct"
+            },
+            {
+                "name": "tikv",
+                "readyReplicas": 3,
+                "replicas": 3,
+                "selector": "core.openeverest.io/component=tikv,core.openeverest.io/instance=upg-direct"
+            }
+        ],
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-10-27T17:23:06Z",
+                "message": "Backup configuration applied to engine",
+                "observedGeneration": 2,
+                "reason": "Configured",
+                "status": "True",
+                "type": "BackupConfigured"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T17:23:06Z",
+                "message": "",
+                "observedGeneration": 2,
+                "reason": "Scheduled",
+                "status": "True",
+                "type": "PodsScheduled"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T17:55:35Z",
+                "message": "",
+                "observedGeneration": 2,
+                "reason": "Ready",
+                "status": "True",
+                "type": "PodsReady"
+            },
+            {
+                "lastTransitionTime": "2026-10-27T17:24:48Z",
+                "message": "Connection details are available in Secret upg-direct-conn",
+                "observedGeneration": 2,
+                "reason": "Available",
+                "status": "True",
+                "type": "ConnectionDetailsReady"
+            }
+        ],
+        "connectionSecretRef": {
+            "name": "upg-direct-conn"
+        },
+        "phase": "Ready",
+        "version": "8.5.2"
+    }
+}

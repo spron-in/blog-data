@@ -1,0 +1,21 @@
+# Load generator: Python + pymysql, the MariaDB client and go-tpc. Pin it to a node that runs no
+# database pods (set the hostname) and give it enough CPU that it never becomes the bottleneck.
+apiVersion: v1
+kind: Pod
+metadata: {name: loadgen, namespace: tidb}
+spec:
+  nodeSelector: {kubernetes.io/hostname: CHANGE-ME}
+  terminationGracePeriodSeconds: 1
+  containers:
+  - name: loadgen
+    image: python:3.12-slim
+    command: ["bash", "-c"]
+    args:
+    - |
+      set -e
+      apt-get update -qq && apt-get install -y -qq default-mysql-client curl ca-certificates >/dev/null
+      pip install -q pymysql
+      curl -fsSL https://github.com/pingcap/go-tpc/releases/latest/download/go-tpc_latest_linux_amd64.tar.gz | tar xz -C /usr/local/bin go-tpc
+      mkdir -p /work && touch /ready && sleep infinity
+    resources: {requests: {cpu: "6", memory: 8Gi}}
+    readinessProbe: {exec: {command: ["test", "-f", "/ready"]}, periodSeconds: 5}

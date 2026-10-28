@@ -1,0 +1,3382 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "1d5adfc72361592f2e3dbc03c4d9371d0c7db8b369dbc5c20da817200ca024e1",
+                    "cni.projectcalico.org/podIP": "10.2.3.148/32",
+                    "cni.projectcalico.org/podIPs": "10.2.3.148/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "2379",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:44:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "pd",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "pd",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "pd",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-3h0in1",
+                    "pingcap.com/instance-revision-hash": "upg-direct-pd-98c557967",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/member-id": "8087173139897212386",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-pd-3h0in1",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "PD",
+                        "name": "upg-direct-3h0in1",
+                        "uid": "b1a6027e-0863-4cd5-bd91-47da7ba6b136"
+                    }
+                ],
+                "resourceVersion": "175944",
+                "uid": "c6db35cf-33c8-4a79-896b-6e67b457bdf1"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/pd-server",
+                            "--config",
+                            "/etc/pd/config.toml"
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "pd",
+                        "ports": [
+                            {
+                                "containerPort": 2379,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 2380,
+                                "name": "peer",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 2379
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-6bkdj",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-pd-3h0in1",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "ok=0\nfor i in $(seq 720); do\n  if nslookup \"$(hostname).${PEER_DOMAIN}\" \u003e/dev/null 2\u003e\u00261; then\n    ok=$((ok+1))\n    [ \"$ok\" -ge 20 ] \u0026\u0026 exit 0\n  else\n    ok=0\n  fi\n  sleep 0.25\ndone\necho \"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\""
+                        ],
+                        "env": [
+                            {
+                                "name": "PEER_DOMAIN",
+                                "value": "upg-direct-pd-peer.tidb"
+                            }
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "wait-for-dns",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-6bkdj",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-4r79c",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-pd-peer",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-pd-3h0in1"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-pd-3h0in1"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-pd-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-6bkdj",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "2",
+                    "memory": "4Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:45:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:06Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:17Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:17Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:44:41Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "2",
+                            "memory": "4Gi"
+                        },
+                        "containerID": "containerd://e51bf086f177fedf08bce146ddc605d29f6471aa6ec9330617297cb6e10cf260",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "pd",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:46:06Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-6bkdj",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.147.182",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.147.182"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:25ff:fe68:da00"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://23d9028c56355e21b1df98bd1e4d479eecf66e917db9d7f22c422d67f6686510",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "wait-for-dns",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://23d9028c56355e21b1df98bd1e4d479eecf66e917db9d7f22c422d67f6686510",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:46:05Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:45:31Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-6bkdj",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.3.148",
+                "podIPs": [
+                    {
+                        "ip": "10.2.3.148"
+                    }
+                ],
+                "qosClass": "Guaranteed",
+                "resources": {
+                    "limits": {
+                        "cpu": "2",
+                        "memory": "4Gi"
+                    },
+                    "requests": {
+                        "cpu": "1999m",
+                        "memory": "4Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:44:41Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "4955f383623ab388ad9c1968e6e62146b6b27568bfb566150d851a9479cf74aa",
+                    "cni.projectcalico.org/podIP": "10.2.6.147/32",
+                    "cni.projectcalico.org/podIPs": "10.2.6.147/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "2379",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:46:30Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "pd",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "pd",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "pd",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-4cixxu",
+                    "pingcap.com/instance-revision-hash": "upg-direct-pd-98c557967",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/member-id": "5064110199368962498",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-pd-4cixxu",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "PD",
+                        "name": "upg-direct-4cixxu",
+                        "uid": "94b233fa-0a28-4f76-809b-0f85fdd0524b"
+                    }
+                ],
+                "resourceVersion": "176152",
+                "uid": "5dfc8031-ba3c-4c7b-9de0-f75e72f50e61"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/pd-server",
+                            "--config",
+                            "/etc/pd/config.toml"
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "pd",
+                        "ports": [
+                            {
+                                "containerPort": 2379,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 2380,
+                                "name": "peer",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 2379
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-4l4lx",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-pd-4cixxu",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "ok=0\nfor i in $(seq 720); do\n  if nslookup \"$(hostname).${PEER_DOMAIN}\" \u003e/dev/null 2\u003e\u00261; then\n    ok=$((ok+1))\n    [ \"$ok\" -ge 20 ] \u0026\u0026 exit 0\n  else\n    ok=0\n  fi\n  sleep 0.25\ndone\necho \"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\""
+                        ],
+                        "env": [
+                            {
+                                "name": "PEER_DOMAIN",
+                                "value": "upg-direct-pd-peer.tidb"
+                            }
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "wait-for-dns",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-4l4lx",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-ktf5m",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-pd-peer",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-pd-4cixxu"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-pd-4cixxu"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-pd-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-4l4lx",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "2",
+                    "memory": "4Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:35Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:41Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:46:30Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "2",
+                            "memory": "4Gi"
+                        },
+                        "containerID": "containerd://4d50af5ec4077b3cbac335aee0f2174eb4f51b74e109f3d4fc67063ec2512716",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "pd",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:46:41Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-4l4lx",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.159.243",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.159.243"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:a8ff:fea4:e478"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://195097f1e1fd26b190bba0869c0af08a8bb42562684e629d675e0d625bf89700",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "wait-for-dns",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://195097f1e1fd26b190bba0869c0af08a8bb42562684e629d675e0d625bf89700",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:46:41Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:46:35Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-4l4lx",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.6.147",
+                "podIPs": [
+                    {
+                        "ip": "10.2.6.147"
+                    }
+                ],
+                "qosClass": "Guaranteed",
+                "resources": {
+                    "limits": {
+                        "cpu": "2",
+                        "memory": "4Gi"
+                    },
+                    "requests": {
+                        "cpu": "1999m",
+                        "memory": "4Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:46:30Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "b3a583c3a5e20bed15fce3f870d5d7835f953330902010f15534d2600e12125d",
+                    "cni.projectcalico.org/podIP": "10.2.5.19/32",
+                    "cni.projectcalico.org/podIPs": "10.2.5.19/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"pd\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-pd-98c557967\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/pd:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"2\",\"memory\":\"4Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"20Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"pd\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"initContainers\":[{\"name\":\"wait-for-dns\",\"image\":\"pingcap/pd:v8.5.2\",\"command\":[\"/bin/sh\",\"-c\",\"ok=0\\nfor i in $(seq 720); do\\n  if nslookup \\\"$(hostname).${PEER_DOMAIN}\\\" \\u003e/dev/null 2\\u003e\\u00261; then\\n    ok=$((ok+1))\\n    [ \\\"$ok\\\" -ge 20 ] \\u0026\\u0026 exit 0\\n  else\\n    ok=0\\n  fi\\n  sleep 0.25\\ndone\\necho \\\"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\\\"\"],\"env\":[{\"name\":\"PEER_DOMAIN\",\"value\":\"upg-direct-pd-peer.tidb\"}],\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"}}}],\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "2379",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:47:42Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "pd",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "pd",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "pd",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-ltpkbf",
+                    "pingcap.com/instance-revision-hash": "upg-direct-pd-98c557967",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/member-id": "15260475626864208720",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-pd-ltpkbf",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "PD",
+                        "name": "upg-direct-ltpkbf",
+                        "uid": "797f1f0b-0a55-4e43-81e8-a84226686b1f"
+                    }
+                ],
+                "resourceVersion": "176687",
+                "uid": "1e9253c4-6202-4bee-bbfb-9fd718e282be"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/pd-server",
+                            "--config",
+                            "/etc/pd/config.toml"
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "pd",
+                        "ports": [
+                            {
+                                "containerPort": 2379,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 2380,
+                                "name": "peer",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 2379
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxnqv",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-pd-ltpkbf",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "ok=0\nfor i in $(seq 720); do\n  if nslookup \"$(hostname).${PEER_DOMAIN}\" \u003e/dev/null 2\u003e\u00261; then\n    ok=$((ok+1))\n    [ \"$ok\" -ge 20 ] \u0026\u0026 exit 0\n  else\n    ok=0\n  fi\n  sleep 0.25\ndone\necho \"DNS name $(hostname).${PEER_DOMAIN} still does not resolve consistently; starting PD anyway\""
+                        ],
+                        "env": [
+                            {
+                                "name": "PEER_DOMAIN",
+                                "value": "upg-direct-pd-peer.tidb"
+                            }
+                        ],
+                        "image": "pingcap/pd:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "wait-for-dns",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxnqv",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-mdglm",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-pd-peer",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-pd-ltpkbf"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-pd-ltpkbf"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-pd-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-wxnqv",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "2",
+                    "memory": "4Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:48:09Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:48:29Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:48:40Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:48:40Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:47:42Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "2",
+                            "memory": "4Gi"
+                        },
+                        "containerID": "containerd://21909791fc22d964ff19a38a8dc098047e7c239443d050c6d03e47f4eb06aa34",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "pd",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            },
+                            "requests": {
+                                "cpu": "2",
+                                "memory": "4Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:48:29Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/pd",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/pd-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxnqv",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.159.160",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.159.160"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:94ff:fe3d:8565"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://debbfedc989c516042fd2cb905396ba0f319ddffa1a85fc8e1fdbde60a32d8ce",
+                        "image": "docker.io/pingcap/pd:v8.5.2",
+                        "imageID": "docker.io/pingcap/pd@sha256:6d7a25550c58905a2b938f4d9f8b44e373811e9a0b84ca7ad85dfdfeaaa91811",
+                        "lastState": {},
+                        "name": "wait-for-dns",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://debbfedc989c516042fd2cb905396ba0f319ddffa1a85fc8e1fdbde60a32d8ce",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:48:28Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:48:09Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-wxnqv",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.5.19",
+                "podIPs": [
+                    {
+                        "ip": "10.2.5.19"
+                    }
+                ],
+                "qosClass": "Guaranteed",
+                "resources": {
+                    "limits": {
+                        "cpu": "2",
+                        "memory": "4Gi"
+                    },
+                    "requests": {
+                        "cpu": "1999m",
+                        "memory": "4Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:47:42Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "b28123fc934d4c7a35aa8eb35ecb2afe50e63d6db4725dfda0ff8134bab775bc",
+                    "cni.projectcalico.org/podIP": "10.2.6.148/32",
+                    "cni.projectcalico.org/podIPs": "10.2.6.148/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tidb\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tidb-5f4f764c98\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tidb:v8.5.2\",\"server\":{\"ports\":{}},\"probes\":{},\"resources\":{\"cpu\":\"4\",\"memory\":\"8Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"security\":{\"tls\":{\"mysql\":{\"enabled\":true}}},\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tidb\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "10080",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:55:25Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "tidb",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "tidb",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "tidb",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-pa21m7",
+                    "pingcap.com/instance-revision-hash": "upg-direct-tidb-5f4f764c98",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-tidb-pa21m7",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "TiDB",
+                        "name": "upg-direct-pa21m7",
+                        "uid": "0d9f58a6-5267-4712-b51b-b257f74efe94"
+                    }
+                ],
+                "resourceVersion": "178727",
+                "uid": "67c38e7f-f2c6-4833-a561-200c1be1299b"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/tidb-server",
+                            "--config",
+                            "/etc/tidb/config.toml"
+                        ],
+                        "image": "pingcap/tidb:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "/bin/sh",
+                                        "-c",
+                                        "sleep 10"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "tidb",
+                        "ports": [
+                            {
+                                "containerPort": 4000,
+                                "name": "mysql-client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 10080,
+                                "name": "status",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 10,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 4000
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tidb",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-sql-tls",
+                                "name": "ti-tidb-sql-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/etc/tidb-bootstrap",
+                                "name": "ti-tidb-bootstrap-sql",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-9j82w",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-tidb-pa21m7",
+                "nodeName": "lke679771-1005186-ktf5m",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-tidb-peer",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-tidb-pa21m7"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "name": "ti-tidb-sql-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tidb-server-secret"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tidb-cluster-secret"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "bootstrap-sql",
+                                    "path": "bootstrap.sql"
+                                }
+                            ],
+                            "name": "upg-direct-tidb-bootstrap-sql"
+                        },
+                        "name": "ti-tidb-bootstrap-sql"
+                    },
+                    {
+                        "name": "kube-api-access-9j82w",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "4",
+                    "memory": "8Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:55:25Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:55:25Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:55:35Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:55:35Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:55:25Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "4",
+                            "memory": "8Gi"
+                        },
+                        "containerID": "containerd://f852ea24421c28bea9df7146acd9a710b091ffbc6f33c0a132dd73a07917c3ba",
+                        "image": "docker.io/pingcap/tidb:v8.5.2",
+                        "imageID": "docker.io/pingcap/tidb@sha256:8719349fd679099c92db83c1d4b70c6f67cb8b54e80061ccfadd843ded2a82f3",
+                        "lastState": {},
+                        "name": "tidb",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:55:25Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tidb",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-sql-tls",
+                                "name": "ti-tidb-sql-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/etc/tidb-bootstrap",
+                                "name": "ti-tidb-bootstrap-sql",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-9j82w",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.159.243",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.159.243"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:a8ff:fea4:e478"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.6.148",
+                "podIPs": [
+                    {
+                        "ip": "10.2.6.148"
+                    }
+                ],
+                "qosClass": "Guaranteed",
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "8Gi"
+                    },
+                    "requests": {
+                        "cpu": "3996m",
+                        "memory": "8Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:55:25Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "29b69c069a21efb2d41bc3953636f3bf4cee811b2168eaea03b42f16dff43f9a",
+                    "cni.projectcalico.org/podIP": "10.2.5.20/32",
+                    "cni.projectcalico.org/podIPs": "10.2.5.20/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tidb\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tidb-5f4f764c98\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tidb:v8.5.2\",\"server\":{\"ports\":{}},\"probes\":{},\"resources\":{\"cpu\":\"4\",\"memory\":\"8Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"security\":{\"tls\":{\"mysql\":{\"enabled\":true}}},\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tidb\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "10080",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:54:07Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "tidb",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "tidb",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "tidb",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-rg7zvq",
+                    "pingcap.com/instance-revision-hash": "upg-direct-tidb-5f4f764c98",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-tidb-rg7zvq",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "TiDB",
+                        "name": "upg-direct-rg7zvq",
+                        "uid": "800a2597-c004-4745-9dec-f031ea469b8e"
+                    }
+                ],
+                "resourceVersion": "178433",
+                "uid": "2aed5131-787c-43b0-9af1-8a27acc002bc"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/tidb-server",
+                            "--config",
+                            "/etc/tidb/config.toml"
+                        ],
+                        "image": "pingcap/tidb:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "/bin/sh",
+                                        "-c",
+                                        "sleep 10"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "tidb",
+                        "ports": [
+                            {
+                                "containerPort": 4000,
+                                "name": "mysql-client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 10080,
+                                "name": "status",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 10,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 4000
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tidb",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-sql-tls",
+                                "name": "ti-tidb-sql-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/etc/tidb-bootstrap",
+                                "name": "ti-tidb-bootstrap-sql",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-sjgw5",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-tidb-rg7zvq",
+                "nodeName": "lke679771-1005186-mdglm",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-tidb-peer",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-tidb-rg7zvq"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "name": "ti-tidb-sql-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tidb-server-secret"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tidb-cluster-secret"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "bootstrap-sql",
+                                    "path": "bootstrap.sql"
+                                }
+                            ],
+                            "name": "upg-direct-tidb-bootstrap-sql"
+                        },
+                        "name": "ti-tidb-bootstrap-sql"
+                    },
+                    {
+                        "name": "kube-api-access-sjgw5",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "4",
+                    "memory": "8Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:54:08Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:54:07Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:54:39Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:54:39Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:54:07Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "4",
+                            "memory": "8Gi"
+                        },
+                        "containerID": "containerd://f57154546b6a358da5c89b9f2941faa7f642851b2ac09ec5aff48407509f63ab",
+                        "image": "docker.io/pingcap/tidb:v8.5.2",
+                        "imageID": "docker.io/pingcap/tidb@sha256:8719349fd679099c92db83c1d4b70c6f67cb8b54e80061ccfadd843ded2a82f3",
+                        "lastState": {},
+                        "name": "tidb",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "8Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:54:08Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tidb",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-sql-tls",
+                                "name": "ti-tidb-sql-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/lib/tidb-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/etc/tidb-bootstrap",
+                                "name": "ti-tidb-bootstrap-sql",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-sjgw5",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.159.160",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.159.160"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:94ff:fe3d:8565"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.5.20",
+                "podIPs": [
+                    {
+                        "ip": "10.2.5.20"
+                    }
+                ],
+                "qosClass": "Guaranteed",
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "8Gi"
+                    },
+                    "requests": {
+                        "cpu": "3996m",
+                        "memory": "8Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:54:07Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "9e863862646b970ae83c17461a7260ce304b7326338ee6ccef87bd01bade041a",
+                    "cni.projectcalico.org/podIP": "10.2.6.14/32",
+                    "cni.projectcalico.org/podIPs": "10.2.6.14/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "20180",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:49:16Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "tikv",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "tikv",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "tikv",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-3xzibb",
+                    "pingcap.com/instance-revision-hash": "upg-direct-tikv-5584f86c85",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/store-id": "4",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-tikv-3xzibb",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "TiKV",
+                        "name": "upg-direct-3xzibb",
+                        "uid": "e7d34171-5409-414f-85a3-588992421d19"
+                    }
+                ],
+                "resourceVersion": "177242",
+                "uid": "3097ee2e-cea6-469c-8311-39580c36a193"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/tikv-server",
+                            "--config",
+                            "/etc/tikv/config.toml"
+                        ],
+                        "image": "pingcap/tikv:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "/bin/sh",
+                                        "-c",
+                                        "/prestop/prestop-checker -mode  tikv  -pd https://upg-direct-pd.tidb:2379 -tikv-status-addr upg-direct-tikv-3xzibb.upg-direct-tikv-peer.tidb:20180 -tls  -ca /var/lib/tikv-tls/ca.crt -cert /var/lib/tikv-tls/tls.crt -key /var/lib/tikv-tls/tls.key \u003e /proc/1/fd/1"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "tikv",
+                        "ports": [
+                            {
+                                "containerPort": 20160,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 20180,
+                                "name": "status",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-c2kcf",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-tikv-3xzibb",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "cp /prestop-checker /prestop/;"
+                        ],
+                        "image": "pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "ti-prestop-checker",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-c2kcf",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-7d86j",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-tikv-peer",
+                "terminationGracePeriodSeconds": 65535,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-tikv-3xzibb"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "ti-prestop-checker"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-tikv-3xzibb"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tikv-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-c2kcf",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "4",
+                    "memory": "16Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:49:17Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:49:18Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:49:18Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:49:18Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:49:16Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "4",
+                            "memory": "16Gi"
+                        },
+                        "containerID": "containerd://cefa51114ec21516e75c239fdd20a66ac4c1081f7c09133cc286748fafbcd931",
+                        "image": "docker.io/pingcap/tikv:v8.5.2",
+                        "imageID": "docker.io/pingcap/tikv@sha256:3ec043d2eddbd5a39be046e37271bab53e9819c6bf1de716b4ead38e0cb16678",
+                        "lastState": {},
+                        "name": "tikv",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:49:18Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-c2kcf",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.147.236",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.147.236"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:51ff:fed7:2d35"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "containerID": "containerd://4617eaabbbd4aac7ea00cb1d57a8472aa4f71a5885ed45af5dace8fb9a6be298",
+                        "image": "docker.io/pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imageID": "docker.io/pingcap/tidb-operator-prestop-checker@sha256:e4557b063d7ba2ac123b5227d337071597e051480f1d2c4dcdc8866bb37a34a4",
+                        "lastState": {},
+                        "name": "ti-prestop-checker",
+                        "ready": true,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://4617eaabbbd4aac7ea00cb1d57a8472aa4f71a5885ed45af5dace8fb9a6be298",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:49:17Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:49:17Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 2000,
+                                "supplementalGroups": [
+                                    2000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-c2kcf",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.6.14",
+                "podIPs": [
+                    {
+                        "ip": "10.2.6.14"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "16Gi"
+                    },
+                    "requests": {
+                        "cpu": "3996m",
+                        "memory": "16Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:49:16Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "6bd309703cd13030006b79e415b846811026d86b8ad7efd2b7cbc7197c83c4b9",
+                    "cni.projectcalico.org/podIP": "10.2.4.145/32",
+                    "cni.projectcalico.org/podIPs": "10.2.4.145/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "20180",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:50:59Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "tikv",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "tikv",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "tikv",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-fsdyp4",
+                    "pingcap.com/instance-revision-hash": "upg-direct-tikv-5584f86c85",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/store-id": "5",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-tikv-fsdyp4",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "TiKV",
+                        "name": "upg-direct-fsdyp4",
+                        "uid": "6808063d-42db-462b-8290-4f1c968ec654"
+                    }
+                ],
+                "resourceVersion": "177686",
+                "uid": "f2696efa-9db8-4dc6-b490-78b3907f567c"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/tikv-server",
+                            "--config",
+                            "/etc/tikv/config.toml"
+                        ],
+                        "image": "pingcap/tikv:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "/bin/sh",
+                                        "-c",
+                                        "/prestop/prestop-checker -mode  tikv  -pd https://upg-direct-pd.tidb:2379 -tikv-status-addr upg-direct-tikv-fsdyp4.upg-direct-tikv-peer.tidb:20180 -tls  -ca /var/lib/tikv-tls/ca.crt -cert /var/lib/tikv-tls/tls.crt -key /var/lib/tikv-tls/tls.key \u003e /proc/1/fd/1"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "tikv",
+                        "ports": [
+                            {
+                                "containerPort": 20160,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 20180,
+                                "name": "status",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2xpkp",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-tikv-fsdyp4",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "cp /prestop-checker /prestop/;"
+                        ],
+                        "image": "pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "ti-prestop-checker",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2xpkp",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-tlg2q",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-tikv-peer",
+                "terminationGracePeriodSeconds": 65535,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-tikv-fsdyp4"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "ti-prestop-checker"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-tikv-fsdyp4"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tikv-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-2xpkp",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "4",
+                    "memory": "16Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:51:01Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:51:02Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:51:02Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:51:02Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:50:59Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "4",
+                            "memory": "16Gi"
+                        },
+                        "containerID": "containerd://bb020e7bcbfb0855d6ac43b9cfaa8ac1d5465ebe3c714d05d20a9d87de1ee509",
+                        "image": "docker.io/pingcap/tikv:v8.5.2",
+                        "imageID": "docker.io/pingcap/tikv@sha256:3ec043d2eddbd5a39be046e37271bab53e9819c6bf1de716b4ead38e0cb16678",
+                        "lastState": {},
+                        "name": "tikv",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:51:02Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2xpkp",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.147.67",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.147.67"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:44ff:fed0:308c"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "containerID": "containerd://428fe870b7273342fd3078564451874601e05ce3764131894382a29c45ce699b",
+                        "image": "docker.io/pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imageID": "docker.io/pingcap/tidb-operator-prestop-checker@sha256:e4557b063d7ba2ac123b5227d337071597e051480f1d2c4dcdc8866bb37a34a4",
+                        "lastState": {},
+                        "name": "ti-prestop-checker",
+                        "ready": true,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://428fe870b7273342fd3078564451874601e05ce3764131894382a29c45ce699b",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:51:01Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:51:01Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 2000,
+                                "supplementalGroups": [
+                                    2000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2xpkp",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.4.145",
+                "podIPs": [
+                    {
+                        "ip": "10.2.4.145"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "16Gi"
+                    },
+                    "requests": {
+                        "cpu": "3996m",
+                        "memory": "16Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:50:59Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "72abd6930309befd95a373d648222cb36ce3123254c1e222e48c608fbe71f674",
+                    "cni.projectcalico.org/podIP": "10.2.3.149/32",
+                    "cni.projectcalico.org/podIPs": "10.2.3.149/32",
+                    "core.pingcap.com/features": "",
+                    "core.pingcap.com/last-instance-template": "{\"metadata\":{\"labels\":{\"pingcap.com/cluster\":\"upg-direct\",\"pingcap.com/component\":\"tikv\",\"pingcap.com/group\":\"upg-direct\",\"pingcap.com/instance-revision-hash\":\"upg-direct-tikv-5584f86c85\",\"pingcap.com/managed-by\":\"tidb-operator\"}},\"spec\":{\"version\":\"v8.5.2\",\"image\":\"pingcap/tikv:v8.5.2\",\"server\":{\"ports\":{}},\"resources\":{\"cpu\":\"4\",\"memory\":\"16Gi\"},\"updateStrategy\":{\"config\":\"Restart\"},\"volumes\":[{\"name\":\"data\",\"mounts\":[{\"type\":\"data\"}],\"storage\":\"100Gi\",\"storageClassName\":\"linode-block-storage\"}],\"overlay\":{\"pod\":{\"metadata\":{\"labels\":{\"core.openeverest.io/component\":\"tikv\",\"core.openeverest.io/instance\":\"upg-direct\",\"core.openeverest.io/provider\":\"tidb\"}},\"spec\":{\"containers\":null,\"nodeSelector\":{\"tidb-bench\":\"db\"},\"tolerations\":[{\"key\":\"dedicated\",\"operator\":\"Equal\",\"value\":\"tidb\",\"effect\":\"NoSchedule\"}]}}}}}",
+                    "prometheus.io/path": "/metrics",
+                    "prometheus.io/port": "20180",
+                    "prometheus.io/scrape": "true"
+                },
+                "creationTimestamp": "2026-10-27T17:52:25Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "tikv",
+                    "app.kubernetes.io/instance": "upg-direct",
+                    "app.kubernetes.io/managed-by": "tidb-operator",
+                    "app.kubernetes.io/name": "tidb-cluster",
+                    "core.openeverest.io/component": "tikv",
+                    "core.openeverest.io/instance": "upg-direct",
+                    "core.openeverest.io/provider": "tidb",
+                    "pingcap.com/cluster": "upg-direct",
+                    "pingcap.com/component": "tikv",
+                    "pingcap.com/group": "upg-direct",
+                    "pingcap.com/instance": "upg-direct-jg9fja",
+                    "pingcap.com/instance-revision-hash": "upg-direct-tikv-5584f86c85",
+                    "pingcap.com/managed-by": "tidb-operator",
+                    "tidb.pingcap.com/cluster-id": "7701399694997268315",
+                    "tidb.pingcap.com/store-id": "1",
+                    "topology.kubernetes.io/region": "de-fra-2"
+                },
+                "name": "upg-direct-tikv-jg9fja",
+                "namespace": "tidb",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "core.pingcap.com/v1alpha1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "TiKV",
+                        "name": "upg-direct-jg9fja",
+                        "uid": "d7aeeac4-ea6a-4faa-a379-6e6fcfd3643b"
+                    }
+                ],
+                "resourceVersion": "178184",
+                "uid": "5eaee40a-effe-49d4-befe-6f898124af95"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "/tikv-server",
+                            "--config",
+                            "/etc/tikv/config.toml"
+                        ],
+                        "image": "pingcap/tikv:v8.5.2",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "/bin/sh",
+                                        "-c",
+                                        "/prestop/prestop-checker -mode  tikv  -pd https://upg-direct-pd.tidb:2379 -tikv-status-addr upg-direct-tikv-jg9fja.upg-direct-tikv-peer.tidb:20180 -tls  -ca /var/lib/tikv-tls/ca.crt -cert /var/lib/tikv-tls/tls.crt -key /var/lib/tikv-tls/tls.key \u003e /proc/1/fd/1"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "tikv",
+                        "ports": [
+                            {
+                                "containerPort": 20160,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 20180,
+                                "name": "status",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-kvs2x",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "upg-direct-tikv-jg9fja",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/sh",
+                            "-c",
+                            "cp /prestop-checker /prestop/;"
+                        ],
+                        "image": "pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "ti-prestop-checker",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-kvs2x",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "lke679771-1005186-4r79c",
+                "nodeSelector": {
+                    "tidb-bench": "db"
+                },
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "upg-direct-tikv-peer",
+                "terminationGracePeriodSeconds": 65535,
+                "tolerations": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "dedicated",
+                        "operator": "Equal",
+                        "value": "tidb"
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "upg-direct-tikv-jg9fja"
+                        },
+                        "name": "ti-config"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "ti-prestop-checker"
+                    },
+                    {
+                        "name": "ti-vol-data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-upg-direct-tikv-jg9fja"
+                        }
+                    },
+                    {
+                        "name": "ti-tls",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "upg-direct-tikv-cluster-secret"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-kvs2x",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "4",
+                    "memory": "16Gi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:52:27Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:52:28Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:52:28Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:52:28Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-27T17:52:25Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "4",
+                            "memory": "16Gi"
+                        },
+                        "containerID": "containerd://d15dda20b35cef58f10bdcbfd4f67ed70716a5d7f65840c4567ce70c175dfa71",
+                        "image": "docker.io/pingcap/tikv:v8.5.2",
+                        "imageID": "docker.io/pingcap/tikv@sha256:3ec043d2eddbd5a39be046e37271bab53e9819c6bf1de716b4ead38e0cb16678",
+                        "lastState": {},
+                        "name": "tikv",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            },
+                            "requests": {
+                                "cpu": "4",
+                                "memory": "16Gi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-27T17:52:28Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/tikv",
+                                "name": "ti-config"
+                            },
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv",
+                                "name": "ti-vol-data"
+                            },
+                            {
+                                "mountPath": "/var/lib/tikv-tls",
+                                "name": "ti-tls",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-kvs2x",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.147.182",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.147.182"
+                    },
+                    {
+                        "ip": "2600:3c17::2000:25ff:fe68:da00"
+                    }
+                ],
+                "initContainerStatuses": [
+                    {
+                        "containerID": "containerd://9379a5fa17d9f998e12c428d8ac50936e557a8264f1f02af067d43e01fe923ef",
+                        "image": "docker.io/pingcap/tidb-operator-prestop-checker:v2.0.1",
+                        "imageID": "docker.io/pingcap/tidb-operator-prestop-checker@sha256:e4557b063d7ba2ac123b5227d337071597e051480f1d2c4dcdc8866bb37a34a4",
+                        "lastState": {},
+                        "name": "ti-prestop-checker",
+                        "ready": true,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://9379a5fa17d9f998e12c428d8ac50936e557a8264f1f02af067d43e01fe923ef",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-27T17:52:27Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-27T17:52:27Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 2000,
+                                "supplementalGroups": [
+                                    2000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/prestop",
+                                "name": "ti-prestop-checker"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-kvs2x",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.2.3.149",
+                "podIPs": [
+                    {
+                        "ip": "10.2.3.149"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "4",
+                        "memory": "16Gi"
+                    },
+                    "requests": {
+                        "cpu": "3996m",
+                        "memory": "16Gi"
+                    }
+                },
+                "startTime": "2026-10-27T17:52:25Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

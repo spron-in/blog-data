@@ -1,0 +1,24 @@
+# Pull every image the tests use onto the database nodes before timing a cluster start-up.
+# Delete it once all pods are Running: kubectl -n tidb delete ds prepull
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: {name: prepull, namespace: tidb}
+spec:
+  selector: {matchLabels: {app: prepull}}
+  template:
+    metadata: {labels: {app: prepull}}
+    spec:
+      nodeSelector: {tidb-bench: db}
+      tolerations: [{key: dedicated, value: tidb, effect: NoSchedule}]
+      initContainers:
+      - {name: pd8, image: "pingcap/pd:v8.5.2", command: ["/bin/sh", "-c", "true"]}
+      - {name: tikv8, image: "pingcap/tikv:v8.5.2", command: ["/bin/sh", "-c", "true"]}
+      - {name: tidb8, image: "pingcap/tidb:v8.5.2", command: ["/bin/sh", "-c", "true"]}
+      - {name: tiflash8, image: "pingcap/tiflash:v8.5.2", command: ["/bin/sh", "-c", "true"]}
+      - {name: pd7, image: "pingcap/pd:v7.5.5", command: ["/bin/sh", "-c", "true"]}
+      - {name: tikv7, image: "pingcap/tikv:v7.5.5", command: ["/bin/sh", "-c", "true"]}
+      - {name: tidb7, image: "pingcap/tidb:v7.5.5", command: ["/bin/sh", "-c", "true"]}
+      - {name: tiproxy, image: "pingcap/tiproxy:v1.3.3", command: ["/bin/sh", "-c", "true"]}
+      - {name: prestop, image: "pingcap/tidb-operator-prestop-checker:v2.0.1", command: ["/bin/sh", "-c", "true"]}
+      containers:
+      - {name: pause, image: "registry.k8s.io/pause:3.10", resources: {requests: {cpu: 1m, memory: 4Mi}}}

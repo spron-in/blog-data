@@ -1,0 +1,20 @@
+# S3-compatible backup storage (Linode Object Storage in the post). Fill in your bucket, region,
+# endpoint and keys, then enable backups on an Instance:
+#   spec.backup: {enabled: true, classRef: {name: br}, storages: [{storageRef: {name: s3-store}}]}
+apiVersion: v1
+kind: Secret
+metadata: {name: s3-credentials, namespace: tidb}
+type: Opaque
+stringData: {AWS_ACCESS_KEY_ID: CHANGE-ME, AWS_SECRET_ACCESS_KEY: CHANGE-ME}
+---
+apiVersion: backup.openeverest.io/v1alpha1
+kind: BackupStorage
+metadata: {name: s3-store, namespace: tidb}
+spec:
+  type: s3
+  s3:
+    bucket: CHANGE-ME
+    region: de-fra-1
+    endpointURL: https://de-fra-1.linodeobjects.com
+    forcePathStyle: true
+    credentialsSecretRef: {name: s3-credentials}

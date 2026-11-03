@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: neighbor-hog-guaranteed
+  namespace: valkey-mem-lab
+  labels:
+    app: neighbor-hog
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: lke682950-1007885-2x68h
+  restartPolicy: Never
+  containers:
+    - name: hog
+      image: python:3.12-slim
+      command:
+        - python3
+        - -c
+        - |
+          import time
+          size = 4500 * 1024 * 1024
+          data = bytearray(size)
+          step = 4096
+          for i in range(0, size, step):
+              data[i] = 1
+          print("allocated and touched", size, "bytes", flush=True)
+          time.sleep(1800)
+      resources:
+        requests:
+          cpu: "250m"
+          memory: 4600Mi
+        limits:
+          cpu: "250m"
+          memory: 4600Mi

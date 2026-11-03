@@ -1,0 +1,32 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: test6-aof
+  namespace: valkey-mem-lab
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      replicas: 0
+      resources:
+        requests:
+          cpu: "500m"
+          memory: 2Gi
+        limits:
+          cpu: "500m"
+          memory: 2Gi
+      storage:
+        size: 5Gi
+      parameters:
+        config:
+          enable-debug-command: "local"
+          maxmemory: "1700mb"
+          maxmemory-policy: "noeviction"
+          appendonly: "yes"
+        tls:
+          mode: disabled

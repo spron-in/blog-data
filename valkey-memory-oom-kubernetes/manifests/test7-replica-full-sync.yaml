@@ -1,0 +1,29 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: test7-replica-sync
+  namespace: valkey-mem-lab
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      replicas: 1
+      resources:
+        requests:
+          cpu: "500m"
+          memory: 1Gi
+        limits:
+          cpu: "500m"
+          memory: 1Gi
+      parameters:
+        config:
+          enable-debug-command: "local"
+          maxmemory: "850mb"
+          maxmemory-policy: "noeviction"
+        tls:
+          mode: disabled

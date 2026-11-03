@@ -1,0 +1,29 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: test8-fragmentation
+  namespace: valkey-mem-lab
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      replicas: 0
+      resources:
+        requests:
+          cpu: "500m"
+          memory: 2Gi
+        limits:
+          cpu: "500m"
+          memory: 2Gi
+      parameters:
+        config:
+          enable-debug-command: "local"
+          maxmemory: "0"
+          activedefrag: "no"
+        tls:
+          mode: disabled

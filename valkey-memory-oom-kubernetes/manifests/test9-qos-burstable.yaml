@@ -1,0 +1,38 @@
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: test9-qos-burstable
+  namespace: valkey-mem-lab
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: replication
+  components:
+    engine:
+      type: valkey
+      replicas: 0
+      resources:
+        requests:
+          cpu: "250m"
+          memory: 64Mi
+        limits:
+          cpu: "500m"
+          memory: 4Gi
+      schedulingPolicy:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - lke682950-1007885-2x68h
+      parameters:
+        config:
+          enable-debug-command: "local"
+          maxmemory: "0"
+        tls:
+          mode: disabled

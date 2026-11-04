@@ -1,0 +1,15 @@
+### status
+NAME   READY   STATUS                       RESTARTS   AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CreateContainerConfigError   0          59s   10.42.0.47   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=0	state={"waiting":{"message":"secret \"pg-secrets\" not found","reason":"CreateContainerConfigError"}}	last=/
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t40/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:57Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:03:57Z   Warning   Failed      Error: secret "pg-secrets" not found
+
+### logs --previous (last 25 lines)
+Error from server (BadRequest): previous terminated container "postgres" in pod "pg-0" not found

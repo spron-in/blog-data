@@ -1,0 +1,24 @@
+### status
+NAME      READY   STATUS             RESTARTS     AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+mysql-0   0/1     CrashLoopBackOff   3 (9s ago)   58s   10.42.0.53   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+mysql	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=mysql pod=mysql-0_t42(fcc7d47e-6c43-4b16-b770-069889d6202f)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t42/mysql-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:53Z   Normal    Pulled      Container image "mysql:8.4" already present on machine and can be accessed by the pod
+2026-11-04T07:03:53Z   Normal    Created     Container created
+2026-11-04T07:03:53Z   Normal    Started     Container started
+2026-11-04T07:03:56Z   Warning   BackOff     Back-off restarting failed container mysql in pod mysql-0_t42(fcc7d47e-6c43-4b16-b770-069889d6202f)
+
+### logs --previous (last 25 lines)
+2026-11-04 07:03:53+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+2026-11-04 07:03:54+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-04 07:03:54+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+2026-11-04 07:03:54+00:00 [ERROR] [Entrypoint]: Database is uninitialized and password option is not specified
+    You need to specify one of the following as an environment variable:
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_ALLOW_EMPTY_PASSWORD
+    - MYSQL_RANDOM_ROOT_PASSWORD

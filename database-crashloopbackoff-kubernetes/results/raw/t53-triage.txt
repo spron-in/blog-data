@@ -1,0 +1,22 @@
+### status
+NAME      READY   STATUS    RESTARTS   AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+mysql-0   1/1     Running   0          59s   10.42.0.57   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+init/simulate-ext4	restarts=0	state={"terminated":{"containerID":"containerd://caec5557e9d997cf867964987a716d9baf270ec9ff09a637dd849ab4e56ce6d3","exitCode":0,"finishedAt":"2026-11-04T07:03:23Z","reason":"Completed","startedAt":"2026-11-04T07:03:23Z"}}	last=/
+mysql	restarts=0	state={"running":{"startedAt":"2026-11-04T07:03:23Z"}}	last=/
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t53/mysql-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:23Z   Normal    Pulled      Container image "busybox:1.37" already present on machine and can be accessed by the pod
+2026-11-04T07:03:23Z   Normal    Created     Container created
+2026-11-04T07:03:23Z   Normal    Started     Container started
+2026-11-04T07:03:23Z   Normal    Pulled      Container image "mysql:8.4" already present on machine and can be accessed by the pod
+2026-11-04T07:03:23Z   Normal    Created     Container created
+2026-11-04T07:03:23Z   Normal    Started     Container started
+2026-11-04T07:03:27Z   Warning   Unhealthy   Startup probe failed: 
+
+### logs --previous (last 25 lines)
+Defaulted container "mysql" out of: mysql, simulate-ext4 (init)
+Error from server (BadRequest): previous terminated container "mysql" in pod "mysql-0" not found

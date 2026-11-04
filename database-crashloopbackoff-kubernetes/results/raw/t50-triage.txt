@@ -1,0 +1,12 @@
+### status
+NAME   READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+pg-0   0/1     Pending   0          59s   <none>   <none>   <none>           <none>
+
+### per-container state / lastState
+
+### events
+LAST    TYPE      REASON             MESSAGE
+<nil>   Warning   FailedScheduling   0/1 nodes are available: pod has unbound immediate PersistentVolumeClaims. not found
+<nil>   Warning   FailedScheduling   0/1 nodes are available: pod has unbound immediate PersistentVolumeClaims. not found
+
+### logs --previous (last 25 lines)

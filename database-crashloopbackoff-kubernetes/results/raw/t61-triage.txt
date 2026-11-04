@@ -1,0 +1,38 @@
+### status
+NAME      READY   STATUS             RESTARTS      AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+mysql-0   0/1     CrashLoopBackOff   3 (40s ago)   82s   10.42.0.81   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+mysql	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=mysql pod=mysql-0_t61(11e87b36-8f2b-4897-ba2a-1e88713ce373)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON             MESSAGE
+<nil>                  Normal    Scheduled          Successfully assigned t61/mysql-0 to k3d-crashloop-lab-server-0
+<nil>                  Warning   FailedScheduling   0/1 nodes are available: 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+<nil>                  Normal    Scheduled          Successfully assigned t61/mysql-0 to k3d-crashloop-lab-server-0
+<nil>                  Warning   FailedScheduling   0/1 nodes are available: 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+2026-11-04T07:04:30Z   Normal    Pulled             Container image "mysql:8.4" already present on machine and can be accessed by the pod
+2026-11-04T07:04:30Z   Normal    Created            Container created
+2026-11-04T07:04:30Z   Normal    Started            Container started
+2026-11-04T07:04:34Z   Warning   Unhealthy          Startup probe failed: 
+2026-11-04T07:06:42Z   Normal    Killing            Stopping container mysql
+2026-11-04T07:07:00Z   Warning   Unhealthy          Startup probe failed: 
+2026-11-04T07:07:25Z   Normal    Pulled             Container image "mysql:8.0" already present on machine and can be accessed by the pod
+2026-11-04T07:07:25Z   Normal    Created            Container created
+2026-11-04T07:07:25Z   Normal    Started            Container started
+2026-11-04T07:07:35Z   Warning   BackOff            Back-off restarting failed container mysql in pod mysql-0_t61(11e87b36-8f2b-4897-ba2a-1e88713ce373)
+
+### logs --previous (last 25 lines)
+2026-11-04 07:07:25+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-11-04 07:07:25+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-04 07:07:25+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+2026-11-04T07:07:26.155299Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-11-04T07:07:26.156634Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 1
+2026-11-04T07:07:26.161512Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-04T07:07:26.537894Z 1 [ERROR] [MY-014061] [InnoDB] Invalid MySQL server downgrade: Cannot downgrade from 80413 to 80046. Downgrade is only permitted between patch releases.
+mysqld: Can't open file: 'mysql.ibd' (errno: 0 - )
+2026-11-04T07:07:26.794922Z 1 [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+2026-11-04T07:07:26.795244Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2026-11-04T07:07:26.795259Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-11-04T07:07:26.795583Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.46)  MySQL Community Server - GPL.

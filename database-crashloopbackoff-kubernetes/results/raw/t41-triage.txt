@@ -1,0 +1,25 @@
+### status
+NAME   READY   STATUS             RESTARTS      AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CrashLoopBackOff   3 (13s ago)   58s   10.42.0.51   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=postgres pod=pg-0_t41(1ecb3c02-8de0-4385-bf9f-cbaa43a16add)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t41/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:50Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:03:50Z   Normal    Created     Container created
+2026-11-04T07:03:50Z   Normal    Started     Container started
+2026-11-04T07:03:55Z   Warning   BackOff     Back-off restarting failed container postgres in pod pg-0_t41(1ecb3c02-8de0-4385-bf9f-cbaa43a16add)
+
+### logs --previous (last 25 lines)
+Error: Database is uninitialized and superuser password is not specified.
+       You must specify POSTGRES_PASSWORD to a non-empty value for the
+       superuser. For example, "-e POSTGRES_PASSWORD=password" on "docker run".
+
+       You may also use "POSTGRES_HOST_AUTH_METHOD=trust" to allow all
+       connections without a password. This is *not* recommended.
+
+       See PostgreSQL documentation about "trust":
+       https://www.postgresql.org/docs/current/auth-trust.html

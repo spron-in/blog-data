@@ -1,0 +1,50 @@
+### status
+NAME   READY   STATUS    RESTARTS       AGE     IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     Running   6 (110s ago)   5m17s   10.42.0.98   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=6	state={"running":{"startedAt":"2026-11-04T07:22:01Z"}}	last=Completed/0
+
+### events
+2026-11-04T07:15:07Z   Normal    Created     Container created
+2026-11-04T07:15:08Z   Normal    Started     Container started
+2026-11-04T07:15:08Z   Warning   Unhealthy   Readiness probe failed: 127.0.0.1:5432 - no response
+
+2026-11-04T07:17:04Z   Normal    Killing     Stopping container postgres
+2026-11-04T07:18:20Z   Warning   Unhealthy   Liveness probe failed: 127.0.0.1:5432 - rejecting connections
+
+2026-11-04T07:18:21Z   Warning   Unhealthy   Readiness probe failed: 127.0.0.1:5432 - no response
+
+2026-11-04T07:20:06Z   Normal    Created     Container created
+2026-11-04T07:20:06Z   Normal    Started     Container started
+2026-11-04T07:20:30Z   Normal    Killing     Container postgres failed liveness probe, will be restarted
+2026-11-04T07:22:01Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:22:12Z   Warning   Unhealthy   Readiness probe failed: 127.0.0.1:5432 - rejecting connections
+
+
+### logs --previous (last 25 lines)
+2026-11-04 07:20:07.169 UTC [1] LOG:  starting PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-04 07:20:07.170 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-04 07:20:07.170 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-04 07:20:07.260 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-04 07:20:07.359 UTC [44] LOG:  database system was shut down in recovery at 2026-11-04 07:19:10 UTC
+2026-11-04 07:20:07.361 UTC [44] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-11-04 07:20:07.367 UTC [44] LOG:  redo starts at 0/1761998
+2026-11-04 07:20:07.859 UTC [45] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:07.859 UTC [45] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:17.453 UTC [44] LOG:  redo in progress, elapsed time: 10.08 s, current LSN: 0/1201B1B8
+2026-11-04 07:20:17.753 UTC [52] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:17.753 UTC [52] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:21.553 UTC [59] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:21.553 UTC [59] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:25.953 UTC [66] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:25.953 UTC [66] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:27.363 UTC [73] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:27.363 UTC [73] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:27.453 UTC [44] LOG:  redo in progress, elapsed time: 20.08 s, current LSN: 0/1DC83C50
+2026-11-04 07:20:30.763 UTC [80] FATAL:  the database system is not yet accepting connections
+2026-11-04 07:20:30.763 UTC [80] DETAIL:  Consistent recovery state has not been yet reached.
+2026-11-04 07:20:30.774 UTC [1] LOG:  received fast shutdown request
+2026-11-04 07:20:30.955 UTC [87] FATAL:  the database system is shutting down
+2026-11-04 07:20:30.961 UTC [42] LOG:  shutting down
+2026-11-04 07:20:31.167 UTC [1] LOG:  database system is shut down

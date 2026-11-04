@@ -1,0 +1,37 @@
+### status
+NAME   READY   STATUS             RESTARTS      AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CrashLoopBackOff   1 (10s ago)   58s   10.42.0.52   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+init/simulate-ext4	restarts=0	state={"terminated":{"containerID":"containerd://9f3883512e693a07f7aea44185721be5b83f1f66eb22e7da593cb5fa7393fc37","exitCode":0,"finishedAt":"2026-11-04T07:03:22Z","reason":"Completed","startedAt":"2026-11-04T07:03:22Z"}}	last=/
+postgres	restarts=1	state={"waiting":{"message":"back-off 10s restarting failed container=postgres pod=pg-0_t51(473db688-5518-45a7-8708-170a15395f42)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t51/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:16Z   Normal    Pulling     Pulling image "busybox:1.37"
+2026-11-04T07:03:22Z   Normal    Pulled      Successfully pulled image "busybox:1.37" in 5.273s (5.273s including waiting). Image size: 1911395 bytes.
+2026-11-04T07:03:22Z   Normal    Created     Container created
+2026-11-04T07:03:22Z   Normal    Started     Container started
+2026-11-04T07:03:22Z   Normal    Pulling     Pulling image "postgres:17"
+2026-11-04T07:03:53Z   Normal    Pulled      Successfully pulled image "postgres:17" in 30.359s (30.359s including waiting). Image size: 160005860 bytes.
+2026-11-04T07:03:54Z   Normal    Created     Container created
+2026-11-04T07:03:54Z   Normal    Started     Container started
+2026-11-04T07:03:54Z   Normal    Pulled      Container image "postgres:17" already present on machine and can be accessed by the pod
+2026-11-04T07:03:56Z   Warning   BackOff     Back-off restarting failed container postgres in pod pg-0_t51(473db688-5518-45a7-8708-170a15395f42)
+
+### logs --previous (last 25 lines)
+Defaulted container "postgres" out of: postgres, simulate-ext4 (init)
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+initdb: error: directory "/var/lib/postgresql/data" exists but is not empty
+initdb: detail: It contains a lost+found directory, perhaps due to it being a mount point.
+initdb: hint: Using a mount point directly as the data directory is not recommended.
+Create a subdirectory under the mount point.

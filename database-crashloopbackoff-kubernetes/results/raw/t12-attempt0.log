@@ -1,0 +1,13 @@
+2026-11-04 06:44:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+2026-11-04 06:44:20+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-04 06:44:20+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+2026-11-04 06:44:20+00:00 [Note] [Entrypoint]: Initializing database files
+2026-11-04T06:44:20.268445Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2026-11-04T06:44:20.269564Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.4.13) initializing of server in progress as process 80
+2026-11-04T06:44:20.269565Z 0 [System] [MY-015150] [Server] Server version with update: '8.4.13.0'
+2026-11-04T06:44:20.274780Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-04T06:44:20.655334Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-04T06:44:21.312022Z 0 [ERROR] [MY-000067] [Server] unknown variable 'query_cache_size=0'.
+2026-11-04T06:44:21.312323Z 0 [ERROR] [MY-013236] [Server] The designated data directory /var/lib/mysql/ is unusable. You can remove all files that the server added to it.
+2026-11-04T06:44:21.312345Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-11-04T06:44:22.635186Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.

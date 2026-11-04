@@ -1,0 +1,30 @@
+2026-11-04 06:44:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+2026-11-04 06:44:23+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-04 06:44:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.4.13-1.el9 started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+2026-11-04T06:44:24.148689Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-11-04T06:44:24.415910Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.4.13) starting as process 1
+2026-11-04T06:44:24.415913Z 0 [System] [MY-015150] [Server] Server version with update: '8.4.13.0'
+2026-11-04T06:44:24.424802Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-04T06:44:24.710689Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+mysqld: Table 'mysql.plugin' doesn't exist
+2026-11-04T06:44:24.773357Z 0 [ERROR] [MY-010735] [Server] Could not open the mysql.plugin table. Please perform the MySQL upgrade procedure.
+2026-11-04T06:44:24.773518Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.773622Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.773718Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.774057Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.774107Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.774158Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.774206Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.830122Z 0 [Warning] [MY-010015] [Repl] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2026-11-04T06:44:24.890709Z 0 [Warning] [MY-010015] [Repl] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2026-11-04T06:44:24.894793Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-11-04T06:44:24.894830Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-11-04T06:44:24.897049Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-11-04T06:44:24.897343Z 0 [Warning] [MY-010441] [Server] Failed to open optimizer cost constant tables
+2026-11-04T06:44:24.897454Z 0 [ERROR] [MY-013129] [Server] A message intended for a client cannot be sent there as no client-session is attached. Therefore, we're sending the information to the error-log instead: MY-001146 - Table 'mysql.component' doesn't exist
+2026-11-04T06:44:24.897469Z 0 [Warning] [MY-013129] [Server] A message intended for a client cannot be sent there as no client-session is attached. Therefore, we're sending the information to the error-log instead: MY-003543 - The mysql.component table is missing or has an incorrect definition.
+2026-11-04T06:44:24.897617Z 0 [ERROR] [MY-000067] [Server] unknown variable 'query_cache_size=0'.
+2026-11-04T06:44:24.898042Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-11-04T06:44:26.372906Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.4.13)  MySQL Community Server - GPL.
+2026-11-04T06:44:26.372940Z 0 [System] [MY-015016] [Server] MySQL Server - end.

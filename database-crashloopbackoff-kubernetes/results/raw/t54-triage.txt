@@ -1,0 +1,22 @@
+### status
+NAME   READY   STATUS             RESTARTS     AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CrashLoopBackOff   3 (7s ago)   59s   10.42.0.58   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+init/simulate-root-owned	restarts=0	state={"terminated":{"containerID":"containerd://fae0a6d74fcb5fa76d208f6cdbd9ca6c4274147ffb911b4b1a43e0dd28e8b5b0","exitCode":0,"finishedAt":"2026-11-04T07:03:23Z","reason":"Completed","startedAt":"2026-11-04T07:03:23Z"}}	last=/
+postgres	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=postgres pod=pg-0_t54(f115451d-b80e-426e-8514-11a3120772df)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t54/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:23Z   Normal    Pulled      Container image "busybox:1.37" already present on machine and can be accessed by the pod
+2026-11-04T07:03:23Z   Normal    Created     Container created
+2026-11-04T07:03:23Z   Normal    Started     Container started
+2026-11-04T07:03:58Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:03:58Z   Normal    Created     Container created
+2026-11-04T07:03:58Z   Normal    Started     Container started
+2026-11-04T07:04:03Z   Warning   BackOff     Back-off restarting failed container postgres in pod pg-0_t54(f115451d-b80e-426e-8514-11a3120772df)
+
+### logs --previous (last 25 lines)
+Defaulted container "postgres" out of: postgres, simulate-root-owned (init)
+mkdir: cannot create directory ‘/var/lib/postgresql/18’: Permission denied

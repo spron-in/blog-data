@@ -1,0 +1,40 @@
+### status
+NAME      READY   STATUS             RESTARTS     AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+mysql-0   0/1     CrashLoopBackOff   2 (9s ago)   82s   10.42.0.82   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+mysql	restarts=2	state={"waiting":{"message":"back-off 20s restarting failed container=mysql pod=mysql-0_t62(c88200bb-a5b2-4a1b-8577-17a46bed012d)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+<nil>                  Normal    Scheduled          Successfully assigned t62/mysql-0 to k3d-crashloop-lab-server-0
+<nil>                  Warning   FailedScheduling   0/1 nodes are available: 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+2026-11-04T07:04:30Z   Normal    Pulling            Pulling image "mysql:8.0"
+2026-11-04T07:05:06Z   Normal    Pulled             Successfully pulled image "mysql:8.0" in 36.509s (36.509s including waiting). Image size: 229152189 bytes.
+2026-11-04T07:05:06Z   Normal    Created            Container created
+2026-11-04T07:05:06Z   Normal    Started            Container started
+2026-11-04T07:05:15Z   Warning   Unhealthy          Startup probe failed: 
+2026-11-04T07:06:42Z   Normal    Killing            Stopping container mysql
+2026-11-04T07:06:45Z   Normal    Pulling            Pulling image "mysql:9.5"
+2026-11-04T07:07:40Z   Normal    Pulled             Successfully pulled image "mysql:9.5" in 55.15s (55.15s including waiting). Image size: 269809744 bytes.
+2026-11-04T07:07:45Z   Warning   Unhealthy          Startup probe failed: 
+2026-11-04T07:07:56Z   Normal    Created            Container created
+2026-11-04T07:07:56Z   Normal    Started            Container started
+2026-11-04T07:07:56Z   Normal    Pulled             Container image "mysql:9.5" already present on machine and can be accessed by the pod
+2026-11-04T07:08:06Z   Warning   BackOff            Back-off restarting failed container mysql in pod mysql-0_t62(c88200bb-a5b2-4a1b-8577-17a46bed012d)
+
+### logs --previous (last 25 lines)
+2026-11-04 07:07:56+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.5.0-1.el9 started.
+2026-11-04 07:07:56+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-11-04 07:07:56+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.5.0-1.el9 started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+2026-11-04T07:07:56.882905Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-11-04T07:07:57.163178Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 9.5.0) starting as process 1
+2026-11-04T07:07:57.163189Z 0 [System] [MY-015590] [Server] MySQL Server has access to 1 logical CPUs.
+2026-11-04T07:07:57.163195Z 0 [System] [MY-015590] [Server] MySQL Server has access to 1073741824 bytes of physical memory.
+2026-11-04T07:07:57.168364Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-04T07:07:57.369526Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-04T07:07:57.375153Z 1 [ERROR] [MY-014060] [Server] Invalid MySQL server upgrade: Cannot upgrade from 80046 to 90500. Upgrade to next major version is only allowed from the last LTS release, which version 80046 is not.
+2026-11-04T07:07:57.375294Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2026-11-04T07:07:57.375310Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-11-04T07:07:57.902617Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 9.5.0)  MySQL Community Server - GPL.
+2026-11-04T07:07:57.902633Z 0 [System] [MY-015016] [Server] MySQL Server - end.

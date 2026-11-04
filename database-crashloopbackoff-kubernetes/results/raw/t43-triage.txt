@@ -1,0 +1,47 @@
+### status
+NAME   READY   STATUS    RESTARTS      AGE     IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   1/1     Running   3 (38s ago)   2m29s   10.42.0.91   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=3	state={"running":{"startedAt":"2026-11-04T07:11:51Z"}}	last=Completed/0
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t43b/pg-0 to k3d-crashloop-lab-server-0
+<nil>                  Normal    Scheduled   Successfully assigned t43b/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:08:38Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:08:38Z   Normal    Created     Container created
+2026-11-04T07:08:38Z   Normal    Started     Container started
+2026-11-04T07:09:59Z   Normal    Killing     Stopping container postgres
+2026-11-04T07:11:51Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:11:51Z   Normal    Created     Container created
+2026-11-04T07:11:51Z   Normal    Started     Container started
+2026-11-04T07:11:51Z   Normal    Killing     Container postgres failed liveness probe, will be restarted
+2026-11-04T07:11:51Z   Warning   Unhealthy   Readiness probe failed: 127.0.0.1:5432 - no response
+
+2026-11-04T07:12:21Z   Warning   Unhealthy   Liveness probe failed: psql: error: connection to server at "10.42.0.91", port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+
+### logs --previous (last 25 lines)
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+2026-11-04 07:11:11.738 UTC [1] LOG:  starting PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-04 07:11:11.738 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-04 07:11:11.738 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-04 07:11:11.740 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-04 07:11:11.743 UTC [38] LOG:  database system was shut down at 2026-11-04 07:11:11 UTC
+2026-11-04 07:11:11.746 UTC [1] LOG:  database system is ready to accept connections
+2026-11-04 07:11:31.358 UTC [70] FATAL:  password authentication failed for user "postgres"
+2026-11-04 07:11:31.358 UTC [70] DETAIL:  Connection matched file "/var/lib/postgresql/18/docker/pg_hba.conf" line 128: "host all all all scram-sha-256"
+2026-11-04 07:11:41.427 UTC [85] FATAL:  password authentication failed for user "postgres"
+2026-11-04 07:11:41.427 UTC [85] DETAIL:  Connection matched file "/var/lib/postgresql/18/docker/pg_hba.conf" line 128: "host all all all scram-sha-256"
+2026-11-04 07:11:51.363 UTC [101] FATAL:  password authentication failed for user "postgres"
+2026-11-04 07:11:51.363 UTC [101] DETAIL:  Connection matched file "/var/lib/postgresql/18/docker/pg_hba.conf" line 128: "host all all all scram-sha-256"
+2026-11-04 07:11:51.375 UTC [1] LOG:  received fast shutdown request
+2026-11-04 07:11:51.377 UTC [1] LOG:  aborting any active transactions
+2026-11-04 07:11:51.379 UTC [1] LOG:  background worker "logical replication launcher" (PID 41) exited with exit code 1
+2026-11-04 07:11:51.380 UTC [36] LOG:  shutting down
+2026-11-04 07:11:51.381 UTC [36] LOG:  checkpoint starting: shutdown immediate
+2026-11-04 07:11:51.428 UTC [36] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.049 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/17E0470, redo lsn=0/17E0470
+2026-11-04 07:11:51.438 UTC [1] LOG:  database system is shut down

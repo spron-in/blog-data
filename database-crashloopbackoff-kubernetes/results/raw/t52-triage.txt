@@ -1,0 +1,37 @@
+### status
+NAME   READY   STATUS             RESTARTS     AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CrashLoopBackOff   3 (5s ago)   58s   10.42.0.56   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=postgres pod=pg-0_t52(9e6d95bb-8ff6-41a9-bc27-ea34e082638a)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON      MESSAGE
+<nil>                  Normal    Scheduled   Successfully assigned t52/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:03:59Z   Normal    Pulled      Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:03:59Z   Normal    Created     Container created
+2026-11-04T07:03:59Z   Normal    Started     Container started
+2026-11-04T07:04:02Z   Warning   BackOff     Back-off restarting failed container postgres in pod pg-0_t52(9e6d95bb-8ff6-41a9-bc27-ea34e082638a)
+
+### logs --previous (last 25 lines)
+Error: in 18+, these Docker images are configured to store database data in a
+       format which is compatible with "pg_ctlcluster" (specifically, using
+       major-version-specific directory names).  This better reflects how
+       PostgreSQL itself works, and how upgrades are to be performed.
+
+       See also https://github.com/docker-library/postgres/pull/1259
+
+       Counter to that, there appears to be PostgreSQL data in:
+         /var/lib/postgresql/data (unused mount/volume)
+
+       This is usually the result of upgrading the Docker image without
+       upgrading the underlying database using "pg_upgrade" (which requires both
+       versions).
+
+       The suggested container configuration for 18+ is to place a single mount
+       at /var/lib/postgresql which will then place PostgreSQL data in a
+       subdirectory, allowing usage of "pg_upgrade --link" without mount point
+       boundary issues.
+
+       See https://github.com/docker-library/postgres/issues/37 for a (long)
+       discussion around this process, and suggestions for how to do so.

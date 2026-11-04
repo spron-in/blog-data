@@ -1,0 +1,13 @@
+06:41:38 Running 0
+06:41:40 Error 1
+06:41:42 CrashLoopBackOff 1
+06:41:50 Running 2
+06:41:53 CrashLoopBackOff 2
+06:42:11 Error 3
+06:42:13 CrashLoopBackOff 3
+06:42:53 Error 4
+06:42:57 CrashLoopBackOff 4
+06:44:13 Running 5
+06:44:15 Error 5
+06:44:17 CrashLoopBackOff 5
+06:46:06 Running 0

@@ -1,0 +1,28 @@
+### status
+NAME   READY   STATUS             RESTARTS      AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+pg-0   0/1     CrashLoopBackOff   3 (46s ago)   82s   10.42.0.80   k3d-crashloop-lab-server-0   <none>           <none>
+
+### per-container state / lastState
+postgres	restarts=3	state={"waiting":{"message":"back-off 40s restarting failed container=postgres pod=pg-0_t60(5c668efd-cc06-4f7b-a163-16037502d80e)","reason":"CrashLoopBackOff"}}	last=Error/1
+
+### events
+LAST                   TYPE      REASON             MESSAGE
+<nil>                  Warning   FailedScheduling   0/1 nodes are available: 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+<nil>                  Warning   FailedScheduling   0/1 nodes are available: 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+<nil>                  Normal    Scheduled          Successfully assigned t60/pg-0 to k3d-crashloop-lab-server-0
+<nil>                  Normal    Scheduled          Successfully assigned t60/pg-0 to k3d-crashloop-lab-server-0
+2026-11-04T07:04:28Z   Normal    Pulled             Container image "postgres:17" already present on machine and can be accessed by the pod
+2026-11-04T07:04:28Z   Normal    Created            Container created
+2026-11-04T07:04:28Z   Normal    Started            Container started
+2026-11-04T07:06:42Z   Normal    Killing            Stopping container postgres
+2026-11-04T07:07:19Z   Normal    Pulled             Container image "postgres:18" already present on machine and can be accessed by the pod
+2026-11-04T07:07:19Z   Normal    Created            Container created
+2026-11-04T07:07:19Z   Normal    Started            Container started
+2026-11-04T07:07:24Z   Warning   BackOff            Back-off restarting failed container postgres in pod pg-0_t60(5c668efd-cc06-4f7b-a163-16037502d80e)
+
+### logs --previous (last 25 lines)
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+2026-11-04 07:07:19.640 UTC [1] FATAL:  database files are incompatible with server
+2026-11-04 07:07:19.640 UTC [1] DETAIL:  The data directory was initialized by PostgreSQL version 17, which is not compatible with this version 18.6 (Debian 18.6-1.pgdg13+2).

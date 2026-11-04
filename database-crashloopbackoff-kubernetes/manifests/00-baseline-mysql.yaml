@@ -1,0 +1,68 @@
+# Known-good MySQL 8.4 LTS StatefulSet. Every mysql test is a small diff from this file.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: "s3cr3t-pass"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  clusterIP: None
+  selector: { app: mysql }
+  ports: [{ name: mysql, port: 3306 }]
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels: { app: mysql }
+  template:
+    metadata:
+      labels: { app: mysql }
+    spec:
+      securityContext:
+        fsGroup: 999
+      containers:
+        - name: mysql
+          image: mysql:8.4
+          ports: [{ containerPort: 3306, name: mysql }]
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: mysql-secret, key: MYSQL_ROOT_PASSWORD }
+          resources:
+            requests: { cpu: "1", memory: 1Gi }
+            limits: { cpu: "1", memory: 1Gi }
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+          # Probes connect over TCP so the entrypoint's temporary init server
+          # (started with --skip-networking) is never mistaken for "ready".
+          startupProbe:
+            exec: { command: ["mysqladmin", "ping", "-h", "127.0.0.1", "--silent"] }
+            periodSeconds: 5
+            failureThreshold: 60     # up to 5 minutes for first init / crash recovery
+          readinessProbe:
+            exec: { command: ["mysqladmin", "ping", "-h", "127.0.0.1", "--silent"] }
+            periodSeconds: 10
+          livenessProbe:
+            exec: { command: ["mysqladmin", "ping", "-h", "127.0.0.1", "--silent"] }
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: { storage: 2Gi }

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: valkey-shop
+  labels: {app.kubernetes.io/managed-by: everest}
+---
+apiVersion: core.openeverest.io/v1alpha1
+kind: Instance
+metadata:
+  name: shop-valkey
+  namespace: valkey-shop
+spec:
+  providerRef:
+    name: valkey
+  version: "9.0"
+  topology:
+    type: cluster
+    parameters:
+      numShards: 3
+  components:
+    engine:
+      type: valkey
+      replicas: 0
+      resources:
+        requests: {cpu: "3", memory: 26Gi}
+        limits: {memory: 26Gi}
+      storage:
+        size: 60Gi
+        storageClass: linode-block-storage

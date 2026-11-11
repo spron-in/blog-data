@@ -1,0 +1,23 @@
+image:
+  repository: localhost:30500/valkey-mig/plugin-migrations
+  tag: rs
+  pullPolicy: Always
+plugin:
+  displayName: Migrations (Valkey)
+reconcileInterval: 3s
+engines:
+  pcsm: {enabled: false}
+  postgres-logical: {enabled: false}
+  mysql-replication: {enabled: false}
+  mariadb-replication: {enabled: false}
+  mssql-log-shipping: {enabled: false}
+  redis-shake:
+    enabled: true
+    image:
+      repository: localhost:30500/valkey-mig/plugin-migrations-redis-shake
+      tag: rs
+      pullPolicy: Always
+worker:
+  resources:
+    requests: {cpu: "2", memory: 2Gi}
+    limits: {memory: 8Gi}

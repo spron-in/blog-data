@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: tools, namespace: vk-bench}
+spec:
+  nodeSelector: {lke.linode.com/pool-id: "1027634"}
+  containers:
+  - name: tools
+    image: alpine:3.20
+    command: ["sleep", "infinity"]
+    env:
+    - {name: PASSWORD, valueFrom: {secretKeyRef: {name: src, key: password}}}
+    - {name: SRC_PASSWORD, valueFrom: {secretKeyRef: {name: src, key: password}}}
+    - {name: DST_PASSWORD, valueFrom: {secretKeyRef: {name: dst, key: password}}}
+    - {name: DST_USER, valueFrom: {secretKeyRef: {name: dst, key: username}}}
+    resources:
+      requests: {cpu: "5", memory: 4Gi}
+      limits: {memory: 8Gi}
+    volumeMounts:
+    - {name: dst, mountPath: /dst}
+    - {name: work, mountPath: /work}
+  volumes:
+  - name: dst
+    secret: {secretName: dst}
+  - name: work
+    emptyDir: {}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" role="img" aria-label="Same data, less memory: Redis 7.2 vs Valkey 9.0">
+<rect width="960" height="400" fill="#ffffff"/>
+<text x="24" y="32" font-size="20" font-weight="700" fill="#161641">Same data, less memory: Redis 7.2 vs Valkey 9.0</text>
+<text x="24" y="54" font-size="14" fill="#6b7280">used_memory summed over 3 primaries, sampled just before the cutover, when both sides held the same keys.</text>
+<line x1="90" y1="330.0" x2="930" y2="330.0" stroke="#e5e7eb"/>
+<text x="82" y="334.0" font-size="13" fill="#6b7280" text-anchor="end">0 GiB</text>
+<line x1="90" y1="246.9" x2="930" y2="246.9" stroke="#e5e7eb"/>
+<text x="82" y="250.9" font-size="13" fill="#6b7280" text-anchor="end">20 GiB</text>
+<line x1="90" y1="163.8" x2="930" y2="163.8" stroke="#e5e7eb"/>
+<text x="82" y="167.8" font-size="13" fill="#6b7280" text-anchor="end">40 GiB</text>
+<line x1="90" y1="80.7" x2="930" y2="80.7" stroke="#e5e7eb"/>
+<text x="82" y="84.7" font-size="13" fill="#6b7280" text-anchor="end">60 GiB</text>
+<rect x="210.0" y="120.0" width="84.0" height="210.0" fill="#4f46e5" rx="3"/>
+<text x="252.0" y="114.0" font-size="13" fill="#161641" text-anchor="middle" font-weight="600">50.5 GiB</text>
+<rect x="300.0" y="140.0" width="84.0" height="190.0" fill="#16a34a" rx="3"/>
+<text x="342.0" y="134.0" font-size="13" fill="#161641" text-anchor="middle" font-weight="600">45.7 GiB</text>
+<text x="300.0" y="352" font-size="14" fill="#374151" text-anchor="middle">Dataset A: 47M mixed keys</text>
+<rect x="630.0" y="244.5" width="84.0" height="85.5" fill="#4f46e5" rx="3"/>
+<text x="672.0" y="238.5" font-size="13" fill="#161641" text-anchor="middle" font-weight="600">20.6 GiB</text>
+<rect x="720.0" y="261.8" width="84.0" height="68.2" fill="#16a34a" rx="3"/>
+<text x="762.0" y="255.8" font-size="13" fill="#161641" text-anchor="middle" font-weight="600">16.4 GiB</text>
+<text x="720.0" y="352" font-size="14" fill="#374151" text-anchor="middle">Dataset B: 150M small strings</text>
+<rect x="710" y="74" width="14" height="10" fill="#4f46e5" rx="2"/>
+<text x="730" y="84" font-size="13" fill="#374151">Redis 7.2 (source)</text>
+<rect x="710" y="94" width="14" height="10" fill="#16a34a" rx="2"/>
+<text x="730" y="104" font-size="13" fill="#374151">Valkey 9.0 (target)</text>
+</svg>

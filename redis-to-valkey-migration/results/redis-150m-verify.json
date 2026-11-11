@@ -1,0 +1,26 @@
+{
+  "checked": 150316491,
+  "byType": {
+    "string": 150316491
+  },
+  "missingOnTarget": 0,
+  "typeMismatch": 0,
+  "valueMismatch": 0,
+  "ttlLost": 0,
+  "ttlAdded": 0,
+  "expiringSkipped": 0,
+  "withTTL": 30312695,
+  "ttlDriftBuckets": {
+    "0ms": 585515,
+    "\u003c=1s": 29727180
+  },
+  "ttlDriftMinMs": 0,
+  "ttlDriftMaxMs": 184,
+  "ttlDriftMeanMs": 27.036817610575373,
+  "examples": null,
+  "sourceKeys": 150316491,
+  "targetKeys": 150370297,
+  "targetInternalKeys": 1,
+  "sourceInternalKeys": 0,
+  "duration": "3m56s"
+}

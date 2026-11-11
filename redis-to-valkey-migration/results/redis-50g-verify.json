@@ -1,0 +1,31 @@
+{
+  "checked": 47014200,
+  "byType": {
+    "hash": 10000000,
+    "list": 1000000,
+    "set": 2000000,
+    "stream": 200,
+    "string": 34013980,
+    "zset": 20
+  },
+  "missingOnTarget": 0,
+  "typeMismatch": 0,
+  "valueMismatch": 0,
+  "ttlLost": 0,
+  "ttlAdded": 0,
+  "expiringSkipped": 0,
+  "withTTL": 29128229,
+  "ttlDriftBuckets": {
+    "0ms": 930988,
+    "\u003c=1s": 28197241
+  },
+  "ttlDriftMinMs": -1,
+  "ttlDriftMaxMs": 546,
+  "ttlDriftMeanMs": 19.731160380536696,
+  "examples": null,
+  "sourceKeys": 47014200,
+  "targetKeys": 47060010,
+  "targetInternalKeys": 1,
+  "sourceInternalKeys": 0,
+  "duration": "4m57s"
+}
